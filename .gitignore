@@ -1,0 +1,41 @@
+# Composer & Dependencies
+/vendor/
+composer.phar
+
+# Environment & Credentials
+.env
+.env.backup
+.env.local
+.env.*.local
+.env.*
+!.env.example
+
+# Storage, Data & Logs
+/storage/data/*.json
+!/storage/data/.gitkeep
+/storage/logs/*.log
+!/storage/logs/.gitkeep
+*.log
+
+# Testing & Coverage
+.phpunit.result.cache
+.phpunit.cache/
+/coverage/
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
