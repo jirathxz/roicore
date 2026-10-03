@@ -21,4 +21,6 @@ interface IFloodReportRepository
      * @return FloodReport[]
      */
     public function listPending(): array;
+
+    public function isOffline(): bool;
 }

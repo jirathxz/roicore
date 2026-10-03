@@ -22,4 +22,6 @@ interface IFloodPointRepository
     public function findById(string $id): ?FloodPoint;
 
     public function upsert(FloodPoint $point): FloodPoint;
+
+    public function isOffline(): bool;
 }

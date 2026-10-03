@@ -21,10 +21,17 @@ final class Response
         return new self($statusCode, $data, array_merge(['Content-Type' => 'application/json; charset=utf-8'], $headers));
     }
 
-    public static function success(mixed $data, string $message = 'ดำเนินการสำเร็จ', int $statusCode = 200): self
-    {
+    public static function success(
+        mixed $data,
+        string $message = 'ดำเนินการสำเร็จ',
+        int $statusCode = 200,
+        string $status = 'OFFLINE',
+        bool $isOffline = true
+    ): self {
         return self::json([
             'success' => true,
+            'status' => $status,
+            'is_offline' => $isOffline,
             'message' => $message,
             'data' => $data,
         ], $statusCode);
@@ -34,6 +41,8 @@ final class Response
     {
         return self::json([
             'success' => false,
+            'status' => 'ERROR',
+            'is_offline' => true,
             'message' => $message,
             'errors' => $errors,
         ], $statusCode);

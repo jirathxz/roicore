@@ -30,6 +30,11 @@ final class JsonFileFloodReportRepository implements IFloodReportRepository
         $this->load();
     }
 
+    public function isOffline(): bool
+    {
+        return true;
+    }
+
     public function save(FloodReport $report): FloodReport
     {
         $this->reports[$report->id] = $report;
@@ -69,11 +74,12 @@ final class JsonFileFloodReportRepository implements IFloodReportRepository
         }
 
         $data = json_decode($content, true);
-        if (!is_array($data)) {
+        if (!is_array($data) || empty($data)) {
             $this->seedInitialReports();
             return;
         }
 
+        $this->reports = [];
         foreach ($data as $item) {
             $report = new FloodReport(
                 id: (string) $item['id'],
@@ -100,8 +106,10 @@ final class JsonFileFloodReportRepository implements IFloodReportRepository
         file_put_contents($this->filePath, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 
-    private function seedInitialReports(): void
+    public function seedInitialReports(): void
     {
+        $this->reports = [];
+
         $sample1 = new FloodReport(
             id: 'rep_101',
             location: new GeoPoint(16.0538, 103.6520),
@@ -114,15 +122,37 @@ final class JsonFileFloodReportRepository implements IFloodReportRepository
 
         $sample2 = new FloodReport(
             id: 'rep_102',
-            location: new GeoPoint(15.2287, 104.8564),
+            location: new GeoPoint(16.0350, 103.7890),
             severity: Severity::MEDIUM,
-            description: 'ระดับน้ำในลำเซบกสูงขึ้นต่อเนื่อง ท่วมพื้นที่ลุ่มต่ำใกล้สะพาน',
+            description: 'มีน้ำท่วมขังรอการระบายบริเวณตลาดสดเสลภูมิ ระดับ 15 เซนติเมตร',
             phone: '0898765432',
             status: ReportStatus::PENDING,
             reportedAt: new DateTimeImmutable('-40 minutes')
         );
 
+        $sample3 = new FloodReport(
+            id: 'rep_103',
+            location: new GeoPoint(16.3015, 103.9850),
+            severity: Severity::HIGH,
+            description: 'ระดับน้ำในลำน้ำยังเอ่อท่วมถนนสายรองเข้าหมู่บ้าน รถจักรยานยนต์ผ่านไม่ได้',
+            phone: '0861112233',
+            status: ReportStatus::VERIFIED,
+            reportedAt: new DateTimeImmutable('-1 hour')
+        );
+
+        $sample4 = new FloodReport(
+            id: 'rep_104',
+            location: new GeoPoint(16.0680, 103.6850),
+            severity: Severity::LOW,
+            description: 'น้ำท่วมขังผิวจราจรฝั่งซ้ายทางเลี่ยงเมืองร้อยเอ็ด รอการระบาย',
+            phone: '0879998877',
+            status: ReportStatus::RESOLVED,
+            reportedAt: new DateTimeImmutable('-3 hours')
+        );
+
         $this->save($sample1);
         $this->save($sample2);
+        $this->save($sample3);
+        $this->save($sample4);
     }
 }

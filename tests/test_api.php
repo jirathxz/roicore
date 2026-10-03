@@ -34,3 +34,9 @@ echo "=== 4. Test GET /api/reports ===\n";
 $req4 = new Request('GET', '/api/reports', [], [], []);
 $res4 = $container->apiRouter->dispatch($req4);
 echo json_encode($res4->data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n\n";
+
+echo "=== 5. Test GET /api/gistda/flood ===\n";
+$req5 = new Request('GET', '/api/gistda/flood', ['province' => 'ร้อยเอ็ด'], [], []);
+$res5 = $container->apiRouter->dispatch($req5);
+echo json_encode($res5->data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n\n";
+

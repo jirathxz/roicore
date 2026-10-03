@@ -24,6 +24,11 @@ final class OpenWeatherService implements IWeatherService
         ]);
     }
 
+    public function isOffline(): bool
+    {
+        return empty($this->apiKey);
+    }
+
     public function getCurrentWeather(GeoPoint $location): WeatherData
     {
         if ($this->apiKey !== null && trim($this->apiKey) !== '') {

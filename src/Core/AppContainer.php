@@ -6,7 +6,11 @@ namespace RoiCore\Core;
 
 use RoiCore\Data\Repositories\JsonFileFloodPointRepository;
 use RoiCore\Data\Repositories\JsonFileFloodReportRepository;
+use RoiCore\Data\Repositories\SupabaseFloodPointRepository;
+use RoiCore\Data\Repositories\SupabaseFloodReportRepository;
+use RoiCore\Data\Services\GistdaDisasterService;
 use RoiCore\Data\Services\OpenWeatherService;
+use RoiCore\Data\Services\SupabaseClient;
 use RoiCore\Domain\Interfaces\IFloodPointRepository;
 use RoiCore\Domain\Interfaces\IFloodReportRepository;
 use RoiCore\Domain\Interfaces\IWeatherService;
@@ -18,6 +22,7 @@ use RoiCore\Domain\UseCases\GetReportsUseCase;
 use RoiCore\Domain\UseCases\GetWeatherUseCase;
 use RoiCore\Domain\UseCases\SubmitReportUseCase;
 use RoiCore\Presentation\Controllers\FloodPointController;
+use RoiCore\Presentation\Controllers\GistdaController;
 use RoiCore\Presentation\Controllers\ReportController;
 use RoiCore\Presentation\Controllers\WeatherController;
 use RoiCore\Presentation\Routing\ApiRouter;
@@ -29,15 +34,31 @@ final class AppContainer
     public readonly IFloodReportRepository $reportRepository;
     public readonly IFloodPointRepository $floodPointRepository;
     public readonly IWeatherService $weatherService;
+    public readonly GistdaDisasterService $gistdaService;
     public readonly CompositeRiskStrategy $riskStrategy;
     public readonly ApiRouter $apiRouter;
 
     public function __construct()
     {
-        // 1. Data Layer
-        $this->reportRepository = new JsonFileFloodReportRepository();
-        $this->floodPointRepository = new JsonFileFloodPointRepository();
+        // 1. Data Layer Configuration
+        $dbDriver = strtolower($_ENV['DB_DRIVER'] ?? 'supabase');
+        $supabaseUrl = $_ENV['SUPABASE_URL'] ?? 'http://127.0.0.1:54321';
+        $supabaseKey = $_ENV['SUPABASE_ANON_KEY'] ?? '';
+
+        $jsonReportRepo = new JsonFileFloodReportRepository();
+        $jsonPointRepo = new JsonFileFloodPointRepository();
+
+        if ($dbDriver === 'supabase' && !empty($supabaseKey)) {
+            $supabaseClient = new SupabaseClient($supabaseUrl, $supabaseKey);
+            $this->reportRepository = new SupabaseFloodReportRepository($supabaseClient, $jsonReportRepo);
+            $this->floodPointRepository = new SupabaseFloodPointRepository($supabaseClient, $jsonPointRepo);
+        } else {
+            $this->reportRepository = $jsonReportRepo;
+            $this->floodPointRepository = $jsonPointRepo;
+        }
+
         $this->weatherService = new OpenWeatherService();
+        $this->gistdaService = new GistdaDisasterService();
 
         // 2. Strategies (Composite Pattern)
         $this->riskStrategy = new CompositeRiskStrategy();
@@ -55,12 +76,13 @@ final class AppContainer
         $getWeatherUseCase = new GetWeatherUseCase($this->weatherService);
 
         // 4. Presentation Controllers
-        $reportController = new ReportController($submitReportUseCase, $getReportsUseCase);
-        $floodPointController = new FloodPointController($checkFloodPointsUseCase);
-        $weatherController = new WeatherController($getWeatherUseCase);
+        $reportController = new ReportController($submitReportUseCase, $getReportsUseCase, $this->reportRepository);
+        $floodPointController = new FloodPointController($checkFloodPointsUseCase, $this->floodPointRepository);
+        $weatherController = new WeatherController($getWeatherUseCase, $this->weatherService);
+        $gistdaController = new GistdaController($this->gistdaService);
 
         // 5. Router
-        $this->apiRouter = new ApiRouter($reportController, $floodPointController, $weatherController);
+        $this->apiRouter = new ApiRouter($reportController, $floodPointController, $weatherController, $gistdaController);
     }
 
     public static function getInstance(): self

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RoiCore\Presentation\Controllers;
 
 use RoiCore\Domain\Entities\FloodPoint;
+use RoiCore\Domain\Interfaces\IFloodPointRepository;
 use RoiCore\Domain\UseCases\CheckFloodPointsUseCase;
 use RoiCore\Presentation\Http\Request;
 use RoiCore\Presentation\Http\Response;
@@ -12,7 +13,8 @@ use RoiCore\Presentation\Http\Response;
 final class FloodPointController
 {
     public function __construct(
-        private readonly CheckFloodPointsUseCase $checkFloodPointsUseCase
+        private readonly CheckFloodPointsUseCase $checkFloodPointsUseCase,
+        private readonly ?IFloodPointRepository $repository = null
     ) {
     }
 
@@ -30,7 +32,12 @@ final class FloodPointController
 
         $points = $result->value;
         $formatted = array_map(fn (FloodPoint $p) => $p->toArray(), $points);
+        $isOffline = $this->repository?->isOffline() ?? true;
+        $statusStr = $isOffline ? 'OFFLINE' : 'ONLINE';
+        $statusMsg = $isOffline
+            ? 'ดึงข้อมูลจุดน้ำท่วมและความเสี่ยงเรียบร้อยแล้ว (สถานะ: ออฟไลน์)'
+            : 'ดึงข้อมูลจุดน้ำท่วมและความเสี่ยงเรียบร้อยแล้ว';
 
-        return Response::success($formatted, 'ดึงข้อมูลจุดน้ำท่วมและความเสี่ยงเรียบร้อยแล้ว');
+        return Response::success($formatted, $statusMsg, 200, $statusStr, $isOffline);
     }
 }
