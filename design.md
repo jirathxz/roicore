@@ -1,184 +1,188 @@
-# ROiCORE — Design System & Theme Guidelines
+# ROiCORE — Design System & Front-End Prompting Specifications
 
-> **RO<span style="color:#2563EB;font-style:normal">i</span>CORE** — Flood Intelligence Platform  
-> ข้อกำหนดการออกแบบ (Design Specifications) และระบบโทเคน (Design Tokens) สำหรับส่วนต่อประสานผู้ใช้
-
----
-
-## 1. ปรัชญาการออกแบบหลัก (Core Principles)
-
-### 1.1 Visual Hierarchy (การจัดลำดับการมองเห็นที่เด่นชัด)
-- จัดลำดับความสำคัญของข้อมูลให้ผู้ใช้รับรู้ได้ทันทีด้วย **ขนาดตัวอักษร (Typography)**, **ความเข้มของน้ำหนักสี (Color Weight)** และ **ระดับชั้นของพื้นผิว (Surface Layering)**
-- ข้อมูลสำคัญที่สุด (Primary Actions, สถานะหลัก, พิกัด) จะต้องโดดเด่นทันทีที่เปิดหน้าจอ โดยไม่จำเป็นต้องพึ่งพาเส้นขอบหรือสีสันที่ฉูดฉาด
-
-### 1.2 Compact & High-Density UI (กะทัดรัด เข้าถึงง่าย ประหยัดพื้นที่)
-- ออกแบบให้จัดวางข้อมูลได้อย่างมีประสิทธิภาพ (Information Density สูง) โดยไม่รู้สึกอึดอัด
-- ใช้ Spacing และ Padding ที่กระชับ (Compact Spacing: 6px–16px) เพื่อให้เห็นภาพรวมสถานการณ์ได้ครบถ้วนในหน้าจอเดียวโดยไม่ต้องเลื่อนหน้าจอมากเกินไป
-- ปรับขนาดฟอร์มและปุ่มกดให้พอดีมือและสายตา ไม่เทอะทะ
-
-### 1.3 White Modern (No Border, No Shadow)
-- **ห้ามใช้เส้นขอบ (Border / Outline)** ในทุกองค์ประกอบ
-- **ห้ามใช้เงา (Box-shadow / Drop-shadow)** เด็ดขาด
-- มิติและความลึกถูกสร้างขึ้นจากความต่างระดับของสีพื้นหลังและสีพื้นผิว (Surface Contrast)
-
-### 1.4 No Wasteful Badges (หลีกเลี่ยงการใช้ Badge สิ้นเปลือง)
-- ไม่ใส่ป้ายกำกับ (Badge / Chip / Tag) พร่ำเพรื่อหรือแปะป้ายที่ไม่ได้ช่วยให้ตัดสินใจได้เร็วขึ้น
-- แสดงสถานะผ่านข้อความกระชับ สีของฟอนต์ หรือไอคอนที่มีความหมายตรงตัวแทน
-
-### 1.5 Functional Iconography (Font Awesome)
-- ใช้ **Font Awesome 6** เป็นชุดไอคอนมาตรฐานของทั้งระบบ
-- ไอคอนต้องทำหน้าที่สนับสนุนข้อความ (Complementary) ช่วยให้กวาดสายตาเจอฟังก์ชันที่ต้องการได้ทันที
-- วางไอคอนคู่กับข้อความด้วยระยะห่างที่พอดี (`gap: 6px–8px`)
+> **RO<span style="color:#2563EB;font-weight:800;font-style:normal">i</span>CORE** — Flood Intelligence Platform  
+> **คู่มือระบบงานดีไซน์ (Design System) และข้อกำหนดเฉพาะสำหรับการเขียน Prompt ฝั่ง Front-End**  
+> ปรัชญาหลัก: **White Modern Architecture (No Border, No Shadow)** ผสาน **Surface Layering** และ **Perfect Radius Hierarchy**
 
 ---
 
-## 2. Brand Identity & Typography
+## 1. อัตลักษณ์ของแบรนด์ (Brand Identity & Typography)
 
-### 2.1 Wordmark & Brand Accent
-- **รูปแบบโลโก้**: `RO` + **`i`** + `CORE`
-- **กฎของตัว `i`**: ต้องเป็นพิมพ์เล็ก (lowercase), **ตั้งตรง (Non-italic)** และใช้สีน้ำเงินเน้น **Modern Blue (`#2563EB`)** เท่านั้น
-- ตัวอักษร `RO` และ `CORE` เป็นสีเข้มหลัก (`#0F172A`)
+### 1.1 โลโก้และสีประจำแบรนด์ (Wordmark Rule)
+* **รูปแบบตัวอักษร**: `RO` + **`i`** + `CORE` -> **`ROiCORE`**
+* **กฎของตัว `i`**: ต้องเป็นตัวพิมพ์เล็ก (lowercase), **ตั้งตรงไม่อียง (Non-italic)** และใช้สีน้ำเงินโมเดิร์น **Modern Blue (`#2563EB`)** เสมอ
+* ตัวอักษร `RO` และ `CORE` เป็นสีเข้มหลักของระบบ (`#0F172A`)
 
-### 2.2 Typography Scale
-| ลำดับชั้น | แบบอักษร | ขนาด (Desktop) | ขนาด (Mobile) | น้ำหนัก | สี |
+```html
+<!-- โค้ดมาตรฐานสำหรับแสดงโลโก้ ROiCORE ในทุกหน้าจอ -->
+<span style="font-family:'Inter',sans-serif; font-weight:800; font-size:22px; color:#0F172A; letter-spacing:-0.03em;">
+    RO<span style="color:#2563EB; font-style:normal;">i</span>CORE
+</span>
+```
+
+### 1.2 ลำดับชั้นตัวอักษร (Typography Hierarchy Scale)
+ใช้ฟอนต์ **Noto Sans Thai** สำหรับภาษาไทย และ **Inter** สำหรับตัวเลขและภาษาอังกฤษ:
+
+| ระดับชั้น | การใช้งาน | ขนาด (Desktop) | ขนาด (Mobile) | น้ำหนัก (Weight) | สีตัวอักษร |
 |---|---|---|---|---|---|
-| **Brand Logo** | Inter | `26px` | `22px` | 800 (ExtraBold) | `#0F172A` / `#2563EB` |
-| **Page Title (H1)** | Noto Sans Thai | `20px` | `18px` | 700 (Bold) | `#0F172A` |
-| **Section Title (H2)** | Noto Sans Thai | `15px` | `14.5px` | 700 (Bold) | `#0F172A` |
-| **Body / Labels** | Noto Sans Thai | `13.5px` | `13px` | 600 / 500 | `#0F172A` |
-| **Muted / Hint** | Noto Sans Thai | `12.5px` | `12px` | 400 (Regular) | `#64748B` |
-| **Data / Code** | Consolas, monospace | `12.5px` | `12px` | 400 (Regular) | `#1E293B` |
+| **Brand Title** | โลโก้แบรนด์ | `24px` | `20px` | 800 (ExtraBold) | `#0F172A` / `#2563EB` |
+| **Heading 1 (H1)** | หัวข้อหน้าจอหลัก | `18px` | `16px` | 700 (Bold) | `#0F172A` |
+| **Heading 2 (H2)** | หัวข้อการ์ด / ส่วนย่อย | `15px` | `14px` | 600 (SemiBold) | `#0F172A` |
+| **Body Text** | เนื้อหาและป้ายฟอร์ม | `13.5px` | `13px` | 500 (Medium) | `#0F172A` |
+| **Muted Text** | คำอธิบายรอง / เวลา | `12px` | `11.5px` | 400 (Regular) | `#64748B` |
+| **Stat Numbers** | ตัวเลขสถิติบน KPI | `26px` | `22px` | 700 (Bold) | ตาม Semantic Status |
 
 ---
 
-## 3. Design Tokens (ระบบโทเคนมาตรฐาน)
+## 2. ระบบดีไซน์โทเคน (Design Tokens Architecture)
 
-### 3.1 Color Tokens
+คัดลอกชุด CSS Variables นี้ไปใส่ในส่วน `<style>` ของทุกหน้าจอ Front-End เสมอ:
+
 ```css
 :root {
-    /* Brand Accent */
-    --accent-blue: #2563EB;
-    --accent-blue-hover: #1D4ED8;
-    --accent-tint: #EFF6FF;
+    /* 1. Brand Colors */
+    --accent-blue: #2563EB;        /* สีน้ำเงินหลัก */
+    --accent-blue-hover: #1D4ED8;  /* สีเมื่อเมาส์ชี้ */
+    --accent-tint: #EFF6FF;        /* สีน้ำเงินจางสำหรับพื้นหลังไฮไลต์ */
 
-    /* Surfaces (สร้างมิติความลึกด้วยการซ้อนชั้นสี) */
-    --bg-body: #F1F5F9;        /* Slate 100 - พื้นหลังจอ */
-    --surface: #FFFFFF;        /* Pure White - การ์ดหลัก */
-    --surface-subtle: #F8FAFC; /* Slate 50 - กล่องเนื้อหาย่อย / พื้นหลังช่องกรอก */
-    --surface-active: #E2E8F0; /* Slate 200 - ปุ่มรอง / สถานะกด */
-    --surface-hover: #CBD5E1;  /* Slate 300 - โฮเวอร์ปุ่มรอง */
+    /* 2. Surface Layering (มิติความลึกด้วยระดับสีพื้นผิว แทนการใช้เงาและขอบ) */
+    --bg-body: #F1F5F9;            /* Slate 100 — พื้นหลังจอ */
+    --surface: #FFFFFF;            /* Pure White — การ์ดหลัก, Sheet, Navbar */
+    --surface-subtle: #F8FAFC;     /* Slate 50 — รายการแถวย่อย, ช่อง input */
+    --surface-active: #E2E8F0;     /* Slate 200 — สถานะถูกเลือก, ปุ่มรอง */
+    --surface-hover: #CBD5E1;      /* Slate 300 — สถานะเมาส์ชี้ปุ่มรอง */
 
-    /* Typography Colors */
-    --text-main: #0F172A;      /* Slate 900 - ข้อความหลัก */
-    --text-muted: #64748B;     /* Slate 500 - ข้อความรอง */
-    --text-code: #1E293B;      /* Slate 800 - ผลลัพธ์ข้อมูล */
+    /* 3. Typography Colors */
+    --text-main: #0F172A;          /* Slate 900 — ข้อความหลัก */
+    --text-muted: #64748B;         /* Slate 500 — ข้อความรอง/คำอธิบาย */
+    --text-light: #94A3B8;         /* Slate 400 — เส้นแบ่งจางๆ หรือตัวเลขไม่สำคัญ */
 
-    /* Semantic Status Colors (ใช้ร่วมกับข้อความหรือไอคอน) */
-    --status-danger: #DC2626;   /* แดง - ระดับวิกฤต */
-    --status-warning: #D97706;  /* ส้ม - เฝ้าระวัง */
-    --status-success: #16A34A;  /* เขียว - ปกติ / ปลอดภัย */
+    /* 4. Semantic Status & Risk Colors */
+    --risk-critical: #DC2626;      /* สีแดง — ระดับวิกฤต */
+    --risk-critical-bg: #FEF2F2;
+    --risk-high: #EA580C;          /* สีส้ม — ระดับสูง */
+    --risk-high-bg: #FFF7ED;
+    --risk-medium: #D97706;        /* สีเหลืองอำพัน — ปานกลาง */
+    --risk-medium-bg: #FEF3C7;
+    --risk-low: #2563EB;           /* สีน้ำเงิน — เฝ้าระวัง/เล็กน้อย */
+    --risk-low-bg: #EFF6FF;
+    --status-success: #16A34A;     /* สีเขียว — ปกติ/ปลอดภัย */
+    --status-success-bg: #F0FDF4;
+    --gistda-purple: #7C3AED;      /* สีม่วง — ข้อมูลดาวเทียม GISTDA */
+    --gistda-tint: #EDE9FE;
 
-    /* Radius Scale */
-    --r-sm: 8px;               /* ป้ายเล็ก, ไอคอนแท็ก */
-    --r-md: 10px;              /* ปุ่ม, ช่องกรอก, ดรอปดาวน์ */
-    --r-lg: 14px;              /* กล่องย่อยภายในการ์ด */
-    --r-xl: 20px;              /* การ์ดหลัก */
-    --r-full: 9999px;          /* แคปซูลสถานะ, ไอคอนกลม */
+    /* 5. Radius Hierarchy Scale (องค์ประกอบนอกมนกว่าในเสมอ) */
+    --r-sm: 8px;                   /* ป้ายเล็ก, ไอคอนแท็ก */
+    --r-md: 10px;                  /* ปุ่มกด, ช่องกรอกข้อมูล, ดรอปดาวน์ */
+    --r-lg: 14px;                  /* กล่องย่อยภายในการ์ด, รายการแถว */
+    --r-xl: 20px;                  /* การ์ดหลัก, Modal, Bottom Sheet */
+    --r-full: 9999px;              /* แคปซูลสถานะ, ไอคอนวงกลม, FAB */
+}
+
+/* Global Reset: ตัด Border และ Shadow ทุกกรณี */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 ```
 
-### 3.2 Spacing & Density Tokens (ความกะทัดรัด)
-- **Container Max-Width**: `920px` (กะทัดรัด มองเห็นง่าย สบายตา)
-- **Card Padding**: `20px–24px` (กระชับ ไม่สิ้นเปลืองขอบ)
-- **Inner Box Padding**: `14px–16px`
-- **Form Row Gap**: `10px`
-- **Element Gap**: `6px–8px`
-
 ---
 
-## 4. Font Awesome Iconography Guide
+## 3. พิมพ์เขียวคอมโพเนนต์หลัก (Component Specifications)
 
-### 4.1 ชุดไอคอนมาตรฐานที่ใช้ในระบบ
-| หน้าที่ / ฟังก์ชัน | คลาส Font Awesome | ตัวอย่างการใช้งาน |
-|---|---|---|
-| **รายงานสถานการณ์น้ำท่วม** | `fa-solid fa-bullhorn` | หัวข้อส่งรายงานสถานการณ์ |
-| **พิกัดและตำแหน่ง** | `fa-solid fa-location-dot` | ฟิลด์ระบุละติจูด/ลองจิจูด |
-| **ระดับความรุนแรง / วิกฤต** | `fa-solid fa-triangle-exclamation` | ตัวเลือกระดับความรุนแรง |
-| **เบอร์โทรติดต่อ** | `fa-solid fa-phone` | ฟิลด์กรอกเบอร์โทร |
-| **รายละเอียดข้อความ** | `fa-solid fa-comment-dots` | ฟิลด์กรอกรายละเอียด |
-| **จุดเฝ้าระวังน้ำท่วม** | `fa-solid fa-water` | ตรวจสอบจุดน้ำท่วม |
-| **สภาพอากาศและปริมาณฝน** | `fa-solid fa-cloud-rain` | ตรวจสอบฝนและสภาพอากาศ |
-| **รายการข้อมูลทั้งหมด** | `fa-solid fa-list-check` | รายการรายงานทั้งหมด |
-| **กล่องแสดงผลลัพธ์** | `fa-solid fa-square-poll-vertical` | แสดงข้อมูลตอบกลับ |
-| **ปุ่มส่งข้อมูล** | `fa-solid fa-paper-plane` | ปุ่มยืนยันการส่งข้อมูล |
-| **ปุ่มรีเฟรช / ค้นหา** | `fa-solid fa-magnifying-glass` | ปุ่มดึงข้อมูลสภาพอากาศ |
-
-### 4.2 กฎการจัดวางไอคอน (Icon Layout Rules)
-1. ไอคอนต้องมีขนาดสัมพันธ์กับข้อความ (`0.95em` – `1em`)
-2. จัดกึ่งกลางแนวตั้งเสมอ (`display: inline-flex; align-items: center; gap: 6px;`)
-3. ไม่ใช้ไอคอนซ้ำซ้อนหรือใส่ไอคอนที่ไม่มีความหมายในการนำทาง
-
----
-
-## 5. Component Specifications (ข้อกำหนดส่วนประกอบ)
-
-### 5.1 Buttons (ปุ่มกดขนาดกะทัดรัด)
-- **Primary Button (`.btn-action`)**:
-  - พื้นหลัง: `var(--accent-blue)` (`#2563EB`)
-  - สีข้อความ: `#FFFFFF`
-  - ฟอนต์: `13.5px`, Weight `600`
-  - Padding: `10px 16px`
-  - Radius: `var(--r-md)` (`10px`)
-  - Hover: `var(--accent-blue-hover)` (`#1D4ED8`)
-  - Icon: นำหน้าข้อความ เว้นระยะ `6px`
-
-- **Secondary Button (`.btn-secondary`)**:
-  - พื้นหลัง: `var(--surface-active)` (`#E2E8F0`)
-  - สีข้อความ: `var(--text-main)` (`#0F172A`)
-  - ฟอนต์: `13.5px`, Weight `600`
-  - Padding: `10px 16px`
-  - Radius: `var(--r-md)` (`10px`)
-  - Hover: `var(--surface-hover)` (`#CBD5E1`)
-
-### 5.2 Form Inputs & Controls
-- **Form Label (`.form-label`)**: ขนาด `12.5px`, Weight `600`, สี `var(--text-main)`, มีไอคอนจิ๋วนำหน้าเพื่อความชัดเจน
-- **Input / Select / Textarea**:
-  - พื้นหลัง: `var(--surface)` (`#FFFFFF`) วางซ้อนบนกล่อง `var(--surface-subtle)`
-  - Padding: `8px 12px` (กะทัดรัด ไม่สูงเกินไป)
-  - ฟอนต์: `13.5px`
-  - Radius: `var(--r-md)` (`10px`)
-  - ปิดเส้นขอบทุกด้าน (`border: none; outline: none;`)
-
-### 5.3 Cards & Sections
-- **Main Card (`.card`)**: พื้นหลังขาว `var(--surface)`, Radius `20px` (`--r-xl`), Padding `20px–24px`
-- **Sub-box (`.test-box`)**: พื้นหลัง `var(--surface-subtle)`, Radius `14px` (`--r-lg`), Padding `16px`
-
-### 5.4 Data Viewer Panel
-- **Viewer Box (`.response-viewer`)**:
-  - พื้นหลัง: `var(--surface-subtle)`
-  - Radius: `14px` (`--r-lg`), Padding: `16px`
-  - ฟอนต์: `Consolas, monospace`, ขนาด `12.5px`, สี `#1E293B`
-  - Max Height: `320px` พร้อม Scrollbar ภายในที่สะอาดตา
-
----
-
-## 6. โครงสร้างเลย์เอาต์ (Visual Hierarchy Layout)
-
+### 3.1 การ์ดหลักและกล่องย่อย (Card & Sub-Box Layering)
 ```
-+-------------------------------------------------------------+
-|               ROiCORE Container (Max 920px)                 |
-|                                                             |
-|  [ Header Card ]                                            |
-|  ROiCORE — ระบบติดตามและแจ้งเตือนสถานการณ์น้ำท่วม           |
-|                                                             |
-|  [ Content Grid (Desktop: 2 Columns / Mobile: 1 Column) ]  |
-|  +-----------------------------+---------------------------+|
-|  | [ ส่วนส่งรายงานสถานการณ์ ]  | [ ส่วนตรวจสอบข้อมูล ]     ||
-|  | - ฟอร์มระบุพิกัดและอาการ    | - จุดเฝ้าระวังน้ำท่วม     ||
-|  | - ระดับความรุนแรง           | - ข้อมูลสภาพอากาศและฝน    ||
-|  | - ปุ่มยืนยันส่งข้อมูล       | - รายการรายงานทั้งหมด     ||
-|  +-----------------------------+---------------------------+|
-|                                                             |
-|  [ ส่วนแสดงผลลัพธ์ข้อมูล (Response Viewer) ]                |
-+-------------------------------------------------------------+
+┌────────────────────────────────────────────────────────┐
+│ Main Surface Card (--surface: #FFFFFF, radius: 20px)   │
+│ Padding: 16px - 20px                                   │
+│                                                        │
+│ ┌────────────────────────────────────────────────────┐ │
+│ │ Inner Subtle Box (--surface-subtle: #F8FAFC)       │ │
+│ │ Radius: 14px | Padding: 12px                       │ │
+│ │                                                    │ │
+│ │  [ ไอคอน ] ข้อความหัวข้อย่อย       [ ปุ่ม/สถานะ ]  │ │
+│ └────────────────────────────────────────────────────┘ │
+└────────────────────────────────────────────────────────┘
 ```
+
+### 3.2 ปุ่มกด (Buttons Architecture)
+1. **Primary Action Button (`.btn-primary`)**:
+   * พื้นหลัง: `var(--accent-blue)` (`#2563EB`)
+   * ตัวอักษร: สีขาว `#FFFFFF`, ขนาด `13.5px`, Weight `600`
+   * รัศมีความโค้ง: `var(--r-md)` (`10px`)
+   * Padding: `10px 16px` | Gap ระหว่างไอคอนกับข้อความ: `8px`
+   * Hover: `var(--accent-blue-hover)` (`#1D4ED8`)
+2. **Secondary / Subtle Button (`.btn-subtle`)**:
+   * พื้นหลัง: `var(--surface-active)` (`#E2E8F0`)
+   * ตัวอักษร: `var(--text-main)` (`#0F172A`), ขนาด `13px`, Weight `500`
+   * รัศมีความโค้ง: `var(--r-md)` (`10px`)
+
+---
+
+### 3.3 แผนที่และเลเยอร์เชิงพื้นที่ (Spatial Map & GISTDA Layers)
+* **แผนที่ OpenStreetMap (Leaflet.js)**:
+  * Fullscreen Container: `100vw`, `100vh`
+  * Floating Top Navbar: `top: 16px`, `left: 16px`, `right: 16px`, `z-index: 1000`
+* **หมุดจุดน้ำท่วม (Custom Markers)**:
+  * ใช้วงกลมขนาด `32px` พร้อมไอคอน Font Awesome ตรงกลาง
+  * สีตามระดับความเสี่ยง (แดง/ส้ม/เหลือง/น้ำเงิน) พร้อมแอนิเมชันกระพริบเมื่อเป็นระดับวิกฤต
+* **Dynamic Flood Polygon Zones**:
+  * วาดรูปหลายเหลี่ยมโปร่งแสง (`fillOpacity: 0.2`, `weight: 0`, ไร้เส้นขอบ) ครอบคลุมจุดที่เกิดน้ำท่วมซ้ำซ้อน
+* **GISTDA 77 Provinces Layer**:
+  * ใช้สีม่วงโปร่งแสง (`var(--gistda-purple)`) แสดงขอบเขตพื้นที่น้ำท่วมจากภาพถ่ายดาวเทียม
+
+---
+
+### 3.4 ฟอร์มรายงานด่วน (Quick Report Modal ≤ 3 Taps)
+* **โครงสร้างการวางตัวเลือกระดับน้ำ**:
+  * Grid 2 คอลัมน์ (4 ปุ่มกดขนาดพอดีนิ้ว)
+  * แต่ละปุ่มเป็นพื้นหลัง `var(--surface-subtle)` เมื่อคลิกจะเปลี่ยนเป็น `var(--accent-tint)` พร้อมไอคอนสีน้ำเงิน
+* **ฟิลด์เบอร์โทรและรูปถ่าย**:
+  * วางแนวนอนแบบกะทัดรัด ไม่ดันฟอร์มให้ยาวจนต้องเลื่อนจอ
+
+---
+
+### 3.5 แดชบอร์ดวิเคราะห์สถานการณ์ (Dashboard View Layout)
+* **KPI Cards Grid**: 4 คอลัมน์บนจอคอมพิวเตอร์ / 2 คอลัมน์บนมือถือ
+* **ตัวกรองจังหวัด (Provincial Selector)**: ค้นหาและกรองได้ครบทั้ง 77 จังหวัด
+* **ตารางจุดเกิดเหตุและ Drawer รายละเอียด**:
+  * ตารางแบบไร้เส้นขอบ แถวคี่-คู่ใช้สีสลับอ่อนๆ (`#FFFFFF` และ `#F8FAFC`)
+  * เมื่อคลิกแถว จะเปิดแผง Drawer ด้านข้างแสดงรูปถ่ายขนาดใหญ่และแผนที่พิกัด
+
+---
+
+## 4. คู่มือการ Prompt แบบ Design-First สำหรับทีม Front-End
+
+เมื่อสั่งให้ Antigravity IDE สร้างหรือแก้ไข UI ให้ระบุบล็อก Design Token และ Layout ชัดเจนดังตัวอย่าง:
+
+### 4.1 Prompt สั่งสร้างคอมโพเนนต์ตามดีไซน์เป๊ะๆ (Copy & Paste)
+```text
+สร้าง UI สำหรับ [ชื่อคอมโพเนนต์] โดยปฏิบัติตาม design.md อย่างเคร่งครัด:
+
+1. ใช้ CSS Variables:
+   - พื้นหลังหลัก: var(--surface) (#FFFFFF)
+   - พื้นหลังกล่องย่อย: var(--surface-subtle) (#F8FAFC)
+   - สีปุ่มหลัก: var(--accent-blue) (#2563EB)
+2. ปฏิบัติตาม Radius Hierarchy:
+   - กรอบนอกสุด: var(--r-xl) (20px)
+   - แถวข้อมูลด้านใน: var(--r-lg) (14px)
+   - ปุ่มและตัวเลือก: var(--r-md) (10px)
+3. ปิด Border และ Shadow ทั้งหมด (ห้ามมีเส้นขอบและเงา)
+4. จัด Spacing ให้กะทัดรัด (Padding 12px - 16px, Gap 8px - 12px)
+5. แสดงผลภาษาไทยล้วน ไม่มีศัพท์เทคนิค และไม่มีวงเล็บภาษาอังกฤษ
+```
+
+---
+
+## 5. การตรวจสอบความสอดคล้องของดีไซน์ (Design Audit Checklist)
+
+- [x] **Zero Border**: ไม่มี `border: 1px ...` หลงเหลืออยู่
+- [x] **Zero Shadow**: ไม่มี `box-shadow` หรือ `drop-shadow`
+- [x] **Surface Contrast**: แยกสัดส่วนด้วย Slate 100 / Pure White / Slate 50 ชัดเจน
+- [x] **Typography Hierarchy**: ฟอนต์อ่านง่าย หัวข้อ Bold (700) เนื้อหา Regular/Medium
+- [x] **Icon Alignment**: ไอคอน Font Awesome 6 วางคู่ข้อความด้วย `gap: 6px-8px` จัดกึ่งกลางพอดี
+- [x] **Fluid Responsive**: หน้าจอปรับตัวได้อย่างเป็นธรรมชาติ ไม่เกิด Horizontal Scrollbar บนมือถือ
