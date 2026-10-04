@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROiCORE — 6-Slide High-Impact Presentation (Visual Hierarchy & Large Text)</title>
+    <title>ROiCORE — 6-Slide Executive Presentation (Tight, Rich & High-Density)</title>
     
     <!-- Google Fonts: Inter & Noto Sans Thai -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
 
     <style>
         /* ==========================================================================
-           ROiCORE Visual Hierarchy & Large Text Presentation System
+           ROiCORE High-Density & Tight Presentation System (White Modern UI)
            ========================================================================== */
         :root {
             /* Brand Identity */
@@ -41,16 +41,17 @@
             --risk-high: #EA580C;
             --risk-high-bg: #FFF7ED;
             --risk-medium: #D97706;
+            --risk-medium-bg: #FEFCE8;
             --status-success: #16A34A;
             --status-success-bg: #F0FDF4;
             --gistda-purple: #7C3AED;
             --gistda-tint: #EDE9FE;
 
             /* Radius Scale */
-            --r-sm: 8px;
-            --r-md: 12px;
-            --r-lg: 18px;
-            --r-xl: 24px;
+            --r-sm: 6px;
+            --r-md: 10px;
+            --r-lg: 14px;
+            --r-xl: 18px;
             --r-full: 9999px;
         }
 
@@ -76,7 +77,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Presentation Screen Canvas */
+        /* Presentation Canvas */
         .presentation-container {
             position: relative;
             width: 100%;
@@ -87,7 +88,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12px;
+            padding: 10px;
         }
 
         /* Slide Component */
@@ -97,14 +98,15 @@
             height: 100%;
             background-color: var(--bg-slide);
             border-radius: var(--r-xl);
-            padding: 36px 48px;
+            padding: 22px 30px 18px 30px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 8px;
             opacity: 0;
             pointer-events: none;
             transform: scale(0.98);
-            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             overflow: hidden;
         }
 
@@ -120,18 +122,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 2px;
         }
 
         .part-badge {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            font-size: 15px;
+            gap: 6px;
+            font-size: 12px;
             font-weight: 800;
-            padding: 8px 20px;
+            padding: 4px 12px;
             border-radius: var(--r-full);
-            letter-spacing: 0.03em;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
         }
 
@@ -148,7 +150,7 @@
         .brand-watermark {
             font-family: 'Inter', sans-serif;
             font-weight: 900;
-            font-size: 22px;
+            font-size: 18px;
             color: var(--text-dark);
             letter-spacing: -0.03em;
         }
@@ -163,26 +165,25 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 16px;
-            margin: 6px 0;
+            justify-content: flex-start;
+            gap: 10px;
         }
 
-        /* Large Visual Hierarchy Typography */
+        /* Typography */
         .hero-title {
-            font-size: 38px;
+            font-size: 25px;
             font-weight: 900;
-            line-height: 1.18;
+            line-height: 1.15;
             color: var(--text-dark);
-            letter-spacing: -0.03em;
+            letter-spacing: -0.02em;
         }
 
         .hero-subtitle {
-            font-size: 18.5px;
+            font-size: 13.5px;
             color: var(--text-muted);
             font-weight: 500;
-            line-height: 1.45;
-            margin-top: 2px;
+            line-height: 1.35;
+            margin-top: 1px;
         }
 
         /* Slide Footer */
@@ -190,25 +191,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 10px;
-            font-size: 13.5px;
+            padding-top: 4px;
+            font-size: 11.5px;
             color: var(--text-light);
             font-weight: 600;
+            border-top: 1px solid var(--bg-active);
         }
 
-        /* Grid Utilities with Generous Gaps */
+        /* Grids with Tight Gaps */
         .grid-2 {
             display: grid;
             grid-template-columns: 1.05fr 0.95fr;
-            gap: 24px;
-            align-items: stretch;
-            flex: 1;
-        }
-
-        .grid-2-equal {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 10px;
             align-items: stretch;
             flex: 1;
         }
@@ -216,7 +210,7 @@
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 10px;
             align-items: stretch;
             flex: 1;
         }
@@ -224,19 +218,20 @@
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            gap: 8px;
             align-items: stretch;
+            flex: 1;
         }
 
-        /* Large Card System */
+        /* High-Density Card Component */
         .card {
             background-color: var(--bg-subtle);
-            border-radius: var(--r-lg);
-            padding: 24px 26px;
+            border-radius: var(--r-md);
+            padding: 12px 14px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 12px;
+            justify-content: flex-start;
+            gap: 8px;
         }
 
         .card-highlight {
@@ -244,19 +239,19 @@
         }
 
         .card-title {
-            font-size: 21px;
+            font-size: 15px;
             font-weight: 800;
             color: var(--text-dark);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             letter-spacing: -0.01em;
         }
 
         .card-text {
-            font-size: 16px;
+            font-size: 12.5px;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.4;
             font-weight: 500;
         }
 
@@ -264,25 +259,23 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
-            gap: 10px;
-            flex: 1;
-            font-size: 16px;
+            gap: 7px;
+            font-size: 12.5px;
             color: var(--text-muted);
             font-weight: 500;
-            line-height: 1.55;
+            line-height: 1.35;
         }
 
         .card-list li {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 7px;
         }
 
         .card-list li i {
             color: var(--accent-blue);
-            margin-top: 4px;
-            font-size: 14px;
+            margin-top: 2px;
+            font-size: 11px;
             flex-shrink: 0;
         }
 
@@ -293,81 +286,129 @@
 
         /* Visual Icons */
         .icon-badge {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 13px;
             flex-shrink: 0;
         }
 
-        /* Large Pillar Box */
+        /* High-Density Entity Box */
+        .entity-item {
+            background: #FFFFFF;
+            border-radius: var(--r-sm);
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .entity-item-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .entity-name {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .entity-desc {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        /* Pill Badge */
+        .badge-pill {
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: var(--r-full);
+            background: var(--bg-active);
+            color: var(--text-muted);
+        }
+
+        .badge-blue { background: #DBEAFE; color: #1E40AF; }
+        .badge-green { background: #DCFCE7; color: #166534; }
+        .badge-purple { background: #EDE9FE; color: #6B21A8; }
+        .badge-orange { background: #FFEDD5; color: #9A3412; }
+        .badge-red { background: #FEE2E2; color: #991B1B; }
+
+        /* Tight Pillar Box */
         .pillar-box {
             background-color: var(--bg-subtle);
             border-radius: var(--r-md);
-            padding: 14px 18px;
+            padding: 8px 12px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
             flex: 1;
             justify-content: center;
         }
 
         .pillar-box strong {
-            font-size: 16.5px;
+            font-size: 13.5px;
             color: var(--text-dark);
             font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .pillar-box span {
-            font-size: 14.5px;
+            font-size: 11.8px;
             color: var(--text-muted);
-            line-height: 1.45;
+            line-height: 1.32;
             font-weight: 500;
         }
 
         .pillar-box code {
             font-family: 'Fira Code', monospace;
-            font-size: 13.5px;
+            font-size: 11px;
             color: var(--accent-blue);
             font-weight: 700;
         }
 
-        /* Large Endpoint Card */
+        /* Tight Endpoint Row */
         .endpoint-row {
             background: #FFFFFF;
-            padding: 12px 16px;
-            border-radius: var(--r-md);
+            padding: 6px 10px;
+            border-radius: var(--r-sm);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 8px;
         }
 
         .endpoint-row code {
             font-family: 'Fira Code', monospace;
-            font-size: 15px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--text-dark);
         }
 
         .endpoint-row span {
-            font-size: 14.5px;
+            font-size: 11.5px;
             color: var(--text-muted);
             font-weight: 600;
         }
 
         .method-tag {
-            padding: 4px 10px;
-            border-radius: var(--r-sm);
-            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
             font-weight: 800;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
         }
 
         .method-get { background:#DCFCE7; color:#166534; }
@@ -376,16 +417,16 @@
         /* Bottom Controls Bar */
         .controls-bar {
             position: fixed;
-            bottom: 20px;
+            bottom: 16px;
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(15, 23, 42, 0.92);
             backdrop-filter: blur(14px);
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: var(--r-full);
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
             z-index: 100;
             color: #FFFFFF;
         }
@@ -393,15 +434,15 @@
         .btn-ctrl {
             background-color: rgba(255, 255, 255, 0.15);
             color: #FFFFFF;
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: background 0.15s ease;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .btn-ctrl:hover {
@@ -409,24 +450,24 @@
         }
 
         .slide-counter {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 800;
             color: #CBD5E1;
-            min-width: 54px;
+            min-width: 46px;
             text-align: center;
         }
 
         .btn-print {
             background-color: var(--accent-blue);
             color: #FFFFFF;
-            padding: 8px 16px;
+            padding: 5px 12px;
             border-radius: var(--r-full);
-            font-size: 13.5px;
+            font-size: 12px;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: background 0.15s ease;
         }
 
@@ -435,7 +476,7 @@
         }
 
         /* ==========================================================================
-           PRINT STYLES (PDF Output: Exact 6 Large Clean Pages)
+           PRINT STYLES (PDF Output: Exact 6 Clean Tight Pages)
            ========================================================================== */
         @media print {
             @page {
@@ -474,7 +515,7 @@
                 pointer-events: auto !important;
                 transform: none !important;
                 border-radius: 0 !important;
-                padding: 36px 44px !important;
+                padding: 22px 30px 18px 30px !important;
                 page-break-after: always !important;
                 break-after: page !important;
                 display: flex !important;
@@ -507,56 +548,79 @@
                 </div>
 
                 <div class="grid-2">
-                    <!-- Left: Domain Entities -->
+                    <!-- Left: Domain Entities & Value Objects (High-Density Structured Cards) -->
                     <div class="card card-highlight">
                         <div class="card-title">
                             <span class="icon-badge" style="background:#DBEAFE; color:#2563EB;"><i class="fa-solid fa-cubes"></i></span>
                             Domain Entities & Value Objects
                         </div>
-                        <ul class="card-list">
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <div><strong>FloodPoint (Entity):</strong> จัดการสถานะจุดน้ำท่วม, พิกัด, ระดับน้ำ (เมตร), และจำนวนรายงาน</div>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <div><strong>FloodReport (Entity):</strong> รายงานจากประชาชน, ระดับความรุนแรง, รูปถ่าย, และเบอร์โทร</div>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <div><strong>GeoLocation (Value Object):</strong> ควบคุมความถูกต้องของพิกัด ละติจูด / ลองจิจูด</div>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <div><strong>Enums:</strong> <code>RiskLevel</code> (วิกฤต / สูง / ปานกลาง / เฝ้าระวัง) และ <code>ReportStatus</code></div>
-                            </li>
-                        </ul>
+                        <div style="display:flex; flex-direction:column; gap:6px; flex:1;">
+                            <div class="entity-item">
+                                <div class="entity-item-header">
+                                    <span class="entity-name"><i class="fa-solid fa-cube" style="color:var(--accent-blue);"></i> FloodPoint (Entity)</span>
+                                    <span class="badge-pill badge-blue">State & Behavior</span>
+                                </div>
+                                <div class="entity-desc">
+                                    จุดเฝ้าระวังน้ำท่วม, พิกัด <code>GeoLocation</code>, ระดับน้ำ <code>waterLevel</code> (เมตร) และคำนวณความเสี่ยงผ่าน <code>evaluateRisk(IRiskStrategy)</code>
+                                </div>
+                            </div>
+
+                            <div class="entity-item">
+                                <div class="entity-item-header">
+                                    <span class="entity-name"><i class="fa-solid fa-cube" style="color:#0284C7;"></i> FloodReport (Entity)</span>
+                                    <span class="badge-pill badge-green">Citizen Incident</span>
+                                </div>
+                                <div class="entity-desc">
+                                    รายงานจากประชาชน, ระดับความรุนแรง <code>Severity</code>, แนบภาพถ่าย, เบอร์โทร และบันทึกสถานะ <code>PENDING ➔ VERIFIED</code>
+                                </div>
+                            </div>
+
+                            <div class="entity-item">
+                                <div class="entity-item-header">
+                                    <span class="entity-name"><i class="fa-solid fa-location-crosshairs" style="color:#EA580C;"></i> GeoLocation (Value Object)</span>
+                                    <span class="badge-pill badge-orange">Immutable Coords</span>
+                                </div>
+                                <div class="entity-desc">
+                                    Encapsulate พิกัดละติจูด/ลองจิจูด พร้อม Invariant Validation ตรวจสอบความถูกต้องของพิกัดในประเทศไทย และคำนวณระยะทาง
+                                </div>
+                            </div>
+
+                            <div class="entity-item">
+                                <div class="entity-item-header">
+                                    <span class="entity-name"><i class="fa-solid fa-list-check" style="color:#7C3AED;"></i> Domain Enums & Type Safety</span>
+                                    <span class="badge-pill badge-purple">4-Tier Risk</span>
+                                </div>
+                                <div class="entity-desc">
+                                    <code>RiskLevel</code> (CRITICAL, HIGH, MEDIUM, LOW), <code>Severity</code> (1-4), และ <code>ReportStatus</code> (PENDING, VERIFIED)
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Right: 4 OOP Pillars in System -->
-                    <div style="display:flex; flex-direction:column; gap:10px; flex:1;">
-                        <div class="pillar-box" style="border-left: 4px solid var(--accent-blue);">
-                            <strong><i class="fa-solid fa-lock" style="color:var(--accent-blue);"></i> 1. Encapsulation (ซ่อนข้อมูลภายใน)</strong>
-                            <span><code>GeoLocation</code> และ <code>FloodPoint</code> ซ่อนตัวแปรเป็น <code>private</code> ป้องกันค่าพิกัดผิดพลาด</span>
+                    <!-- Right: 4 OOP Pillars in System (Tight & Rich Cards) -->
+                    <div style="display:flex; flex-direction:column; gap:6px; flex:1;">
+                        <div class="pillar-box" style="border-left: 3px solid var(--accent-blue);">
+                            <strong><i class="fa-solid fa-lock" style="color:var(--accent-blue);"></i> 1. Encapsulation (การซ่อนข้อมูลภายใน)</strong>
+                            <span><code>GeoLocation</code> และ <code>FloodPoint</code> ซ่อน properties เป็น <code>private</code> มี Validation ภายใน ป้องกันค่าพิกัดผิดพลาด</span>
                         </div>
-                        <div class="pillar-box" style="border-left: 4px solid var(--status-success);">
+                        <div class="pillar-box" style="border-left: 3px solid var(--status-success);">
                             <strong><i class="fa-solid fa-diagram-project" style="color:var(--status-success);"></i> 2. Inheritance (การสืบทอดคุณสมบัติ)</strong>
-                            <span><code>FloodVictim</code> และ <code>Traveler</code> สืบทอดจาก <code>User</code> เพื่อแยกสิทธิ์การทำงาน</span>
+                            <span><code>FloodVictim</code> (แจ้งเหตุด่วน) และ <code>Traveler</code> (เช็คเส้นทาง) สืบทอดจาก <code>User</code> (Abstract) เพื่อแยกสิทธิ์การทำงาน</span>
                         </div>
-                        <div class="pillar-box" style="border-left: 4px solid var(--risk-high);">
+                        <div class="pillar-box" style="border-left: 3px solid var(--risk-high);">
                             <strong><i class="fa-solid fa-shuffle" style="color:var(--risk-high);"></i> 3. Polymorphism (พหุสัณฐาน)</strong>
-                            <span><code>IRiskStrategy</code> เรียกเมธอด <code>calculate()</code> เหมือนกัน แต่สลับสูตรประเมินได้อิสระ</span>
+                            <span><code>IRiskStrategy</code> กำหนดเมธอด <code>calculate()</code> โดย <code>CompositeRiskStrategy</code> สลับสูตรคำนวณตามสภาพอากาศได้อิสระ</span>
                         </div>
-                        <div class="pillar-box" style="border-left: 4px solid var(--gistda-purple);">
+                        <div class="pillar-box" style="border-left: 3px solid var(--gistda-purple);">
                             <strong><i class="fa-solid fa-eye-slash" style="color:var(--gistda-purple);"></i> 4. Abstraction (การซ่อนความซับซ้อน)</strong>
-                            <span><code>IFloodRepository</code> ซ่อนคำสั่ง SQL และเชื่อมต่อ PostGIS ไว้เบื้องหลัง Domain</span>
+                            <span><code>IFloodPointRepository</code> ซ่อนคำสั่ง SQL และ PostGIS ไว้เบื้องหลัง Domain สั่งบันทึกได้โดยไม่ต้องรู้ไส้ในของฐานข้อมูล</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="slide-footer">
-                <span>Part 1: Back-End Architecture & OOP Domain</span>
+                <span>Part 1: Back-End Architecture & Domain Model</span>
                 <span>หน้า 01 / 06</span>
             </div>
         </section>
@@ -577,52 +641,70 @@
                 </div>
 
                 <div class="grid-3">
+                    <!-- Strategy Pattern -->
                     <div class="card card-highlight">
-                        <div class="card-title">
-                            <span class="icon-badge" style="background:#DBEAFE; color:#2563EB;"><i class="fa-solid fa-brain"></i></span>
-                            Strategy Pattern
+                        <div>
+                            <div class="card-title">
+                                <span class="icon-badge" style="background:#DBEAFE; color:#2563EB;"><i class="fa-solid fa-brain"></i></span>
+                                Strategy Pattern
+                            </div>
+                            <div style="font-size:13px; font-weight:800; color:var(--accent-blue); margin-top:2px;">CompositeRiskStrategy</div>
                         </div>
-                        <div style="font-size:16px; font-weight:800; color:var(--accent-blue);">CompositeRiskStrategy</div>
                         <p class="card-text">
-                            คำนวณคะแนนความเสี่ยงภัยพิบัติอัตโนมัติ โดยรวมค่าน้ำหนักจาก 3 ปัจจัย:
+                            คำนวณคะแนนความเสี่ยงภัยพิบัติแบบถ่วงน้ำหนัก (Weighted Score) อัตโนมัติ:
                         </p>
-                        <ul class="card-list" style="margin-top:6px;">
-                            <li><i class="fa-solid fa-check"></i> <strong>ระดับน้ำท่วมขัง:</strong> Water Level</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>พยากรณ์ฝนสะสม:</strong> Rainfall 3 hrs</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>ความหนาแน่น:</strong> Report Density</li>
+                        <ul class="card-list">
+                            <li><i class="fa-solid fa-check"></i> <div><strong>ระดับน้ำ (40%):</strong> Water Level 0.1 - 3.0m</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>พยากรณ์ฝน (35%):</strong> Rainfall Forecast 3 ชม.</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>ความหนาแน่น (25%):</strong> Report Frequency Density</div></li>
                         </ul>
+                        <div style="background:#FFF; padding:5px 8px; border-radius:var(--r-sm); font-size:11px; font-weight:700; color:var(--accent-blue); margin-top:auto;">
+                            Output ➔ LOW / MEDIUM / HIGH / CRITICAL
+                        </div>
                     </div>
 
+                    <!-- Repository Pattern -->
                     <div class="card">
-                        <div class="card-title">
-                            <span class="icon-badge" style="background:#DCFCE7; color:#16A34A;"><i class="fa-solid fa-database"></i></span>
-                            Repository Pattern
+                        <div>
+                            <div class="card-title">
+                                <span class="icon-badge" style="background:#DCFCE7; color:#16A34A;"><i class="fa-solid fa-database"></i></span>
+                                Repository Pattern
+                            </div>
+                            <div style="font-size:13px; font-weight:800; color:var(--status-success); margin-top:2px;">Supabase / PostGIS Repo</div>
                         </div>
-                        <div style="font-size:16px; font-weight:800; color:var(--status-success);">Supabase / PostGIS Repo</div>
                         <p class="card-text">
-                            แยก Data Layer ออกจาก Business Logic อย่างเด็ดขาด:
+                            แยก Data Access Layer ออกจาก Domain Logic ตามหลัก Clean Architecture:
                         </p>
-                        <ul class="card-list" style="margin-top:6px;">
-                            <li><i class="fa-solid fa-check"></i> <strong>IFloodPointRepository</strong></li>
-                            <li><i class="fa-solid fa-check"></i> <strong>IFloodReportRepository</strong></li>
-                            <li><i class="fa-solid fa-check"></i> สลับไปใช้ Mock ในการทดสอบได้ทันที</li>
+                        <ul class="card-list">
+                            <li><i class="fa-solid fa-check"></i> <div><strong>IFloodPointRepository:</strong> บันทึก & คิวรีจุดน้ำท่วม</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>IFloodReportRepository:</strong> บันทึกรายงานประชาชน</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>PostGIS Spatial:</strong> คิวรีพิกัดเชิงพื้นที่ <code>ST_DWithin</code></div></li>
                         </ul>
+                        <div style="background:var(--bg-active); padding:5px 8px; border-radius:var(--r-sm); font-size:11px; font-weight:700; color:var(--text-muted); margin-top:auto;">
+                            รองรับการสลับไปใช้ Mock ในการทดสอบทันที
+                        </div>
                     </div>
 
+                    <!-- Adapter Pattern -->
                     <div class="card">
-                        <div class="card-title">
-                            <span class="icon-badge" style="background:#EDE9FE; color:#7C3AED;"><i class="fa-solid fa-plug"></i></span>
-                            Adapter Pattern
+                        <div>
+                            <div class="card-title">
+                                <span class="icon-badge" style="background:#EDE9FE; color:#7C3AED;"><i class="fa-solid fa-plug"></i></span>
+                                Adapter Pattern
+                            </div>
+                            <div style="font-size:13px; font-weight:800; color:var(--gistda-purple); margin-top:2px;">External Service Adapters</div>
                         </div>
-                        <div style="font-size:16px; font-weight:800; color:var(--gistda-purple);">External Service Adapters</div>
                         <p class="card-text">
-                            แปลงข้อมูลภายนอกเข้าสู่มาตรฐานของระบบ:
+                            แปลงโครงสร้างข้อมูลจากภายนอกเข้าสู่มาตรฐานของระบบ:
                         </p>
-                        <ul class="card-list" style="margin-top:6px;">
-                            <li><i class="fa-solid fa-check"></i> <strong>GistdaDisasterService:</strong> ดาวเทียม 77 จว.</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>OpenWeatherService:</strong> สภาพอากาศ</li>
-                            <li><i class="fa-solid fa-check"></i> ป้องกันการผูกติด (Loose Coupling)</li>
+                        <ul class="card-list">
+                            <li><i class="fa-solid fa-check"></i> <div><strong>GistdaDisasterService:</strong> ดาวเทียม 77 จว.</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>OpenWeatherService:</strong> ปริมาณฝนและอากาศ</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>In-Memory Cache (TTL 15m):</strong> ตอบสนอง &lt; 30ms</div></li>
                         </ul>
+                        <div style="background:var(--bg-active); padding:5px 8px; border-radius:var(--r-sm); font-size:11px; font-weight:700; color:var(--text-muted); margin-top:auto;">
+                            Loose Coupling ไม่ผูกติดกับ SDK ภายนอก
+                        </div>
                     </div>
                 </div>
             </div>
@@ -644,29 +726,33 @@
 
             <div class="slide-body">
                 <div>
-                    <h2 class="hero-title">ระบบคำนวณเชิงพื้นที่และ REST API Engine</h2>
+                    <h2 class="hero-title">ระบบคำนวณเชิงพื้นที่ & REST API Engine</h2>
                     <p class="hero-subtitle">การคำนวณอาณาเขตน้ำท่วมอัตโนมัติ (Convex Hull) และการเชื่อมต่อข้อมูลความเร็วสูง</p>
                 </div>
 
-                <div class="grid-2-equal">
+                <div class="grid-2">
                     <!-- Left: Spatial Clustering & GISTDA Pipeline -->
                     <div class="card">
                         <div class="card-title">
                             <span class="icon-badge" style="background:#FFF7ED; color:#EA580C;"><i class="fa-solid fa-draw-polygon"></i></span>
                             Dynamic Flood Polygon Engine
                         </div>
-                        <ul class="card-list" style="gap:12px;">
+                        <ul class="card-list" style="gap:6px;">
                             <li>
-                                <i class="fa-solid fa-check"></i>
-                                <div><strong>Spatial Clustering:</strong> ตรวจจับการรายงานซ้ำซ้อนในรัศมีใกล้เคียง (&lt; 500 ม.) เกิน 2 รายการ หรือระดับวิกฤต</div>
+                                <i class="fa-solid fa-circle-dot"></i>
+                                <div><strong>Spatial Density Clustering:</strong> รวมกลุ่มจุดรายงานที่อยู่ใกล้กัน (&lt; 500 ม.) เกิน 2 รายการ หรือระดับวิกฤต</div>
                             </li>
                             <li>
-                                <i class="fa-solid fa-check"></i>
-                                <div><strong>Convex Hull Algorithm:</strong> คำนวณจุดยอดรูปหลายเหลี่ยม ส่งออกเป็น GeoJSON Polygon ให้ Front-End วาดขอบเขตเตือนภัย</div>
+                                <i class="fa-solid fa-circle-dot"></i>
+                                <div><strong>Convex Hull Algorithm:</strong> คำนวณจุดยอดรูปหลายเหลี่ยม ส่งออกเป็น <strong>GeoJSON Polygon Boundary</strong> ให้ Front-End วาดขอบเขตเตือนภัย</div>
                             </li>
                             <li>
-                                <i class="fa-solid fa-check"></i>
-                                <div><strong>GISTDA 77 Provinces Cache:</strong> แคชข้อมูลดาวเทียมในตัว (TTL 15 นาที) ตอบสนองในเวลา &lt; 30ms</div>
+                                <i class="fa-solid fa-circle-dot"></i>
+                                <div><strong>GISTDA 77 Provinces Pipeline:</strong> ประมวลผลภาพถ่ายดาวเทียมน้ำท่วมขังรายวัน แยกรายจังหวัดทั่วไทย</div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-circle-dot"></i>
+                                <div><strong>High-Speed Caching:</strong> ระบบแคชข้อมูลในหน่วยความจำ ตอบสนอง Front-End ภายใน $15-30$ms</div>
                             </li>
                         </ul>
                     </div>
@@ -677,7 +763,7 @@
                             <span class="icon-badge" style="background:#DBEAFE; color:#2563EB;"><i class="fa-solid fa-bolt"></i></span>
                             REST API Endpoints Specification
                         </div>
-                        <div style="display:flex; flex-direction:column; gap:8px; flex:1; justify-content:space-around;">
+                        <div style="display:flex; flex-direction:column; gap:5px; flex:1; justify-content:space-around;">
                             <div class="endpoint-row">
                                 <div><span class="method-tag method-get">GET</span> <code>/api/points</code></div>
                                 <span>ดึงรายการจุดน้ำท่วมและระดับความเสี่ยง</span>
@@ -693,6 +779,10 @@
                             <div class="endpoint-row">
                                 <div><span class="method-tag method-get">GET</span> <code>/api/gistda</code></div>
                                 <span>ดึงชั้นข้อมูลน้ำท่วมดาวเทียม 77 จังหวัด</span>
+                            </div>
+                            <div class="endpoint-row">
+                                <div><span class="method-tag method-get">GET</span> <code>/api/stats</code></div>
+                                <span>ดึงสถิติสรุปภาพรวมสำหรับหน้าแดชบอร์ด</span>
                             </div>
                         </div>
                     </div>
@@ -721,33 +811,48 @@
                 </div>
 
                 <div class="grid-4" style="flex:1;">
-                    <div class="card" style="border-top: 5px solid var(--bg-body); padding:20px;">
-                        <strong style="font-size:18px; color:var(--text-dark);">1. No Border</strong>
-                        <p class="card-text" style="font-size:14.5px;">ห้ามมีเส้นขอบกรอบตัดสายตา ใช้ความสะอาดของพื้นที่สร้างมิติ</p>
+                    <div class="card" style="border-top: 3px solid var(--text-light); padding:10px 12px;">
+                        <strong style="font-size:13.5px; color:var(--text-dark); display:flex; align-items:center; gap:5px;">
+                            <i class="fa-solid fa-ban" style="color:var(--text-light);"></i> 1. No Border
+                        </strong>
+                        <p class="card-text" style="font-size:11.5px; margin-top:2px;">ห้ามมีเส้นขอบกรอบตัดสายตา ใช้ความสะอาดของพื้นที่สร้างมิติ</p>
                     </div>
 
-                    <div class="card" style="border-top: 5px solid var(--accent-blue); padding:20px;">
-                        <strong style="font-size:18px; color:var(--text-dark);">2. No Shadow</strong>
-                        <p class="card-text" style="font-size:14.5px;">ห้ามมีเงาดำเบลอๆ ซ้อนกัน ตัดความเทอะทะให้เบาสบายตา</p>
+                    <div class="card" style="border-top: 3px solid var(--accent-blue); padding:10px 12px;">
+                        <strong style="font-size:13.5px; color:var(--text-dark); display:flex; align-items:center; gap:5px;">
+                            <i class="fa-solid fa-sun" style="color:var(--accent-blue);"></i> 2. No Shadow
+                        </strong>
+                        <p class="card-text" style="font-size:11.5px; margin-top:2px;">ห้ามมีเงาดำเบลอๆ ซ้อนกัน ตัดความเทอะทะให้เบาสบายตา</p>
                     </div>
 
-                    <div class="card" style="border-top: 5px solid var(--status-success); padding:20px;">
-                        <strong style="font-size:18px; color:var(--text-dark);">3. Surface Layering</strong>
-                        <p class="card-text" style="font-size:14.5px;">Slate 100 ➔ Pure White ➔ Slate 50 ➔ Slate 200</p>
+                    <div class="card" style="border-top: 3px solid var(--status-success); padding:10px 12px;">
+                        <strong style="font-size:13.5px; color:var(--text-dark); display:flex; align-items:center; gap:5px;">
+                            <i class="fa-solid fa-layer-group" style="color:var(--status-success);"></i> 3. Surface Layering
+                        </strong>
+                        <p class="card-text" style="font-size:11.5px; margin-top:2px;">Slate 100 ➔ Pure White ➔ Slate 50 ➔ Slate 200</p>
                     </div>
 
-                    <div class="card" style="border-top: 5px solid var(--gistda-purple); padding:20px;">
-                        <strong style="font-size:18px; color:var(--text-dark);">4. Radius Scale</strong>
-                        <p class="card-text" style="font-size:14.5px;">องค์ประกอบนอกมนกว่าใน (20px &gt; 14px &gt; 10px &gt; 8px)</p>
+                    <div class="card" style="border-top: 3px solid var(--gistda-purple); padding:10px 12px;">
+                        <strong style="font-size:13.5px; color:var(--text-dark); display:flex; align-items:center; gap:5px;">
+                            <i class="fa-solid fa-shapes" style="color:var(--gistda-purple);"></i> 4. Radius Scale
+                        </strong>
+                        <p class="card-text" style="font-size:11.5px; margin-top:2px;">องค์ประกอบนอกมนกว่าใน (20px &gt; 14px &gt; 10px &gt; 8px)</p>
                     </div>
                 </div>
 
-                <div class="card card-highlight" style="padding:18px 24px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:17px; font-weight:900; color:var(--accent-blue);">
+                <div class="grid-2" style="flex:0.85;">
+                    <div class="card card-highlight" style="padding:10px 14px;">
+                        <span style="font-size:13px; font-weight:800; color:var(--accent-blue); display:flex; align-items:center; gap:6px;">
                             <i class="fa-solid fa-language"></i> กฎการสื่อสาร: Thai-First & Human Centric
                         </span>
-                        <span style="font-size:15.5px; color:var(--text-muted); font-weight:600;">ภาษาไทยเข้าใจง่าย • ไร้ศัพท์เทคนิคบนหน้าจอ • ไร้วงเล็บภาษาอังกฤษ</span>
+                        <p class="card-text" style="font-size:11.8px; margin-top:2px;">ใช้ภาษาไทยเข้าใจง่าย สุภาพ • ไร้ศัพท์เทคนิคบนหน้าจอ (Controller, JSON) • ไร้วงเล็บภาษาอังกฤษ</p>
+                    </div>
+
+                    <div class="card" style="padding:10px 14px;">
+                        <span style="font-size:13px; font-weight:800; color:var(--text-dark); display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-arrows-left-right-to-line" style="color:var(--status-success);"></i> Compact & High-Density Spacing
+                        </span>
+                        <p class="card-text" style="font-size:11.8px; margin-top:2px;">จัดวางข้อมูลกระชับ (Padding 10-14px, Gap 6-10px) มองเห็นภาพรวมครบถ้วนในหน้าจอเดียว</p>
                     </div>
                 </div>
             </div>
@@ -774,39 +879,42 @@
                 </div>
 
                 <div class="grid-3">
+                    <!-- Column 1: Map Canvas -->
                     <div class="card">
                         <div class="card-title">
                             <span class="icon-badge" style="background:#DBEAFE; color:#2563EB;"><i class="fa-solid fa-map"></i></span>
                             OpenStreetMap Canvas
                         </div>
                         <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> <div><strong>โหลดเร็วและลื่นไหล:</strong> ซูมและแพนแผนที่ได้อย่างราบรื่น</div></li>
-                            <li><i class="fa-solid fa-check"></i> <div><strong>Floating Top Navbar:</strong> สลับหน้า Map / Dashboard / API</div></li>
-                            <li><i class="fa-solid fa-check"></i> <div><strong>Geolocation Auto-GPS:</strong> ดึงพิกัดตำแหน่งผู้ใช้ทันที</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>Leaflet 1.9.4:</strong> เรนเดอร์แผนที่เวกเตอร์เต็มจอ 100vw, 100vh ซูมและแพนลื่นไหล</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>Floating Top Navbar:</strong> ลอยตัวด้านบน สลับหน้า Map / Dashboard / API</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>Geolocation Auto-GPS:</strong> ดึงพิกัดตำแหน่งผู้ใช้ทันทีเมื่อเข้าใช้งาน</div></li>
                         </ul>
                     </div>
 
+                    <!-- Column 2: Custom Markers -->
                     <div class="card">
                         <div class="card-title">
                             <span class="icon-badge" style="background:#FEF2F2; color:#DC2626;"><i class="fa-solid fa-location-pin"></i></span>
                             Custom Risk Markers
                         </div>
                         <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> <div><strong>หมุดแยก 4 ระดับความเสี่ยง:</strong> แดง / ส้ม / เหลือง / น้ำเงิน</div></li>
-                            <li><i class="fa-solid fa-check"></i> <div><strong>Interactive Popup Card:</strong> คลิกเพื่อดูข้อมูลสรุปสถานะ</div></li>
-                            <li><i class="fa-solid fa-check"></i> <div><strong>Real Photos:</strong> แสดงรูปถ่ายสถานที่จริงและระดับน้ำขัง</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>หมุดแยก 4 ระดับความเสี่ยง:</strong> แดง (วิกฤต), ส้ม (สูง), เหลือง (กลาง), ฟ้า (เฝ้าระวัง)</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>Interactive Popup Card:</strong> คลิกหมุดเปิดดูระดับน้ำ และเวลาที่รายงาน</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>Real Photos:</strong> แสดงรูปถ่ายสถานที่จริงและประวัติการเปลี่ยนแปลง</div></li>
                         </ul>
                     </div>
 
+                    <!-- Column 3: Satellite & Zones -->
                     <div class="card card-highlight">
                         <div class="card-title">
                             <span class="icon-badge" style="background:#EDE9FE; color:#7C3AED;"><i class="fa-solid fa-layer-group"></i></span>
                             GISTDA & Polygon Zones
                         </div>
                         <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> <div><strong>ดาวเทียม 77 จังหวัด:</strong> สลับเปิด-ปิดเลเยอร์ GISTDA สด</div></li>
-                            <li><i class="fa-solid fa-check"></i> <div><strong>อาณาเขต Polygon:</strong> แสดงขอบเขตสีแดงโปร่งแสงเตือนภัย</div></li>
-                            <li><i class="fa-solid fa-check"></i> <div><strong>Floating Report Button:</strong> ปุ่มแจ้งเหตุน้ำท่วมด่วน</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>ดาวเทียม 77 จังหวัด:</strong> สวิตช์เปิด-ปิดเลเยอร์ภาพถ่าย GISTDA สด</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>อาณาเขต Polygon:</strong> แสดงขอบเขตสีแดงโปร่งแสงรอบพื้นที่วิกฤต</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>Floating Report Button:</strong> ปุ่มสีน้ำเงินมุมขวาล่างสำหรับแจ้งเหตุด่วน</div></li>
                         </ul>
                     </div>
                 </div>
@@ -833,25 +941,25 @@
                     <p class="hero-subtitle">ประสบการณ์ผู้ใช้ที่เร็วที่สุดสำหรับเหตุฉุกเฉิน พร้อมศูนย์กลางตรวจสอบข้อมูล 77 จังหวัด</p>
                 </div>
 
-                <div class="grid-2-equal">
+                <div class="grid-2">
                     <!-- Left: Quick Report Flow -->
                     <div class="card card-highlight">
                         <div class="card-title">
                             <span class="icon-badge" style="background:#DBEAFE; color:#2563EB;"><i class="fa-solid fa-bullhorn"></i></span>
                             Quick Report Modal (≤ 3 Taps Flow)
                         </div>
-                        <div style="display:flex; flex-direction:column; gap:10px; flex:1; justify-content:space-around;">
-                            <div style="background:#FFF; padding:12px 18px; border-radius:var(--r-md);">
-                                <strong style="font-size:16px; color:var(--text-dark);">1. เลือกระดับน้ำ:</strong>
-                                <div style="font-size:14.5px; color:var(--text-muted); margin-top:2px;">4 ปุ่มกด Grid (เล็กน้อย / ปานกลาง / รถเล็กผ่านไม่ได้ / วิกฤต)</div>
+                        <div style="display:flex; flex-direction:column; gap:5px; flex:1; justify-content:space-around;">
+                            <div style="background:#FFF; padding:6px 10px; border-radius:var(--r-sm);">
+                                <strong style="font-size:13px; color:var(--text-dark);">1. เลือกระดับน้ำ (1 Tap):</strong>
+                                <div style="font-size:11.8px; color:var(--text-muted);">4 ปุ่มกด Grid: เล็กน้อย / ปานกลาง / รถเล็กผ่านไม่ได้ / วิกฤต</div>
                             </div>
-                            <div style="background:#FFF; padding:12px 18px; border-radius:var(--r-md);">
-                                <strong style="font-size:16px; color:var(--text-dark);">2. เบอร์โทรศัพท์ & ภาพถ่าย:</strong>
-                                <div style="font-size:14.5px; color:var(--text-muted); margin-top:2px;">จดจำเบอร์ลง LocalStorage เพื่อไม่ต้องกรอกซ้ำในครั้งต่อไป</div>
+                            <div style="background:#FFF; padding:6px 10px; border-radius:var(--r-sm);">
+                                <strong style="font-size:13px; color:var(--text-dark);">2. เบอร์โทรศัพท์ & ภาพถ่าย (1 Tap):</strong>
+                                <div style="font-size:11.8px; color:var(--text-muted);">จดจำเบอร์ลง LocalStorage เพื่อไม่ต้องกรอกซ้ำในครั้งต่อไป</div>
                             </div>
-                            <div style="background:#FFF; padding:12px 18px; border-radius:var(--r-md);">
-                                <strong style="font-size:16px; color:var(--text-dark);">3. กดยืนยันส่งข้อมูล:</strong>
-                                <div style="font-size:14.5px; color:var(--text-muted); margin-top:2px;">ดึงพิกัด GPS อัตโนมัติ หมุดและ Polygon แสดงบนแผนที่สดทันที</div>
+                            <div style="background:#FFF; padding:6px 10px; border-radius:var(--r-sm);">
+                                <strong style="font-size:13px; color:var(--text-dark);">3. กดยืนยันส่งข้อมูล (1 Tap):</strong>
+                                <div style="font-size:11.8px; color:var(--text-muted);">ดึงพิกัด GPS อัตโนมัติ หมุดและ Polygon แสดงบนแผนที่สดทันที</div>
                             </div>
                         </div>
                     </div>
@@ -862,10 +970,10 @@
                             <span class="icon-badge" style="background:#DCFCE7; color:#16A34A;"><i class="fa-solid fa-chart-pie"></i></span>
                             Flood Intelligence Dashboard
                         </div>
-                        <ul class="card-list" style="gap:12px;">
-                            <li><i class="fa-solid fa-check"></i> <div><strong>4 กล่องสถิติ KPI:</strong> จังหวัดประสบภัย, จุดวิกฤต, รายงานวันนี้, ดัชนีฝน</div></li>
-                            <li><i class="fa-solid fa-check"></i> <div><strong>77-Province Filter:</strong> ค้นหาและกรองข้อมูลได้ครบทุกจังหวัดในไทย</div></li>
-                            <li><i class="fa-solid fa-check"></i> <div><strong>Incident Table & Drawer:</strong> ตารางจุดรายงานพร้อมรูปถ่ายขนาดใหญ่</div></li>
+                        <ul class="card-list" style="gap:6px;">
+                            <li><i class="fa-solid fa-check"></i> <div><strong>4 กล่องสถิติ KPI:</strong> จังหวัดประสบภัย, จุดวิกฤตรวม, รายงานวันนี้, ดัชนีฝน</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>77-Province Filter:</strong> ดรอปดาวน์ค้นหาและกรองสถานการณ์รายจังหวัดทั่วไทย</div></li>
+                            <li><i class="fa-solid fa-check"></i> <div><strong>Incident Table & Drawer:</strong> ตารางจุดรายงานพร้อมคลิกเปิด Drawer ดูภาพใหญ่</div></li>
                             <li><i class="fa-solid fa-check"></i> <div><strong>ระบบพร้อมใช้งานจริง:</strong> สถาปัตยกรรม OOP แข็งแกร่ง ดีไซน์สะอาดตา</div></li>
                         </ul>
                     </div>
