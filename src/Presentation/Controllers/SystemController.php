@@ -21,9 +21,9 @@ final class SystemController
 
     public function status(Request $request): Response
     {
-        $dbDriver = strtolower($_ENV['DB_DRIVER'] ?? (getenv('DB_DRIVER') ?: 'supabase'));
-        $supabaseUrl = $_ENV['SUPABASE_URL'] ?? (getenv('SUPABASE_URL') ?: '');
-        $supabaseKey = $_ENV['SUPABASE_ANON_KEY'] ?? (getenv('SUPABASE_ANON_KEY') ?: '');
+        $dbDriver = strtolower($_ENV['DB_DRIVER'] ?? ($_SERVER['DB_DRIVER'] ?? (getenv('DB_DRIVER') ?: 'supabase')));
+        $supabaseUrl = $_ENV['SUPABASE_URL'] ?? ($_SERVER['SUPABASE_URL'] ?? (getenv('SUPABASE_URL') ?: ''));
+        $supabaseKey = $_ENV['SUPABASE_ANON_KEY'] ?? ($_SERVER['SUPABASE_ANON_KEY'] ?? (getenv('SUPABASE_ANON_KEY') ?: ''));
         
         $supabaseConnected = false;
         $supabaseError = null;
@@ -60,7 +60,7 @@ final class SystemController
             'status' => 'ok',
             'app' => 'ROiCORE Flood Intelligence Platform',
             'version' => '1.0.0',
-            'environment' => $_ENV['APP_ENV'] ?? (getenv('APP_ENV') ?: 'local'),
+            'environment' => $_ENV['APP_ENV'] ?? ($_SERVER['APP_ENV'] ?? (getenv('APP_ENV') ?: 'local')),
             'database' => [
                 'driver' => $dbDriver,
                 'supabase_configured' => (!empty($supabaseUrl) && !empty($supabaseKey)),

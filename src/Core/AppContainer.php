@@ -41,9 +41,9 @@ final class AppContainer
     public function __construct()
     {
         // 1. Data Layer Configuration
-        $dbDriver = strtolower($_ENV['DB_DRIVER'] ?? (getenv('DB_DRIVER') ?: 'supabase'));
-        $supabaseUrl = $_ENV['SUPABASE_URL'] ?? (getenv('SUPABASE_URL') ?: 'http://127.0.0.1:54321');
-        $supabaseKey = $_ENV['SUPABASE_ANON_KEY'] ?? (getenv('SUPABASE_ANON_KEY') ?: '');
+        $dbDriver = strtolower($_ENV['DB_DRIVER'] ?? ($_SERVER['DB_DRIVER'] ?? (getenv('DB_DRIVER') ?: 'supabase')));
+        $supabaseUrl = $_ENV['SUPABASE_URL'] ?? ($_SERVER['SUPABASE_URL'] ?? (getenv('SUPABASE_URL') ?: 'http://127.0.0.1:54321'));
+        $supabaseKey = $_ENV['SUPABASE_ANON_KEY'] ?? ($_SERVER['SUPABASE_ANON_KEY'] ?? (getenv('SUPABASE_ANON_KEY') ?: ''));
 
         $jsonReportRepo = new JsonFileFloodReportRepository();
         $jsonPointRepo = new JsonFileFloodPointRepository();

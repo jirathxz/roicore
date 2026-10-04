@@ -18,7 +18,7 @@ final class OpenWeatherService implements IWeatherService
 
     public function __construct(?string $apiKey = null, ?Client $client = null)
     {
-        $this->apiKey = $apiKey ?? ($_ENV['OPENWEATHER_API_KEY'] ?? (getenv('OPENWEATHER_API_KEY') ?: null));
+        $this->apiKey = $apiKey ?? ($_ENV['OPENWEATHER_API_KEY'] ?? ($_SERVER['OPENWEATHER_API_KEY'] ?? (getenv('OPENWEATHER_API_KEY') ?: null)));
         $this->httpClient = $client ?? new Client([
             'timeout' => 4.0,
         ]);
