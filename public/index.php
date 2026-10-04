@@ -47,5 +47,15 @@ if ($isDashboard) {
     exit;
 }
 
+$isPresentation = (
+    preg_match('#/(presentation|slides?/?)$#', $path) === 1
+    || in_array($pageParam, ['presentation', 'slide', 'slides'], true)
+);
+
+if ($isPresentation) {
+    require __DIR__ . '/presentation.html';
+    exit;
+}
+
 // 3. Main landing page: OpenStreetMap Interactive Flood Map
 require __DIR__ . '/map_view.php';
