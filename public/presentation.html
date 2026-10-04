@@ -15,7 +15,7 @@
 
     <style>
         /* ==========================================================================
-           ROiCORE Keynote System (Cohesive Proximity, Natural Tight Gaps)
+           ROiCORE Keynote System (Cohesive Proximity, Web UI Previews, Zero Border)
            ========================================================================== */
         :root {
             /* Brand Primary */
@@ -39,8 +39,11 @@
             --bg-canvas: #090D16;
             --bg-slide: #FFFFFF;
             --bg-pill: #F1F5F9;
+            --bg-preview: #F8FAFC;
 
             /* Radius */
+            --r-sm: 6px;
+            --r-md: 10px;
             --r-lg: 18px;
             --r-full: 9999px;
         }
@@ -82,7 +85,7 @@
             padding: 10px;
         }
 
-        /* Slide Component (Natural Flow - No Gaping Holes) */
+        /* Slide Component */
         .slide {
             position: absolute;
             width: 100%;
@@ -93,7 +96,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            gap: 18px;
+            gap: 16px;
             opacity: 0;
             pointer-events: none;
             transform: scale(0.98);
@@ -129,29 +132,29 @@
         }
 
         .sub-title {
-            font-size: 19.5px;
+            font-size: 19px;
             font-weight: 700;
             line-height: 1.3;
             color: var(--text-subtitle);
             letter-spacing: -0.01em;
         }
 
-        /* Slide Body Layout (Tight, Natural Alignment) */
+        /* Slide Body Layout */
         .slide-body {
             position: relative;
             z-index: 2;
             display: grid;
-            grid-template-columns: 1.25fr 1fr;
-            column-gap: 40px;
+            grid-template-columns: 1.15fr 1fr;
+            column-gap: 36px;
             align-items: start;
         }
 
-        /* Left Side: 2x2 Tight Typographic Grid */
+        /* Left Side: 2x2 Typographic Grid */
         .grid-2x2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            row-gap: 20px;
-            column-gap: 26px;
+            row-gap: 18px;
+            column-gap: 24px;
             align-content: start;
         }
 
@@ -162,7 +165,7 @@
         }
 
         .typo-title {
-            font-size: 24px;
+            font-size: 23px;
             font-weight: 900;
             line-height: 1.15;
             letter-spacing: -0.02em;
@@ -172,15 +175,15 @@
         }
 
         .typo-title i {
-            font-size: 20px;
+            font-size: 19px;
             flex-shrink: 0;
         }
 
         .typo-desc {
-            font-size: 14.5px;
+            font-size: 14px;
             font-weight: 500;
             color: var(--text-body);
-            line-height: 1.45;
+            line-height: 1.42;
         }
 
         .pill-tag {
@@ -193,15 +196,15 @@
             background: var(--bg-pill);
             padding: 2px 7px;
             border-radius: var(--r-full);
-            margin-top: 3px;
+            margin-top: 2px;
             align-self: flex-start;
         }
 
-        /* Right Side: Stacked Vertical Rows (Tight Proximity) */
+        /* Right Side: Stacked Vertical Rows */
         .stack-list {
             display: flex;
             flex-direction: column;
-            gap: 13px;
+            gap: 12px;
             justify-content: flex-start;
         }
 
@@ -212,7 +215,7 @@
         }
 
         .stack-title {
-            font-size: 16px;
+            font-size: 15.5px;
             font-weight: 800;
             color: var(--text-heading);
             letter-spacing: -0.01em;
@@ -222,16 +225,222 @@
         }
 
         .stack-title i {
-            font-size: 14px;
+            font-size: 13.5px;
             flex-shrink: 0;
         }
 
         .stack-desc {
-            font-size: 13.8px;
+            font-size: 13.5px;
             font-weight: 500;
             color: var(--text-muted);
-            line-height: 1.4;
-            padding-left: 22px;
+            line-height: 1.38;
+            padding-left: 21px;
+        }
+
+        /* ==========================================================================
+           Web UI Preview Mockup Card Component
+           ========================================================================== */
+        .browser-mockup {
+            background-color: var(--bg-preview);
+            border-radius: var(--r-md);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 380px;
+            position: relative;
+        }
+
+        .browser-topbar {
+            background-color: #E2E8F0;
+            padding: 7px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .browser-dots {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .browser-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .browser-url {
+            background: #FFFFFF;
+            padding: 2px 12px;
+            border-radius: var(--r-full);
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            flex: 1;
+            max-width: 260px;
+            text-align: center;
+        }
+
+        .browser-content {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background-color: #F1F5F9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Map UI Preview Specifics */
+        .mock-map-canvas {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #E2E8F0 10%, #CBD5E1 90%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mock-navbar {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 5px 14px;
+            border-radius: var(--r-full);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11.5px;
+            font-weight: 800;
+            z-index: 10;
+        }
+
+        .mock-pin {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mock-pin-icon {
+            font-size: 22px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .mock-polygon-zone {
+            position: absolute;
+            width: 160px;
+            height: 110px;
+            background: rgba(220, 38, 38, 0.18);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            pointer-events: none;
+        }
+
+        .mock-popup {
+            background: #FFFFFF;
+            padding: 8px 12px;
+            border-radius: var(--r-sm);
+            font-size: 11px;
+            color: var(--text-dark);
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: absolute;
+            top: 85px;
+            left: 60px;
+            z-index: 15;
+            white-space: nowrap;
+        }
+
+        .mock-fab-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background-color: var(--color-blue);
+            color: #FFFFFF;
+            padding: 6px 14px;
+            border-radius: var(--r-full);
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        /* Dashboard UI Preview Specifics */
+        .mock-dash-content {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+        }
+
+        .mock-kpi-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .mock-kpi-chip {
+            background: #FFFFFF;
+            padding: 6px 8px;
+            border-radius: var(--r-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .mock-kpi-val {
+            font-size: 15px;
+            font-weight: 900;
+            color: var(--color-blue);
+        }
+
+        .mock-kpi-lbl {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .mock-modal-card {
+            background: #FFFFFF;
+            border-radius: var(--r-md);
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            flex: 1;
+        }
+
+        .mock-grid-btn {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .mock-sub-btn {
+            background: var(--bg-pill);
+            padding: 6px 4px;
+            border-radius: var(--r-sm);
+            font-size: 10.5px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
         }
 
         /* Bottom Outline Watermark */
@@ -252,7 +461,7 @@
             user-select: none;
         }
 
-        /* Slide Footer (Pinned to bottom via margin-top: auto) */
+        /* Slide Footer */
         .slide-footer {
             position: relative;
             z-index: 2;
@@ -263,7 +472,7 @@
             font-size: 12px;
             font-weight: 600;
             color: var(--text-light);
-            padding-top: 12px;
+            padding-top: 10px;
         }
 
         /* Brand Colors */
@@ -614,7 +823,7 @@
                             <i class="fa-solid fa-circle-nodes"></i> Spatial Clustering
                         </div>
                         <div class="typo-desc">
-                            ระบบจัดกลุ่มรายงานที่อยู่ในรัศมี 500 เมตร เกิน 2 รายการ หรือมีระดับน้ำวิกฤต เพื่อวิเคราะห์คลัสเตอร์ความเสี่ยงในพื้นที่แบบเรียลไทม์
+                            ระบบจัดกลุ่มรายงานที่อยู่ในรัศมี 500 เมตร เกิน 2 รายการ หรือมีระดับน้ำวิกฤต เพื่อวิเคราะห์คลัสเตอร์ความเสี่ยง
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-bullseye"></i> Density Radius 500m</div>
                     </div>
@@ -624,17 +833,17 @@
                             <i class="fa-solid fa-draw-polygon"></i> Convex Hull
                         </div>
                         <div class="typo-desc">
-                            อัลกอริทึมคำนวณหาจุดยอดรูปหลายเหลี่ยมรอบกลุ่มจุดน้ำท่วม แล้วส่งออกเป็น <strong>GeoJSON Polygon Boundary</strong> ให้ Front-End วาดขอบเขตเตือนภัย
+                            อัลกอริทึมคำนวณหาจุดยอดรูปหลายเหลี่ยมรอบกลุ่มจุดน้ำท่วม แล้วส่งออกเป็น <strong>GeoJSON Polygon</strong> ขอบเขตเตือนภัย
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-vector-square"></i> Graham Scan Algorithm</div>
                     </div>
 
                     <div class="typo-block">
                         <div class="typo-title c-purple">
-                            <i class="fa-solid fa-satellite"></i> GISTDA 77 Pipeline
+                            <i class="fa-solid fa-satellite"></i> GISTDA 77
                         </div>
                         <div class="typo-desc">
-                            ไปป์ไลน์ดึงและประมวลผลข้อมูลภาพถ่ายดาวเทียมน้ำท่วมขังรายวัน แยกรายจังหวัดครอบคลุมทั้ง 77 จังหวัดทั่วประเทศไทย
+                            ไปป์ไลน์ดึงและประมวลผลข้อมูลภาพถ่ายดาวเทียมน้ำท่วมขังรายวัน แยกรายจังหวัดครอบคลุมทั้ง 77 จังหวัด
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-globe"></i> Daily Satellite Processing</div>
                     </div>
@@ -644,47 +853,37 @@
                             <i class="fa-solid fa-bolt"></i> High-Speed API
                         </div>
                         <div class="typo-desc">
-                            สถาปัตยกรรม API ความเร็วสูง พร้อมระบบแคชข้อมูล ส่งมอบ Payload ข้อมูลจุดเสี่ยงและรูปภาพให้ Front-End ภายใน 15-30ms
+                            สถาปัตยกรรม API ความเร็วสูง พร้อมแคชข้อมูล ตอบสนองคำขอ Front-End ภายใน 15-30ms
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-clock"></i> Latency 15-30ms Response</div>
                     </div>
                 </div>
 
-                <!-- Right: REST API Specification -->
-                <div class="stack-list">
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-cloud-arrow-down" style="color:var(--color-emerald);"></i> GET /api/points (ดึงจุดเสี่ยงน้ำท่วม)
+                <!-- Right: API Console Preview Mockup -->
+                <div class="browser-mockup">
+                    <div class="browser-topbar">
+                        <div class="browser-dots">
+                            <span class="browser-dot" style="background:#EF4444;"></span>
+                            <span class="browser-dot" style="background:#F59E0B;"></span>
+                            <span class="browser-dot" style="background:#10B981;"></span>
                         </div>
-                        <div class="stack-desc">
-                            ดึงรายการจุดเฝ้าระวังน้ำท่วม พิกัด GeoLocation ระดับน้ำ และคะแนนความเสี่ยงแบบ Real-time (&lt;20ms)
-                        </div>
+                        <div class="browser-url">roicore.app/api/docs</div>
                     </div>
-
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-paper-plane" style="color:var(--color-blue);"></i> POST /api/reports (ส่งรายงานเหตุด่วน)
+                    <div class="browser-content" style="background:#0F172A; padding:12px; font-family:'Fira Code', monospace; color:#E2E8F0; justify-content:space-between;">
+                        <div style="font-size:11.5px; color:#38BDF8; font-weight:700;">
+                            // REST API Endpoints Specification
                         </div>
-                        <div class="stack-desc">
-                            รับรายงานเหตุน้ำท่วมด่วนจากประชาชน พร้อมพิกัด GPS ภาพถ่าย และเบอร์ติดต่อ เพื่อนำเข้ากระบวนการประเมิน (&lt;80ms)
+                        <div style="background:#1E293B; padding:8px 10px; border-radius:6px; font-size:11px;">
+                            <span style="color:#4ADE80; font-weight:700;">GET</span> <span style="color:#FFF;">/api/points</span> <span style="color:#94A3B8;">➔ 200 OK (18ms)</span>
                         </div>
-                    </div>
-
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-map" style="color:var(--color-orange);"></i> GET /api/zones (ดึงอาณาเขต Polygon)
+                        <div style="background:#1E293B; padding:8px 10px; border-radius:6px; font-size:11px;">
+                            <span style="color:#60A5FA; font-weight:700;">POST</span> <span style="color:#FFF;">/api/reports</span> <span style="color:#94A3B8;">➔ 201 Created (72ms)</span>
                         </div>
-                        <div class="stack-desc">
-                            ดึงอาณาเขต Polygon พื้นที่น้ำท่วมที่คำนวณด้วย Convex Hull ในรูปแบบ GeoJSON พร้อมเรนเดอร์บนแผนที่ (&lt;35ms)
+                        <div style="background:#1E293B; padding:8px 10px; border-radius:6px; font-size:11px;">
+                            <span style="color:#4ADE80; font-weight:700;">GET</span> <span style="color:#FFF;">/api/zones</span> <span style="color:#94A3B8;">➔ 200 GeoJSON (31ms)</span>
                         </div>
-                    </div>
-
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-chart-pie" style="color:var(--color-purple);"></i> GET /api/gistda & /api/stats (ดาวเทียมและสถิติ)
-                        </div>
-                        <div class="stack-desc">
-                            ดึงชั้นข้อมูลน้ำท่วมดาวเทียม 77 จังหวัด และข้อมูลสถิติสรุปภาพรวม KPI สำหรับหน้าแดชบอร์ดศูนย์บัญชาการ (&lt;30ms)
+                        <div style="font-size:10.5px; color:#94A3B8;">
+                            Payload: <span style="color:#FBCFE8;">{ "success": true, "data": [...], "count": 42 }</span>
                         </div>
                     </div>
                 </div>
@@ -802,7 +1001,7 @@
         </section>
 
         <!-- ====================================================================
-             SLIDE 5: [FRONT-END 2/3] Interactive Map View
+             SLIDE 5: [FRONT-END 2/3] Interactive Map View with Live Preview
              ==================================================================== -->
         <section class="slide" id="slide-5">
             <div class="slide-header">
@@ -815,10 +1014,10 @@
                 <div class="grid-2x2">
                     <div class="typo-block">
                         <div class="typo-title c-blue">
-                            <i class="fa-solid fa-map"></i> OpenStreetMap
+                            <i class="fa-solid fa-map"></i> OpenStreetMap Canvas
                         </div>
                         <div class="typo-desc">
-                            เรนเดอร์แผนที่เวกเตอร์เต็มหน้าจอ 100vw x 100vh รองรับการแพน ซูม และหมุนได้อย่างลื่นไหล 60 FPS ด้วย Leaflet 1.9.4
+                            เรนเดอร์แผนที่เวกเตอร์เต็มหน้าจอ 100vw x 100vh แพนและซูมลื่นไหล 60 FPS ด้วย Leaflet 1.9.4
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-expand"></i> Fullscreen 100vw x 100vh</div>
                     </div>
@@ -828,9 +1027,9 @@
                             <i class="fa-solid fa-location-dot"></i> Custom Risk Markers
                         </div>
                         <div class="typo-desc">
-                            หมุดแยก 4 สีตามระดับความเสี่ยง พร้อม Interactive Popup Card แสดงระดับความสูงน้ำ (เมตร) เวลา และภาพถ่ายจริง
+                            หมุดแยก 4 สีตามระดับความเสี่ยง พร้อม Interactive Popup Card แสดงระดับน้ำ (เมตร) และภาพถ่ายจริง
                         </div>
-                        <div class="pill-tag"><i class="fa-solid fa-map-pin"></i> 4-Tier Interactive Markers</div>
+                        <div class="pill-tag"><i class="fa-solid fa-map-pin"></i> 4-Tier Risk Markers</div>
                     </div>
 
                     <div class="typo-block">
@@ -838,7 +1037,7 @@
                             <i class="fa-solid fa-satellite-dish"></i> GISTDA Satellite
                         </div>
                         <div class="typo-desc">
-                            สวิตช์เปิด-ปิดเลเยอร์ภาพถ่ายดาวเทียมน้ำท่วมขัง 77 จังหวัดรายวันจาก GISTDA แสดงพื้นที่น้ำท่วมระดับภูมิภาคแบบสดๆ
+                            สวิตช์เปิด-ปิดเลเยอร์ภาพถ่ายดาวเทียมน้ำท่วมขัง 77 จังหวัดรายวันจาก GISTDA แสดงพื้นที่ท่วมระดับภูมิภาค
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-layer-group"></i> 77 Provinces Satellite</div>
                     </div>
@@ -848,47 +1047,59 @@
                             <i class="fa-solid fa-vector-square"></i> Polygon Zones
                         </div>
                         <div class="typo-desc">
-                            แสดงอาณาเขตพื้นที่วิกฤตด้วย Polygon แรเงาสีแดงโปร่งแสงตามขอบเขต Convex Hull ที่คำนวณจาก Back-End
+                            แสดงอาณาเขตพื้นที่วิกฤตด้วยแรเงาสีแดงโปร่งแสงตามขอบเขต Convex Hull ที่คำนวณจาก Back-End
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-draw-polygon"></i> Hazard Boundary Shading</div>
                     </div>
                 </div>
 
-                <!-- Right: Map Interaction & UX Flow -->
-                <div class="stack-list">
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-compass" style="color:var(--color-sky);"></i> 1. Floating Translucent Top Navbar
+                <!-- Right: Live Interactive Map Web Preview Mockup -->
+                <div class="browser-mockup">
+                    <div class="browser-topbar">
+                        <div class="browser-dots">
+                            <span class="browser-dot" style="background:#EF4444;"></span>
+                            <span class="browser-dot" style="background:#F59E0B;"></span>
+                            <span class="browser-dot" style="background:#10B981;"></span>
                         </div>
-                        <div class="stack-desc">
-                            แถบนำทางโปร่งแสงลอยตัวด้านบน สลับหน้า Map / Dashboard / API ได้อย่างรวดเร็วโดยไม่บดบังมุมมองแผนที่
-                        </div>
+                        <div class="browser-url">roicore.app/map</div>
                     </div>
+                    <div class="browser-content">
+                        <div class="mock-map-canvas">
+                            <!-- Floating Nav -->
+                            <div class="mock-navbar">
+                                <span style="color:var(--color-blue); font-weight:900;">ROiCORE</span>
+                                <span style="color:var(--color-blue);">● แผนที่</span>
+                                <span style="color:var(--text-muted);">แดชบอร์ด</span>
+                                <span style="color:var(--text-muted);">API</span>
+                            </div>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-crosshairs" style="color:var(--color-blue);"></i> 2. Auto-Geolocation Tracking
-                        </div>
-                        <div class="stack-desc">
-                            ดึงตำแหน่ง GPS ของอุปกรณ์ทันทีเมื่อเข้าใช้งาน เพื่อโฟกัสแผนที่ไปยังจุดเสี่ยงและรายงานที่อยู่ใกล้ตัวผู้ใช้มากที่สุด
-                        </div>
-                    </div>
+                            <!-- Translucent Hazard Polygon -->
+                            <div class="mock-polygon-zone" style="top:75px; left:45px;"></div>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-image" style="color:var(--color-rose);"></i> 3. Real-Time Incident Photo Viewer
-                        </div>
-                        <div class="stack-desc">
-                            คลิกที่หมุดรายงานเพื่อเปิดดูระดับความสูงน้ำ (เมตร) เวลาที่รายงาน และภาพถ่ายสถานที่จริงจากประชาชน
-                        </div>
-                    </div>
+                            <!-- Pins -->
+                            <div class="mock-pin" style="top:120px; left:110px;">
+                                <i class="fa-solid fa-location-dot mock-pin-icon" style="color:#DC2626;"></i>
+                            </div>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-circle-plus" style="color:var(--color-purple);"></i> 4. Floating Action Report Button
-                        </div>
-                        <div class="stack-desc">
-                            ปุ่มสีน้ำเงินมุมขวาล่างเด่นชัด เข้าถึงฟอร์มรายงานเหตุน้ำท่วมฉุกเฉินได้ในคลิกเดียวจากทุกจุดบนแผนที่
+                            <div class="mock-pin" style="top:180px; left:230px;">
+                                <i class="fa-solid fa-location-dot mock-pin-icon" style="color:#EA580C;"></i>
+                            </div>
+
+                            <div class="mock-pin" style="top:220px; left:90px;">
+                                <i class="fa-solid fa-location-dot mock-pin-icon" style="color:#2563EB;"></i>
+                            </div>
+
+                            <!-- Interactive Popup Card -->
+                            <div class="mock-popup">
+                                <div style="color:var(--color-indigo); font-weight:800;"><i class="fa-solid fa-location-dot" style="color:#DC2626;"></i> ถ.แจ้งสนิท (อ.เมือง จ.ร้อยเอ็ด)</div>
+                                <div style="color:#DC2626; font-size:10px;"><i class="fa-solid fa-water"></i> ระดับน้ำ: 1.80 เมตร (วิกฤต)</div>
+                                <div style="color:var(--text-muted); font-size:9.5px;">อัปเดตเมื่อ: 5 นาทีที่แล้ว</div>
+                            </div>
+
+                            <!-- Floating Action Report Button -->
+                            <div class="mock-fab-btn">
+                                <i class="fa-solid fa-plus"></i> แจ้งเหตุด่วน
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -904,7 +1115,7 @@
         </section>
 
         <!-- ====================================================================
-             SLIDE 6: [FRONT-END 3/3] Fast Incident Report & Dashboard
+             SLIDE 6: [FRONT-END 3/3] Fast Incident Report & Dashboard Preview
              ==================================================================== -->
         <section class="slide" id="slide-6">
             <div class="slide-header">
@@ -920,27 +1131,27 @@
                             <i class="fa-solid fa-water"></i> Tap 1: เลือกระดับน้ำ
                         </div>
                         <div class="typo-desc">
-                            ปุ่มกด Grid ขนาดใหญ่ 4 ตัวเลือก: เล็กน้อย (ทางเท้า) / ปานกลาง (ท่วมครึ่งล้อ) / รถเล็กผ่านไม่ได้ / วิกฤต (ท่วมมิดคัน)
+                            ปุ่มกด Grid 4 ตัวเลือก: เล็กน้อย / ปานกลาง / รถเล็กผ่านไม่ได้ / วิกฤต (ท่วมมิดคัน)
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-hand-pointer"></i> 4 Visual Grid Buttons</div>
                     </div>
 
                     <div class="typo-block">
                         <div class="typo-title c-sky">
-                            <i class="fa-solid fa-camera"></i> Tap 2: เบอร์ & ภาพถ่าย
+                            <i class="fa-solid fa-camera"></i> Tap 2: เบอร์ & รูปภาพ
                         </div>
                         <div class="typo-desc">
-                            จดจำเบอร์โทรศัพท์ลง LocalStorage อัตโนมัติ ไม่ต้องกรอกซ้ำในครั้งถัดไป พร้อมปุ่มถ่ายภาพหรือแนบรูปสถานที่จริง
+                            จดจำเบอร์โทรศัพท์ลง LocalStorage อัตโนมัติ ไม่ต้องกรอกซ้ำ พร้อมปุ่มแนบรูปถ่าย
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-database"></i> LocalStorage Memory</div>
                     </div>
 
                     <div class="typo-block">
                         <div class="typo-title c-emerald">
-                            <i class="fa-solid fa-check-circle"></i> Tap 3: ยืนยันส่งข้อมูล
+                            <i class="fa-solid fa-check-circle"></i> Tap 3: ยืนยันส่ง
                         </div>
                         <div class="typo-desc">
-                            ดึงพิกัด GPS อัตโนมัติ ส่งข้อมูลเข้าสู่ REST API พร้อมเรนเดอร์หมุดสดและขอบเขตเตือนภัยบนแผนที่ทันที (One-Click Submit)
+                            ดึงพิกัด GPS อัตโนมัติ หมุดสดและขอบเขตแสดงบนแผนที่ทันที (One-Click Submit)
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-location-arrow"></i> Auto GPS & Live Pin</div>
                     </div>
@@ -950,47 +1161,64 @@
                             <i class="fa-solid fa-arrows-rotate"></i> Real-Time Sync
                         </div>
                         <div class="typo-desc">
-                            ข้อมูลรายงานถูกกระจายเข้าสู่แดชบอร์ดศูนย์บัญชาการแบบเรียลไทม์ เพื่อให้หน่วยงานและผู้บริหารติดตามสถานการณ์ได้ทันที
+                            ข้อมูลรายงานถูกกระจายเข้าสู่แดชบอร์ดศูนย์บัญชาการแบบเรียลไทม์ทันที
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-tower-broadcast"></i> Instant Command Center Sync</div>
                     </div>
                 </div>
 
-                <!-- Right: Dashboard & Readiness -->
-                <div class="stack-list">
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-chart-column" style="color:var(--color-blue);"></i> 1. 4 Summary KPI Metric Cards
+                <!-- Right: Live Quick Report Modal & Dashboard Preview Mockup -->
+                <div class="browser-mockup">
+                    <div class="browser-topbar">
+                        <div class="browser-dots">
+                            <span class="browser-dot" style="background:#EF4444;"></span>
+                            <span class="browser-dot" style="background:#F59E0B;"></span>
+                            <span class="browser-dot" style="background:#10B981;"></span>
                         </div>
-                        <div class="stack-desc">
-                            จำนวนจังหวัดประสบภัย • จำนวนจุดวิกฤตรวม • จำนวนรายงานวันนี้ • ดัชนีปริมาณน้ำฝนสะสมรายพื้นที่
-                        </div>
+                        <div class="browser-url">roicore.app/dashboard</div>
                     </div>
+                    <div class="browser-content">
+                        <div class="mock-dash-content">
+                            <!-- KPI Chips Row -->
+                            <div class="mock-kpi-row">
+                                <div class="mock-kpi-chip">
+                                    <span class="mock-kpi-val" style="color:var(--color-blue);">77</span>
+                                    <span class="mock-kpi-lbl">จังหวัดเฝ้าระวัง</span>
+                                </div>
+                                <div class="mock-kpi-chip">
+                                    <span class="mock-kpi-val" style="color:#DC2626;">12</span>
+                                    <span class="mock-kpi-lbl">จุดวิกฤตรวม</span>
+                                </div>
+                                <div class="mock-kpi-chip">
+                                    <span class="mock-kpi-val" style="color:var(--color-emerald);">142</span>
+                                    <span class="mock-kpi-lbl">รายงานวันนี้</span>
+                                </div>
+                            </div>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-filter" style="color:var(--color-sky);"></i> 2. 77-Province Filter & Search
-                        </div>
-                        <div class="stack-desc">
-                            ดรอปดาวน์ค้นหาและกรองสถานการณ์รายจังหวัดทั่วประเทศไทยได้อย่างสะดวกรวดเร็ว
-                        </div>
-                    </div>
-
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-table-list" style="color:var(--color-orange);"></i> 3. Live Incident Table & Drawer
-                        </div>
-                        <div class="stack-desc">
-                            ตารางแจกแจงพิกัด เวลา ระดับน้ำ และสถานะ พร้อมคลิกเปิด Drawer ด้านข้างเพื่อดูภาพถ่ายขนาดใหญ่และประวัติ
-                        </div>
-                    </div>
-
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-shield-halved" style="color:var(--color-emerald);"></i> 4. Production Ready & Quality
-                        </div>
-                        <div class="stack-desc">
-                            สถาปัตยกรรม Clean Architecture แข็งแกร่ง โค้ดมีระเบียบ ดีไซน์ White Modern UI สะอาดตา พร้อมนำไปปรับใช้จริง
+                            <!-- Fast Report Modal Mockup -->
+                            <div class="mock-modal-card">
+                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                    <strong style="font-size:12px; color:var(--text-dark);"><i class="fa-solid fa-bullhorn" style="color:var(--color-blue);"></i> รายงานเหตุน้ำท่วมด่วน (≤ 3 Taps)</strong>
+                                    <span style="font-size:9.5px; color:var(--color-emerald); font-weight:800;">GPS OK <i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                                <div class="mock-grid-btn">
+                                    <div class="mock-sub-btn"><i class="fa-solid fa-shoe-prints" style="color:var(--color-blue);"></i> เล็กน้อย</div>
+                                    <div class="mock-sub-btn"><i class="fa-solid fa-car-side" style="color:#D97706;"></i> ปานกลาง</div>
+                                    <div class="mock-sub-btn"><i class="fa-solid fa-triangle-exclamation" style="color:#EA580C;"></i> รถเล็กห้ามผ่าน</div>
+                                    <div class="mock-sub-btn" style="background:#FEE2E2; color:#DC2626; font-weight:900;"><i class="fa-solid fa-triangle-exclamation"></i> วิกฤต</div>
+                                </div>
+                                <div style="display:flex; gap:6px;">
+                                    <div style="background:var(--bg-pill); padding:4px 8px; border-radius:4px; font-size:10px; color:var(--text-muted); flex:1;">
+                                        <i class="fa-solid fa-phone"></i> 081-xxx-xxxx (จำค่าแล้ว)
+                                    </div>
+                                    <div style="background:var(--bg-pill); padding:4px 8px; border-radius:4px; font-size:10px; color:var(--color-blue); font-weight:700;">
+                                        <i class="fa-solid fa-camera"></i> แนบรูป
+                                    </div>
+                                </div>
+                                <div style="background:var(--color-blue); color:#FFF; padding:6px; border-radius:6px; font-size:11px; font-weight:800; text-align:center;">
+                                    ยืนยันส่งรายงานทันที
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
