@@ -3,35 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROiCORE — Slide Presentation (Back-End to Front-End Architecture)</title>
+    <title>ROiCORE — 5-7 Minutes Fast Presentation (OOP Architecture)</title>
     
     <!-- Google Fonts: Inter & Noto Sans Thai -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Fira+Code:wght@500;600&display=swap" rel="stylesheet">
     
     <!-- Font Awesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         /* ==========================================================================
-           ROiCORE Slide Presentation Design System (White Modern & Executive Tech)
+           ROiCORE Fast Presentation (5-7 Mins Format - White Modern Theme)
            ========================================================================== */
         :root {
-            /* Brand Colors */
             --accent-blue: #2563EB;
             --accent-blue-hover: #1D4ED8;
             --accent-tint: #EFF6FF;
-            --accent-gradient: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
 
-            /* Surfaces (Surface Layering) */
+            /* Surfaces */
             --bg-canvas: #0B0F17;
             --bg-slide: #FFFFFF;
             --bg-subtle: #F8FAFC;
             --bg-active: #F1F5F9;
             --bg-muted: #E2E8F0;
 
-            /* Typography */
+            /* Typography Colors */
             --text-dark: #0F172A;
             --text-muted: #475569;
             --text-light: #94A3B8;
@@ -43,8 +41,6 @@
             --risk-high-bg: #FFF7ED;
             --risk-medium: #D97706;
             --risk-medium-bg: #FEF3C7;
-            --risk-low: #2563EB;
-            --risk-low-bg: #EFF6FF;
             --status-success: #16A34A;
             --status-success-bg: #F0FDF4;
             --gistda-purple: #7C3AED;
@@ -80,7 +76,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Screen Presentation Wrapper */
+        /* Presentation Screen Canvas */
         .presentation-container {
             position: relative;
             width: 100%;
@@ -91,7 +87,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 16px;
         }
 
         /* Slide Component */
@@ -101,14 +97,14 @@
             height: 100%;
             background-color: var(--bg-slide);
             border-radius: var(--r-xl);
-            padding: 48px 56px;
+            padding: 40px 52px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             opacity: 0;
             pointer-events: none;
             transform: scale(0.98);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             overflow: hidden;
         }
 
@@ -124,31 +120,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
 
-        .slide-category {
+        .slide-tag {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             font-size: 13px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
             color: var(--accent-blue);
             background-color: var(--accent-tint);
             padding: 6px 14px;
             border-radius: var(--r-full);
-        }
-
-        .slide-category.backend {
-            color: #4338CA;
-            background-color: #EEF2FF;
-        }
-
-        .slide-category.frontend {
-            color: #0284C7;
-            background-color: #F0F9FF;
+            letter-spacing: 0.02em;
         }
 
         .brand-watermark {
@@ -170,13 +155,13 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
         }
 
         .slide-title {
             font-size: 32px;
             font-weight: 800;
-            line-height: 1.25;
+            line-height: 1.2;
             color: var(--text-dark);
             letter-spacing: -0.02em;
         }
@@ -185,8 +170,8 @@
             font-size: 16px;
             color: var(--text-muted);
             font-weight: 400;
-            margin-top: -8px;
             line-height: 1.5;
+            margin-top: -6px;
         }
 
         /* Slide Footer */
@@ -194,41 +179,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 16px;
+            padding-top: 12px;
             font-size: 12.5px;
             color: var(--text-light);
             font-weight: 500;
         }
 
-        /* Grid Layout Utilities */
+        /* Grid Layouts */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 20px;
             align-items: stretch;
         }
 
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 16px;
             align-items: stretch;
         }
 
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            gap: 14px;
+            align-items: stretch;
         }
 
-        /* Content Card Styles */
+        /* Card Component */
         .card {
             background-color: var(--bg-subtle);
             border-radius: var(--r-lg);
-            padding: 24px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .card-highlight {
@@ -236,84 +222,78 @@
         }
 
         .card-title {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-text {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* Speaker Cue Box (แถบช่วยจำบทพูด 5-7 นาที) */
+        .speaker-cue {
+            background-color: #FEF3C7;
+            border-left: 4px solid #D97706;
+            padding: 10px 16px;
+            border-radius: var(--r-md);
+            font-size: 13px;
+            color: #92400E;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .card-text {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
+        .speaker-cue i {
+            font-size: 16px;
         }
 
-        .card-list {
-            list-style: none;
+        /* Class Diagram Visual Box */
+        .uml-box {
+            background: #FFFFFF;
+            border-radius: var(--r-md);
+            padding: 12px 14px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            font-size: 13.5px;
-            color: var(--text-muted);
+            gap: 6px;
+            background-color: var(--bg-active);
         }
 
-        .card-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .card-list li i {
+        .uml-header {
+            font-weight: 700;
+            font-size: 13px;
             color: var(--accent-blue);
-            margin-top: 3px;
-            font-size: 12px;
-        }
-
-        /* Code & Technical Blocks */
-        .code-box {
-            font-family: 'Fira Code', Consolas, monospace;
-            background-color: #0F172A;
-            color: #E2E8F0;
-            border-radius: var(--r-md);
-            padding: 16px 20px;
-            font-size: 12.5px;
-            line-height: 1.6;
-            overflow-x: auto;
-        }
-
-        .code-box .keyword { color: #38BDF8; font-weight: 600; }
-        .code-box .class-name { color: #FCD34D; }
-        .code-box .string { color: #4ADE80; }
-        .code-box .comment { color: #94A3B8; font-style: italic; }
-
-        /* Badge Pills */
-        .pill {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             gap: 6px;
-            padding: 4px 10px;
-            border-radius: var(--r-full);
-            font-size: 12px;
-            font-weight: 600;
-            background-color: var(--bg-muted);
+        }
+
+        .uml-body {
+            font-family: 'Fira Code', Consolas, monospace;
+            font-size: 11.5px;
             color: var(--text-dark);
+            line-height: 1.5;
         }
 
         /* Bottom Controls Bar */
         .controls-bar {
             position: fixed;
-            bottom: 24px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(15, 23, 42, 0.85);
+            background-color: rgba(15, 23, 42, 0.88);
             backdrop-filter: blur(12px);
-            padding: 10px 20px;
+            padding: 8px 18px;
             border-radius: var(--r-full);
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             z-index: 100;
             color: #FFFFFF;
         }
@@ -321,15 +301,15 @@
         .btn-ctrl {
             background-color: rgba(255, 255, 255, 0.15);
             color: #FFFFFF;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: background 0.15s ease;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .btn-ctrl:hover {
@@ -338,10 +318,9 @@
 
         .slide-counter {
             font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
+            font-weight: 700;
             color: #CBD5E1;
-            min-width: 60px;
+            min-width: 50px;
             text-align: center;
         }
 
@@ -350,7 +329,7 @@
             color: #FFFFFF;
             padding: 6px 14px;
             border-radius: var(--r-full);
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             cursor: pointer;
             display: inline-flex;
@@ -364,7 +343,7 @@
         }
 
         /* ==========================================================================
-           PRINT STYLES: 1 Slide = 1 Exact A4 Landscape Page in PDF
+           PRINT STYLES (PDF Output: Exact 1 Page per Slide)
            ========================================================================== */
         @media print {
             @page {
@@ -403,7 +382,7 @@
                 pointer-events: auto !important;
                 transform: none !important;
                 border-radius: 0 !important;
-                padding: 40px 48px !important;
+                padding: 36px 44px !important;
                 page-break-after: always !important;
                 break-after: page !important;
                 display: flex !important;
@@ -421,723 +400,361 @@
     <div class="presentation-container">
 
         <!-- ====================================================================
-             SLIDE 1: TITLE & COVER
+             SLIDE 1: 🌊 ROiCORE คืออะไร?
              ==================================================================== -->
         <section class="slide active" id="slide-1">
             <div class="slide-header">
-                <span class="slide-category">System Architecture & Engineering</span>
+                <span class="slide-tag"><i class="fa-solid fa-water"></i> ภาพรวมระบบ (System Overview)</span>
                 <div class="brand-watermark">RO<span>i</span>CORE</div>
             </div>
 
-            <div class="slide-body" style="justify-content: center; align-items: flex-start; gap: 24px;">
-                <div style="display:flex; flex-direction:column; gap:12px;">
-                    <div class="pill" style="background-color:var(--accent-tint); color:var(--accent-blue); width:fit-content;">
-                        <i class="fa-solid fa-satellite-dish"></i> Full-Stack Technical Presentation
-                    </div>
-                    <h1 style="font-size: 44px; font-weight: 900; line-height: 1.15; letter-spacing: -0.03em; color: var(--text-dark);">
-                        RO<span style="color:var(--accent-blue);">i</span>CORE — Flood Intelligence Platform
+            <div class="slide-body" style="gap: 20px;">
+                <div>
+                    <h1 class="slide-title" style="font-size: 38px;">
+                        🌊 RO<span style="color:var(--accent-blue);">i</span>CORE คืออะไร?
                     </h1>
-                    <p style="font-size: 20px; color: var(--text-muted); font-weight: 400; max-width: 860px; line-height: 1.5;">
-                        การบรรยายและนำเสนอสถาปัตยกรรมระบบเต็มรูปแบบ: เจาะลึกตั้งแต่แกนกลาง <strong>Back-End (Clean OOP / Spatial Intelligence)</strong> สู่ส่วนติดต่อผู้ใช้ <strong>Front-End (White Modern UI)</strong>
+                    <p style="font-size: 20px; color: var(--accent-blue); font-weight: 700; margin-top: 4px;">
+                        “ระบบรับรายงานน้ำท่วม ประเมินความเสี่ยง และแสดงผลบนแผนที่”
                     </p>
                 </div>
 
-                <div class="grid-3" style="width: 100%; margin-top: 16px;">
-                    <div class="card" style="padding: 18px;">
-                        <span style="font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 700;">Core Discipline</span>
-                        <strong style="font-size: 15px; color: var(--text-dark);"><i class="fa-solid fa-cubes" style="color:var(--accent-blue);"></i> OOP & OOAD Clean Architecture</strong>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-bullhorn" style="color:var(--accent-blue);"></i> 1. รับรายงานด่วน</div>
+                        <p class="card-text">
+                            ประชาชนรายงานเหตุน้ำท่วมได้ภายใน <strong>≤ 3 Taps</strong> พร้อมระบบระบุพิกัด GPS อัตโนมัติและแนบภาพถ่าย
+                        </p>
                     </div>
-                    <div class="card" style="padding: 18px;">
-                        <span style="font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 700;">Spatial & Big Data</span>
-                        <strong style="font-size: 15px; color: var(--text-dark);"><i class="fa-solid fa-satellite" style="color:var(--gistda-purple);"></i> GISTDA 77 Provinces & Convex Hull</strong>
+
+                    <div class="card card-highlight">
+                        <div class="card-title"><i class="fa-solid fa-calculator" style="color:var(--risk-high);"></i> 2. ประเมินความเสี่ยง</div>
+                        <p class="card-text">
+                            คำนวณคะแนนความเสี่ยงอัตโนมัติ (น้ำขัง × พยากรณ์ฝน × ความถี่รายงาน) พร้อมวาดอาณาเขต <strong>Polygon</strong> เตือนภัย
+                        </p>
                     </div>
-                    <div class="card" style="padding: 18px;">
-                        <span style="font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 700;">Design Philosophy</span>
-                        <strong style="font-size: 15px; color: var(--text-dark);"><i class="fa-solid fa-wand-magic-sparkles" style="color:#0284C7;"></i> White Modern UI (No Border, No Shadow)</strong>
+
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-map-location-dot" style="color:var(--gistda-purple);"></i> 3. แสดงผลบนแผนที่</div>
+                        <p class="card-text">
+                            แผนที่ OpenStreetMap แบบเรียลไทม์ ผสานภาพถ่ายดาวเทียม <strong>GISTDA 77 จังหวัด</strong> และแดชบอร์ดสรุปสถิติ
+                        </p>
                     </div>
+                </div>
+
+                <!-- Speaker Cue -->
+                <div class="speaker-cue">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span>💬 พูดแค่นี้: “ROiCORE คือระบบรับรายงานสถานการณ์น้ำท่วม นำมาประเมินความเสี่ยงอัตโนมัติ และแสดงผลบนแผนที่แบบเรียลไทม์เพื่อช่วยเหลือประชาชนครับ”</span>
                 </div>
             </div>
 
             <div class="slide-footer">
-                <span>ROiCORE Technical Architecture Series</span>
-                <span>Slide 01 / 14</span>
+                <span>ROiCORE Fast Presentation (5-7 Mins)</span>
+                <span>สไลด์ 01 / 06</span>
             </div>
         </section>
 
         <!-- ====================================================================
-             SLIDE 2: HIGH-LEVEL ARCHITECTURE OVERVIEW
+             SLIDE 2: 🧩 Object มีอะไรบ้าง?
              ==================================================================== -->
         <section class="slide" id="slide-2">
             <div class="slide-header">
-                <span class="slide-category">System Architecture</span>
+                <span class="slide-tag"><i class="fa-solid fa-cubes"></i> โครงสร้างข้อมูล (Domain Objects)</span>
                 <div class="brand-watermark">RO<span>i</span>CORE</div>
             </div>
 
-            <div class="slide-body">
+            <div class="slide-body" style="gap: 18px;">
                 <div>
-                    <h2 class="slide-title">ภาพรวมสถาปัตยกรรมระบบทั้งวงจร (End-to-End Overview)</h2>
-                    <p class="slide-subtitle">การแบ่งแยกเลเยอร์การทำงานอย่างเป็นระบบ เพื่อประสิทธิภาพ ความปลอดภัย และการรองรับการขยายตัว</p>
+                    <h2 class="slide-title">🧩 Object ในระบบมีอะไรบ้าง?</h2>
+                    <p class="slide-subtitle">การจำลองโลกความจริงของภัยพิบัติให้อยู่ในรูปแบบเชิงวัตถุ (Core Domain Entities & Value Objects)</p>
+                </div>
+
+                <div class="grid-4">
+                    <div class="card">
+                        <div class="card-title" style="font-size:15px;"><i class="fa-solid fa-location-pin" style="color:var(--accent-blue);"></i> FloodPoint</div>
+                        <span style="font-size:11px; font-weight:700; color:var(--text-light); text-transform:uppercase;">Entity</span>
+                        <p class="card-text" style="font-size:12.5px;">
+                            จุดเฝ้าระวังน้ำท่วมบนแผนที่ ประกอบด้วย พิกัด, รัศมีผลกระทบ, ระดับน้ำ (เมตร) และจำนวนรายงาน
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title" style="font-size:15px;"><i class="fa-solid fa-file-lines" style="color:var(--status-success);"></i> FloodReport</div>
+                        <span style="font-size:11px; font-weight:700; color:var(--text-light); text-transform:uppercase;">Entity</span>
+                        <p class="card-text" style="font-size:12.5px;">
+                            รายงานจากประชาชน ประกอบด้วย ระดับความรุนแรง (1-4), เบอร์โทรศัพท์, รูปถ่ายสถานที่ และเวลาที่เกิดเหตุ
+                        </p>
+                    </div>
+
+                    <div class="card card-highlight">
+                        <div class="card-title" style="font-size:15px;"><i class="fa-solid fa-compass" style="color:var(--gistda-purple);"></i> GeoLocation</div>
+                        <span style="font-size:11px; font-weight:700; color:var(--text-light); text-transform:uppercase;">Value Object</span>
+                        <p class="card-text" style="font-size:12.5px;">
+                            วัตถุพิกัดภูมิศาสตร์ (Lat / Lng) ควบคุมความถูกต้องของพิกัดในประเทศไทย (Lat -90 ถึง 90, Lng -180 ถึง 180)
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title" style="font-size:15px;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--risk-critical);"></i> RiskLevel</div>
+                        <span style="font-size:11px; font-weight:700; color:var(--text-light); text-transform:uppercase;">Enum</span>
+                        <p class="card-text" style="font-size:12.5px;">
+                            ระดับความเสี่ยง 4 ระดับ: <strong>CRITICAL</strong> (วิกฤต), <strong>HIGH</strong> (สูง), <strong>MEDIUM</strong> (ปานกลาง), <strong>LOW</strong> (เฝ้าระวัง)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Speaker Cue -->
+                <div class="speaker-cue">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span>💬 พูดแค่นี้: “ในระบบเราแบ่ง Object หลักออกเป็น 4 ตัวคือ FloodPoint จุดน้ำท่วม, FloodReport รายงานประชาชน, GeoLocation ดูแลพิกัด และ RiskLevel กำหนดระดับความเสี่ยงครับ”</span>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span>Domain Modeling & Ubiquitous Language</span>
+                <span>สไลด์ 02 / 06</span>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             SLIDE 3: 🏗️ ออกแบบ OOP ยังไง? (Class Diagram)
+             ==================================================================== -->
+        <section class="slide" id="slide-3">
+            <div class="slide-header">
+                <span class="slide-tag"><i class="fa-solid fa-sitemap"></i> สถาปัตยกรรม (Class Diagram)</span>
+                <div class="brand-watermark">RO<span>i</span>CORE</div>
+            </div>
+
+            <div class="slide-body" style="gap: 16px;">
+                <div>
+                    <h2 class="slide-title">🏗️ ออกแบบ OOP ยังไง? (Class Diagram)</h2>
+                    <p class="slide-subtitle">แยกความรับผิดชอบอย่างชัดเจนตามหลัก Clean Architecture และ Dependency Inversion</p>
+                </div>
+
+                <div class="grid-3" style="align-items: center;">
+                    <!-- Column 1: Domain Entities -->
+                    <div class="uml-box">
+                        <div class="uml-header"><i class="fa-solid fa-cube"></i> Domain Entities</div>
+                        <div class="uml-body">
+                            <strong>FloodPoint</strong><br>
+                            - id: string<br>
+                            - location: GeoLocation<br>
+                            - waterLevel: float<br>
+                            - riskLevel: RiskLevel<br>
+                            + evaluateRisk(strategy)
+                            <hr style="margin:4px 0; border-top:1px dashed var(--bg-muted);">
+                            <strong>FloodReport</strong><br>
+                            - severity: Severity<br>
+                            - phone: string<br>
+                            - photoUrl: ?string
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Interfaces & Strategies -->
+                    <div class="uml-box" style="background-color:var(--accent-tint);">
+                        <div class="uml-header" style="color:var(--accent-blue);"><i class="fa-solid fa-arrows-split-up-and-left"></i> Strategies & Interfaces</div>
+                        <div class="uml-body">
+                            <strong>&lt;&lt;interface&gt;&gt; IRiskStrategy</strong><br>
+                            + calculate(point): RiskLevel<br>
+                            ↳ <em>CompositeRiskStrategy</em>
+                            <hr style="margin:4px 0; border-top:1px dashed var(--bg-muted);">
+                            <strong>&lt;&lt;interface&gt;&gt; IFloodRepository</strong><br>
+                            + save(report): void<br>
+                            + findActivePoints(): array
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Data Adapters -->
+                    <div class="uml-box">
+                        <div class="uml-header"><i class="fa-solid fa-plug"></i> Repositories & Adapters</div>
+                        <div class="uml-body">
+                            <strong>SupabaseFloodPointRepo</strong><br>
+                            ↳ เชื่อมต่อ Postgres / PostGIS
+                            <hr style="margin:4px 0; border-top:1px dashed var(--bg-muted);">
+                            <strong>GistdaDisasterService</strong><br>
+                            ↳ ดึงภาพดาวเทียม 77 จังหวัด
+                            <hr style="margin:4px 0; border-top:1px dashed var(--bg-muted);">
+                            <strong>OpenWeatherService</strong><br>
+                            ↳ สภาพอากาศและพยากรณ์ฝน
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker Cue -->
+                <div class="speaker-cue">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span>💬 พูดแค่นี้: “เราออกแบบ OOP โดยแยก Domain ออกจาก Database ชัดเจน ทุก Service คุยกันผ่าน Interface ทำให้ทดสอบง่ายและเปลี่ยน Database ได้โดยไม่กระทบ Business Logic ครับ”</span>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <span>Unified Modeling Language (UML Class Architecture)</span>
+                <span>สไลด์ 03 / 06</span>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             SLIDE 4: 🔄 Design Pattern
+             ==================================================================== -->
+        <section class="slide" id="slide-4">
+            <div class="slide-header">
+                <span class="slide-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> รูปแบบการออกแบบ (Design Patterns)</span>
+                <div class="brand-watermark">RO<span>i</span>CORE</div>
+            </div>
+
+            <div class="slide-body" style="gap: 18px;">
+                <div>
+                    <h2 class="slide-title">🔄 3 Design Patterns หัวใจสำคัญ</h2>
+                    <p class="slide-subtitle">แก้ปัญหาความซับซ้อนของระบบด้วย GoF Patterns ที่ตรงจุดและมีประสิทธิภาพ</p>
                 </div>
 
                 <div class="grid-3">
                     <div class="card card-highlight">
-                        <div class="card-title"><i class="fa-solid fa-server" style="color:var(--accent-blue);"></i> Back-End Core Layer</div>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> <strong>PHP 8.5 OOP Engine:</strong> แยก Domain, Data, Presentation</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Composite Risk Strategy:</strong> วิเคราะห์ระดับน้ำ × ฝน × ความถี่</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Convex Hull Engine:</strong> รวมกลุ่มคำนวณ Polygon อาณาเขตท่วม</li>
-                        </ul>
+                        <div class="card-title"><i class="fa-solid fa-brain" style="color:var(--accent-blue);"></i> Strategy Pattern</div>
+                        <p style="font-size:13px; font-weight:700; color:var(--accent-blue);">“คำนวณความเสี่ยง”</p>
+                        <p class="card-text">
+                            <strong>CompositeRiskStrategy:</strong> คำนวณความเสี่ยงอัตโนมัติจาก (ระดับน้ำท่วม × พยากรณ์ฝน 3 ชม. × ความหนาแน่นของรายงาน) สามารถสลับสูตรได้อิสระ
+                        </p>
                     </div>
 
                     <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-database" style="color:var(--gistda-purple);"></i> Storage & External Data</div>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> <strong>Supabase Postgres + PostGIS:</strong> ข้อมูลเชิงพื้นที่ Realtime</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>GISTDA Open API:</strong> ภาพถ่ายดาวเทียมน้ำท่วม 77 จังหวัด</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>OpenWeather API:</strong> ปริมาณน้ำฝนและสภาพอากาศรอบจุด</li>
-                        </ul>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-desktop" style="color:#0284C7;"></i> Front-End Presentation</div>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> <strong>OpenStreetMap (Leaflet):</strong> เรนเดอร์หมุดและ Polygon สด</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Quick Report Modal:</strong> รายงานน้ำท่วมด่วนใน ≤ 3 Taps</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Flood Dashboard:</strong> สรุปสถิติ KPI และค้นหา 77 จังหวัด</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-footer">
-                <span>Part 1: Back-End ➔ Part 2: Front-End</span>
-                <span>Slide 02 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 3: BACK-END DOMAIN-DRIVEN DESIGN & OOP
-             ==================================================================== -->
-        <section class="slide" id="slide-3">
-            <div class="slide-header">
-                <span class="slide-category backend">Back-End Architecture</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body">
-                <div>
-                    <h2 class="slide-title">การออกแบบเชิงวัตถุและโมเดลโดเมน (OOP Domain Design)</h2>
-                    <p class="slide-subtitle">ใช้หลักการ Clean Architecture โดย Domain Core เป็นอิสระจาก Framework และ Database</p>
-                </div>
-
-                <div class="grid-2">
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-layer-group" style="color:var(--accent-blue);"></i> Domain Entities & Value Objects</div>
-                        <p class="card-text">โครงสร้างคลาสทางธุรกิจที่สะท้อนการทำงานจริงในพื้นที่ภัยพิบัติ:</p>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-cube"></i> <strong>FloodPoint (Entity):</strong> จุดเฝ้าระวังน้ำท่วม, พิกัด, รัศมี, และระดับน้ำ</li>
-                            <li><i class="fa-solid fa-cube"></i> <strong>FloodReport (Entity):</strong> รายงานจากประชาชน, ภาพถ่าย, และเบอร์โทร</li>
-                            <li><i class="fa-solid fa-cube"></i> <strong>GeoLocation (ValueObject):</strong> ตรวจสอบความถูกต้องของ Lat/Lng (-90 ถึง 90)</li>
-                            <li><i class="fa-solid fa-cube"></i> <strong>Enums:</strong> RiskLevel (วิกฤต/สูง/กลาง/ต่ำ), Severity, ReportStatus</li>
-                        </ul>
-                    </div>
-
-                    <div class="code-box">
-<span class="keyword">&lt;?php</span>
-<span class="keyword">declare</span>(strict_types=1);
-
-<span class="keyword">namespace</span> RoiCore\Domain\Entities;
-
-<span class="keyword">class</span> <span class="class-name">FloodPoint</span> {
-    <span class="keyword">public function</span> <span class="class-name">__construct</span>(
-        <span class="keyword">private string</span> $id,
-        <span class="keyword">private</span> GeoLocation $location,
-        <span class="keyword">private float</span> $waterLevel,
-        <span class="keyword">private</span> RiskLevel $riskLevel,
-        <span class="keyword">private int</span> $reportCount = 0
-    ) {}
-
-    <span class="keyword">public function</span> <span class="class-name">evaluateRisk</span>(IRiskStrategy $strategy): RiskLevel {
-        <span class="keyword">return</span> $strategy->calculate($this);
-    }
-}
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-footer">
-                <span>Domain-Driven Design in Pure PHP 8.5</span>
-                <span>Slide 03 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 4: BACK-END DESIGN PATTERNS IN ACTION
-             ==================================================================== -->
-        <section class="slide" id="slide-4">
-            <div class="slide-header">
-                <span class="slide-category backend">Back-End Architecture</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body">
-                <div>
-                    <h2 class="slide-title">แบบแผนการออกแบบที่ใช้งานจริง (Design Patterns in Action)</h2>
-                    <p class="slide-subtitle">การประยุกต์ใช้ GoF Patterns เพื่อให้โค้ดมีความยืดหยุ่น ดูแลง่าย และทดสอบได้ 100%</p>
-                </div>
-
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-calculator" style="color:var(--accent-blue);"></i> Strategy Pattern</div>
-                        <p class="card-text"><strong>CompositeRiskStrategy:</strong> สลับสูตรคำนวณความเสี่ยงได้อิสระ โดยรวมค่าน้ำหนักจาก 3 ปัจจัย:</p>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-angle-right"></i> ปริมาณน้ำท่วมขัง (Water Level)</li>
-                            <li><i class="fa-solid fa-angle-right"></i> ปริมาณฝนตกสะสม (Rainfall Forecast)</li>
-                            <li><i class="fa-solid fa-angle-right"></i> ความถี่ในการรายงาน (Report Density)</li>
-                        </ul>
+                        <div class="card-title"><i class="fa-solid fa-database" style="color:var(--status-success);"></i> Repository Pattern</div>
+                        <p style="font-size:13px; font-weight:700; color:var(--status-success);">“จัดการข้อมูล”</p>
+                        <p class="card-text">
+                            <strong>SupabaseFloodReportRepository:</strong> ห่อหุ้มการ Query ฐานข้อมูล แยกคำสั่ง SQL/PostGIS ออกจากโค้ดระบบ ทำให้สามารถสลับไปใช้ Mock ในการทดสอบได้ทันที
+                        </p>
                     </div>
 
                     <div class="card">
                         <div class="card-title"><i class="fa-solid fa-plug" style="color:var(--gistda-purple);"></i> Adapter Pattern</div>
-                        <p class="card-text"><strong>External Service Adapters:</strong> แปลงโครงสร้างข้อมูลจากภายนอกเข้าสู่ Domain Interface มาตรฐาน:</p>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-angle-right"></i> <code>GistdaDisasterService</code> (GISTDA API)</li>
-                            <li><i class="fa-solid fa-angle-right"></i> <code>OpenWeatherService</code> (Weather API)</li>
-                            <li><i class="fa-solid fa-angle-right"></i> ป้องกันการผูกติด (Loose Coupling)</li>
-                        </ul>
+                        <p style="font-size:13px; font-weight:700; color:var(--gistda-purple);">“เชื่อมต่อ API ภายนอก”</p>
+                        <p class="card-text">
+                            <strong>GistdaDisasterService & OpenWeatherService:</strong> แปลงโครงสร้างข้อมูลดาวเทียม GISTDA และสภาพอากาศภายนอกให้อยู่ในมาตรฐานเดียวกันของระบบ
+                        </p>
                     </div>
+                </div>
 
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-database" style="color:#0284C7;"></i> Repository Pattern</div>
-                        <p class="card-text"><strong>Data Persistence Abstraction:</strong> แยก Logic ฐานข้อมูลออกจาก Business Logic:</p>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-angle-right"></i> <code>SupabaseFloodPointRepository</code></li>
-                            <li><i class="fa-solid fa-angle-right"></i> <code>JsonFileFloodPointRepository</code> (Mock/Offline)</li>
-                            <li><i class="fa-solid fa-angle-right"></i> สลับ DB ได้ง่ายเพียงเปลี่ยน Dependency</li>
-                        </ul>
-                    </div>
+                <!-- Speaker Cue -->
+                <div class="speaker-cue">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span>💬 พูดแค่นี้: “เราใช้ 3 Pattern หลัก: Strategy ใช้คำนวณความเสี่ยง, Repository ใช้จัดการฐานข้อมูล, และ Adapter ใช้แปลงข้อมูลจาก API ภายนอกอย่าง GISTDA ครับ”</span>
                 </div>
             </div>
 
             <div class="slide-footer">
-                <span>Enterprise Design Patterns Catalog</span>
-                <span>Slide 04 / 14</span>
+                <span>GoF Patterns Implementation</span>
+                <span>สไลด์ 04 / 06</span>
             </div>
         </section>
 
         <!-- ====================================================================
-             SLIDE 5: GISTDA OPEN API & SATELLITE FLOOD DATA
+             SLIDE 5: ▶️ ระบบทำงานยังไง?
              ==================================================================== -->
         <section class="slide" id="slide-5">
             <div class="slide-header">
-                <span class="slide-category backend">Back-End Architecture</span>
+                <span class="slide-tag"><i class="fa-solid fa-arrows-spin"></i> ขั้นตอนการทำงาน (Process Flow)</span>
                 <div class="brand-watermark">RO<span>i</span>CORE</div>
             </div>
 
-            <div class="slide-body">
+            <div class="slide-body" style="gap: 18px;">
                 <div>
-                    <h2 class="slide-title">การผสานข้อมูลดาวเทียมจาก GISTDA Open API</h2>
-                    <p class="slide-subtitle">เชื่อมต่อข้อมูลน้ำท่วมและภาพถ่ายดาวเทียมครอบคลุม 77 จังหวัดทั่วประเทศไทย</p>
-                </div>
-
-                <div class="grid-2">
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-satellite-dish" style="color:var(--gistda-purple);"></i> GISTDA Pipeline & Caching</div>
-                        <ul class="card-list" style="gap:12px;">
-                            <li>
-                                <strong>Data Ingestion:</strong> เชื่อมต่อ Endpoint <code>https://disaster.gistda.or.th/services/open-api</code> ดึงภาพถ่ายดาวเทียมพื้นที่น้ำท่วมขังรายวัน
-                            </li>
-                            <li>
-                                <strong>Multi-Province Aggregation:</strong> ประมวลผลและแยกข้อมูลรายจังหวัดทั้ง 77 จังหวัด เพื่อส่งต่อให้แดชบอร์ดและแผนที่
-                            </li>
-                            <li>
-                                <strong>In-Memory & File Cache:</strong> มีระบบแคชในตัว (TTL 15 นาที) เพื่อลดภาระการเรียก API ภายนอก และตอบสนอง Front-End ภายในเวลา &lt; 30ms
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="card card-highlight">
-                        <div class="card-title"><i class="fa-solid fa-map" style="color:var(--accent-blue);"></i> การแปลงข้อมูลสู่ GeoJSON มาตรฐาน</div>
-                        <p class="card-text">
-                            ฝั่ง Back-End จะแปลงข้อมูลดิบจากดาวเทียมให้อยู่ในรูปแบบ <code>FeatureCollection</code> (GeoJSON) เพื่อให้ Leaflet บนหน้าเว็บสามารถเรนเดอร์ขอบเขตน้ำท่วมได้ทันทีโดยไม่ต้องประมวลผลซ้ำ
-                        </p>
-                        <div class="code-box" style="margin-top:8px;">
-{
-  <span class="string">"type"</span>: <span class="string">"Feature"</span>,
-  <span class="string">"properties"</span>: { <span class="string">"province"</span>: <span class="string">"ร้อยเอ็ด"</span>, <span class="string">"source"</span>: <span class="string">"GISTDA"</span> },
-  <span class="string">"geometry"</span>: { <span class="string">"type"</span>: <span class="string">"MultiPolygon"</span>, <span class="string">"coordinates"</span>: [...] }
-}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-footer">
-                <span>National Disaster Data Integration</span>
-                <span>Slide 05 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 6: SPATIAL CLUSTERING & DYNAMIC POLYGON ENGINE
-             ==================================================================== -->
-        <section class="slide" id="slide-6">
-            <div class="slide-header">
-                <span class="slide-category backend">Back-End Architecture</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body">
-                <div>
-                    <h2 class="slide-title">เครื่องมือรวมกลุ่มเชิงพื้นที่และวาดอาณาเขต (Spatial Clustering)</h2>
-                    <p class="slide-subtitle">การคำนวณขอบเขตพื้นที่น้ำท่วมอัตโนมัติ (Dynamic Polygon Zones) ด้วยอัลกอริทึม Convex Hull</p>
-                </div>
-
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-circle-dot" style="color:var(--risk-critical);"></i> 1. จุดรายงานเดี่ยว</div>
-                        <p class="card-text">
-                            เมื่อประชาชนส่งรายงานน้ำท่วมเข้ามา 1 จุด ระบบจะบันทึกเป็นหมุดระบุตำแหน่งพร้อมรัศมีผลกระทบเบื้องต้น (Point + Radius Buffer)
-                        </p>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-users" style="color:var(--risk-high);"></i> 2. การเกิด Cluster ซ้ำซ้อน</div>
-                        <p class="card-text">
-                            หากมีการรายงานซ้ำในบริเวณใกล้เคียงกัน (&lt; 500 เมตร) เกินกว่า 2 รายการ หรือมีระดับความรุนแรงระดับวิกฤต ระบบจะจัดเป็นกลุ่ม Cluster ทันที
-                        </p>
-                    </div>
-
-                    <div class="card card-highlight">
-                        <div class="card-title"><i class="fa-solid fa-draw-polygon" style="color:var(--accent-blue);"></i> 3. สร้างขอบเขต Polygon</div>
-                        <p class="card-text">
-                            อัลกอริทึม Convex Hull จะคำนวณจุดยอดรอบนอกสุด แล้วส่งออกเป็น <strong>Polygon Boundary</strong> เพื่อให้แผนที่วาดเป็นอาณาเขตสีแดงโปร่งแสงเตือนภัย
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card" style="background-color:var(--bg-active); padding:16px;">
-                    <span style="font-size:13.5px; color:var(--text-dark); font-weight:600;">
-                        <i class="fa-solid fa-lightbulb" style="color:var(--accent-blue);"></i> จุดเด่น: ช่วยให้หน่วยงานกู้ภัยและประชาชนเห็นขอบเขตพื้นที่น้ำท่วมจริงแบบเรียลไทม์ โดยไม่ต้องรอประกาศทางการ
-                    </span>
-                </div>
-            </div>
-
-            <div class="slide-footer">
-                <span>Spatial Computing & Geometric Aggregation</span>
-                <span>Slide 06 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 7: REST API SPECIFICATION
-             ==================================================================== -->
-        <section class="slide" id="slide-7">
-            <div class="slide-header">
-                <span class="slide-category backend">Back-End Architecture</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body">
-                <div>
-                    <h2 class="slide-title">สถาปัตยกรรม REST API Endpoints</h2>
-                    <p class="slide-subtitle">ช่องทางการเชื่อมต่อข้อมูลความเร็วสูงระหว่าง Back-End และ Front-End</p>
-                </div>
-
-                <div class="grid-2">
-                    <div class="card" style="padding:16px;">
-                        <table style="width:100%; border-collapse:collapse; font-size:13px; text-align:left;">
-                            <thead>
-                                <tr style="border-bottom: 2px solid var(--bg-muted); color:var(--text-dark);">
-                                    <th style="padding:8px 4px;">Method</th>
-                                    <th style="padding:8px 4px;">Endpoint</th>
-                                    <th style="padding:8px 4px;">คำอธิบายหน้าที่</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="border-bottom:1px solid var(--bg-muted);">
-                                    <td style="padding:8px 4px;"><span class="pill" style="background:#DCFCE7; color:#166534;">GET</span></td>
-                                    <td style="padding:8px 4px; font-family:monospace; font-weight:600;">/api/points</td>
-                                    <td style="padding:8px 4px; color:var(--text-muted);">ดึงรายการจุดน้ำท่วมและระดับความเสี่ยง</td>
-                                </tr>
-                                <tr style="border-bottom:1px solid var(--bg-muted);">
-                                    <td style="padding:8px 4px;"><span class="pill" style="background:#DBEAFE; color:#1E40AF;">POST</span></td>
-                                    <td style="padding:8px 4px; font-family:monospace; font-weight:600;">/api/reports</td>
-                                    <td style="padding:8px 4px; color:var(--text-muted);">ส่งรายงานเหตุน้ำท่วมด่วนจากประชาชน</td>
-                                </tr>
-                                <tr style="border-bottom:1px solid var(--bg-muted);">
-                                    <td style="padding:8px 4px;"><span class="pill" style="background:#DCFCE7; color:#166534;">GET</span></td>
-                                    <td style="padding:8px 4px; font-family:monospace; font-weight:600;">/api/zones</td>
-                                    <td style="padding:8px 4px; color:var(--text-muted);">ดึงอาณาเขต Polygon พื้นที่ท่วม (GeoJSON)</td>
-                                </tr>
-                                <tr style="border-bottom:1px solid var(--bg-muted);">
-                                    <td style="padding:8px 4px;"><span class="pill" style="background:#DCFCE7; color:#166534;">GET</span></td>
-                                    <td style="padding:8px 4px; font-family:monospace; font-weight:600;">/api/gistda</td>
-                                    <td style="padding:8px 4px; color:var(--text-muted);">ดึงชั้นข้อมูลน้ำท่วมดาวเทียม 77 จังหวัด</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:8px 4px;"><span class="pill" style="background:#DCFCE7; color:#166534;">GET</span></td>
-                                    <td style="padding:8px 4px; font-family:monospace; font-weight:600;">/api/stats</td>
-                                    <td style="padding:8px 4px; color:var(--text-muted);">สถิติสรุปภาพรวมสำหรับหน้าแดชบอร์ด</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="card card-highlight">
-                        <div class="card-title"><i class="fa-solid fa-bolt" style="color:var(--accent-blue);"></i> มาตรฐานการตอบกลับ JSON</div>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> <strong>Consistent Schema:</strong> มี <code>success</code>, <code>data</code>, <code>meta</code>, และ <code>timestamp</code></li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Strict Validation:</strong> ตรวจสอบพิกัดละติจูด/ลองจิจูด และเบอร์โทรก่อนบันทึก</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Interactive API Console:</strong> มีหน้าทดสอบ Endpoint ในตัวที่ <code>/api</code></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-footer">
-                <span>Contract-First REST API Delivery</span>
-                <span>Slide 07 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 8: TRANSITION TO FRONT-END & DESIGN SYSTEM
-             ==================================================================== -->
-        <section class="slide" id="slide-8">
-            <div class="slide-header">
-                <span class="slide-category frontend">Front-End Philosophy</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body">
-                <div>
-                    <h2 class="slide-title">ปรัชญาการออกแบบ: White Modern UI (No Border, No Shadow)</h2>
-                    <p class="slide-subtitle">ฉีกกรอบดีไซน์แบบ AI Slop ด้วยระบบมิติความลึกผ่านความต่างของสีพื้นผิว (Surface Layering)</p>
+                    <h2 class="slide-title">▶️ ระบบทำงานยังไง? (4 ขั้นตอน)</h2>
+                    <p class="slide-subtitle">การเดินทางของข้อมูลตั้งแต่ประชาชนกดรายงาน จนถึงการวาดอาณาเขตบนแผนที่สด</p>
                 </div>
 
                 <div class="grid-4">
-                    <div class="card" style="border-top: 4px solid var(--bg-body);">
-                        <strong style="font-size:14px; color:var(--text-dark);">1. No Border</strong>
-                        <p style="font-size:12.5px; color:var(--text-muted);">ห้ามมีเส้นขอบกรอบตัดสายตา ใช้ความสะอาดของพื้นที่สร้างมิติ</p>
+                    <div class="card" style="border-top: 4px solid var(--accent-blue);">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--accent-blue);">01</div>
+                        <strong style="font-size: 15px; color: var(--text-dark);">รายงาน (Report)</strong>
+                        <p class="card-text" style="font-size: 12.5px;">
+                            ประชาชนเลือก 1 ใน 4 ระดับน้ำ ผ่านฟอร์มด่วน 3 Taps ระบบดึงพิกัด GPS อัตโนมัติ
+                        </p>
                     </div>
 
-                    <div class="card" style="border-top: 4px solid var(--accent-blue);">
-                        <strong style="font-size:14px; color:var(--text-dark);">2. No Shadow</strong>
-                        <p style="font-size:12.5px; color:var(--text-muted);">ห้ามมีเงาดำเบลอๆ ซ้อนกัน ตัดความเทอะทะให้เบาสบายตา</p>
+                    <div class="card" style="border-top: 4px solid var(--risk-high);">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--risk-high);">02</div>
+                        <strong style="font-size: 15px; color: var(--text-dark);">ประเมิน (Evaluate)</strong>
+                        <p class="card-text" style="font-size: 12.5px;">
+                            Strategy วิเคราะห์ระดับความรุนแรง และตรวจจับ Cluster หากมีการรายงานซ้ำซ้อน
+                        </p>
                     </div>
 
                     <div class="card" style="border-top: 4px solid var(--status-success);">
-                        <strong style="font-size:14px; color:var(--text-dark);">3. Surface Layering</strong>
-                        <p style="font-size:12.5px; color:var(--text-muted);">Slate 100 ➔ Pure White ➔ Slate 50 ➔ Slate 200</p>
-                    </div>
-
-                    <div class="card" style="border-top: 4px solid var(--gistda-purple);">
-                        <strong style="font-size:14px; color:var(--text-dark);">4. Radius Hierarchy</strong>
-                        <p style="font-size:12.5px; color:var(--text-muted);">องค์ประกอบนอกมนกว่าใน (20px &gt; 14px &gt; 10px &gt; 8px)</p>
-                    </div>
-                </div>
-
-                <div class="card" style="padding:16px; background-color:var(--accent-tint);">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:13.5px; font-weight:700; color:var(--accent-blue);">
-                            <i class="fa-solid fa-language"></i> กฎภาษา: Thai-First & Human Centric
-                        </span>
-                        <span style="font-size:13px; color:var(--text-muted);">ภาษาไทยเข้าใจง่าย • ไร้ศัพท์เทคนิค • ไร้วงเล็บภาษาอังกฤษ</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-footer">
-                <span>The ROiCORE Design System Guidelines</span>
-                <span>Slide 08 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 9: FRONT-END INTERACTIVE MAP VIEW
-             ==================================================================== -->
-        <section class="slide" id="slide-9">
-            <div class="slide-header">
-                <span class="slide-category frontend">Front-End Architecture</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body">
-                <div>
-                    <h2 class="slide-title">หน้าหลัก: แผนที่น้ำท่วมอัจฉริยะ (Interactive Map View)</h2>
-                    <p class="slide-subtitle">แสดงผลเต็มหน้าจอ (100vw, 100vh) ด้วย Leaflet.js ผสานข้อมูลดาวเทียมและพิกัดผู้ใช้</p>
-                </div>
-
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-map-location-dot" style="color:var(--accent-blue);"></i> OpenStreetMap Basemap</div>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> โหลดเร็ว ไม่ต้องใช้ API Key</li>
-                            <li><i class="fa-solid fa-check"></i> Floating Top Navbar สลับหน้า Map / Dashboard / API</li>
-                            <li><i class="fa-solid fa-check"></i> Geolocation ดึงพิกัดผู้ใช้ทันที</li>
-                        </ul>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-location-pin" style="color:var(--risk-critical);"></i> Custom Risk Markers</div>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> หมุดสีตามระดับความเสี่ยง (แดง/ส้ม/เหลือง/น้ำเงิน)</li>
-                            <li><i class="fa-solid fa-check"></i> คลิกหมุดเปิด Popup Card สรุปสถานะ</li>
-                            <li><i class="fa-solid fa-check"></i> แสดงรูปถ่ายสถานที่จริงและระดับน้ำ</li>
-                        </ul>
-                    </div>
-
-                    <div class="card card-highlight">
-                        <div class="card-title"><i class="fa-solid fa-layer-group" style="color:var(--gistda-purple);"></i> GISTDA & Dynamic Zones</div>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-check"></i> สลับเปิด-ปิดเลเยอร์ดาวเทียม 77 จังหวัด</li>
-                            <li><i class="fa-solid fa-check"></i> วาด Polygon สีแดงโปร่งแสงรอบพื้นที่วิกฤต</li>
-                            <li><i class="fa-solid fa-check"></i> อัปเดตข้อมูลสดแบบ Realtime</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-footer">
-                <span>Spatial Map Interface (public/map_view.php)</span>
-                <span>Slide 09 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 10: QUICK INCIDENT REPORT MODAL
-             ==================================================================== -->
-        <section class="slide" id="slide-10">
-            <div class="slide-header">
-                <span class="slide-category frontend">Front-End Architecture</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body">
-                <div>
-                    <h2 class="slide-title">ระบบรายงานน้ำท่วมด่วน (Quick Report Flow ≤ 3 Taps)</h2>
-                    <p class="slide-subtitle">ออกแบบโดยยึดหลัก User-Friendly, Compact และเร็วที่สุดสำหรับผู้ประสบภัยในสถานการณ์ฉุกเฉิน</p>
-                </div>
-
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-1" style="color:var(--accent-blue);"></i> Tap 1: เลือกระดับน้ำ</div>
-                        <p class="card-text">ปุ่มกด 4 ระดับแบบ Grid สัมผัสง่าย:</p>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-water"></i> เล็กน้อย (น้ำขังรอการระบาย)</li>
-                            <li><i class="fa-solid fa-water-ladder"></i> ปานกลาง (ท่วมครึ่งล้อรถ)</li>
-                            <li><i class="fa-solid fa-triangle-exclamation"></i> รถเล็กผ่านไม่ได้</li>
-                            <li><i class="fa-solid fa-house-flood-water"></i> วิกฤตจมมิด</li>
-                        </ul>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-2" style="color:var(--accent-blue);"></i> Tap 2: เบอร์โทร & ภาพ</div>
-                        <p class="card-text">ลดขั้นตอนการพิมพ์ด้วย Auto-fill:</p>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-phone"></i> เบอร์โทรจดจำลง LocalStorage</li>
-                            <li><i class="fa-solid fa-camera"></i> แนบรูปถ่ายสถานที่จริง (Optional)</li>
-                            <li><i class="fa-solid fa-location-crosshairs"></i> ดึง GPS พิกัดอัตโนมัติ</li>
-                        </ul>
-                    </div>
-
-                    <div class="card card-highlight">
-                        <div class="card-title"><i class="fa-solid fa-3" style="color:var(--status-success);"></i> Tap 3: กดยืนยันส่งข้อมูล</div>
-                        <p class="card-text">ส่งตรงเข้าสู่ Back-End ทันที:</p>
-                        <ul class="card-list">
-                            <li><i class="fa-solid fa-paper-plane"></i> <code>POST /api/reports</code></li>
-                            <li><i class="fa-solid fa-sync"></i> ประเมินความเสี่ยงอัตโนมัติ</li>
-                            <li><i class="fa-solid fa-map-pin"></i> จุดรายงานโผล่บนแผนที่สดทันที</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-footer">
-                <span>Frictionless Emergency Reporting UX</span>
-                <span>Slide 10 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 11: FLOOD INTELLIGENCE DASHBOARD
-             ==================================================================== -->
-        <section class="slide" id="slide-11">
-            <div class="slide-header">
-                <span class="slide-category frontend">Front-End Architecture</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body">
-                <div>
-                    <h2 class="slide-title">แดชบอร์ดติดตามสถานการณ์ (Flood Intelligence Dashboard)</h2>
-                    <p class="slide-subtitle">ศูนย์กลางการวิเคราะห์ข้อมูล ค้นหา และตรวจสอบสถานการณ์รายจังหวัดทั่วประเทศ</p>
-                </div>
-
-                <div class="grid-2">
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-chart-pie" style="color:var(--accent-blue);"></i> 4 กล่องสถิติ KPI สรุปภาพรวม</div>
-                        <div class="grid-2" style="margin-top:8px;">
-                            <div style="background:var(--bg-slide); padding:12px; border-radius:var(--r-md);">
-                                <span style="font-size:11px; color:var(--text-light); text-transform:uppercase;">จังหวัดประสบภัย</span>
-                                <div style="font-size:24px; font-weight:800; color:var(--risk-critical);">12 จังหวัด</div>
-                            </div>
-                            <div style="background:var(--bg-slide); padding:12px; border-radius:var(--r-md);">
-                                <span style="font-size:11px; color:var(--text-light); text-transform:uppercase;">จุดวิกฤตสะสม</span>
-                                <div style="font-size:24px; font-weight:800; color:var(--risk-high);">48 จุด</div>
-                            </div>
-                            <div style="background:var(--bg-slide); padding:12px; border-radius:var(--r-md);">
-                                <span style="font-size:11px; color:var(--text-light); text-transform:uppercase;">รายงานวันนี้</span>
-                                <div style="font-size:24px; font-weight:800; color:var(--accent-blue);">156 เรื่อง</div>
-                            </div>
-                            <div style="background:var(--bg-slide); padding:12px; border-radius:var(--r-md);">
-                                <span style="font-size:11px; color:var(--text-light); text-transform:uppercase;">ดัชนีเสี่ยงฝน</span>
-                                <div style="font-size:24px; font-weight:800; color:var(--risk-medium);">ปานกลาง</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-filter" style="color:var(--gistda-purple);"></i> ตัวกรองและการตรวจสอบจุดรายงาน</div>
-                        <ul class="card-list" style="gap:10px;">
-                            <li><i class="fa-solid fa-check"></i> <strong>77-Province Selector:</strong> กรองดูสถิติรายจังหวัดได้ครบทุกพื้นที่</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Severity Filter:</strong> กรองเฉพาะจุดวิกฤต หรือจุดเฝ้าระวัง</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Incident Table & Drawer:</strong> ตารางรายงานเหตุการณ์ พร้อมคลิกเปิด Drawer ดูภาพถ่ายขนาดใหญ่และสภาพอากาศรอบจุด</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-footer">
-                <span>Executive Dashboard View (public/dashboard_view.php)</span>
-                <span>Slide 11 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 12: DEVELOPMENT WORKFLOW WITH ANTIGRAVITY IDE
-             ==================================================================== -->
-        <section class="slide" id="slide-12">
-            <div class="slide-header">
-                <span class="slide-category">AI-Powered Engineering</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body">
-                <div>
-                    <h2 class="slide-title">ระเบียบวิธีการพัฒนาด้วย Google Antigravity IDE</h2>
-                    <p class="slide-subtitle">การควบคุมคุณภาพโค้ดระดับ Production ด้วย Prompt Engineering Playbook และ Rules Token</p>
-                </div>
-
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-terminal" style="color:var(--accent-blue);"></i> 1. Integrated Terminal</div>
-                        <p class="card-text">
-                            ควบคุมทุกอย่างใน IDE ผ่าน <code>Ctrl + ~</code> ทั้งการรัน Local Server, ติดตั้ง Composer, และจัดการคำสั่ง Git (Clone, Pull, Push)
+                        <div style="font-size: 20px; font-weight: 800; color: var(--status-success);">03</div>
+                        <strong style="font-size: 15px; color: var(--text-dark);">บันทึก (Persist)</strong>
+                        <p class="card-text" style="font-size: 12.5px;">
+                            Repository บันทึกลง Supabase Postgres + PostGIS และแคชข้อมูลเพื่อความเร็ว
                         </p>
                     </div>
 
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-file-contract" style="color:var(--gistda-purple);"></i> 2. Rules & Design Context</div>
-                        <p class="card-text">
-                            แท็ก <code>@rules.md</code> และ <code>@design.md</code> ใน Prompt เสมอ เพื่อบังคับกฎ No Border, No Shadow, และความโค้งมน Radius Hierarchy
+                    <div class="card card-highlight" style="border-top: 4px solid var(--gistda-purple);">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--gistda-purple);">04</div>
+                        <strong style="font-size: 15px; color: var(--text-dark);">แสดงผล (Render)</strong>
+                        <p class="card-text" style="font-size: 12.5px;">
+                            หมุดโผล่บน OpenStreetMap ทันที พร้อมวาดอาณาเขต Polygon สีแดงเตือนภัย
                         </p>
                     </div>
+                </div>
 
-                    <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-code-compare" style="color:var(--status-success);"></i> 3. Diff Review & Verify</div>
-                        <p class="card-text">
-                            ตรวจสอบการเปลี่ยนแปลงของโค้ดใน Diff View ก่อนกด Apply และส่งงานขึ้น GitHub อย่างมั่นใจ ไร้ข้อผิดพลาด
-                        </p>
-                    </div>
+                <!-- Speaker Cue -->
+                <div class="speaker-cue">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span>💬 พูดแค่นี้: “วงจรการทำงานง่ายมากครับ: 1. รายงานเหตุ ➔ 2. ระบบประเมินความเสี่ยง ➔ 3. บันทึกข้อมูล ➔ และ 4. แสดงหมุดพร้อมวาด Polygon บนแผนที่ทันทีครับ”</span>
                 </div>
             </div>
 
             <div class="slide-footer">
-                <span>Antigravity IDE Front-End Playbook</span>
-                <span>Slide 12 / 14</span>
+                <span>End-to-End Incident Processing Pipeline</span>
+                <span>สไลด์ 05 / 06</span>
             </div>
         </section>
 
         <!-- ====================================================================
-             SLIDE 13: KEY SYSTEM HIGHLIGHTS & ADVANTAGES
+             SLIDE 6: 💻 Demo + สรุป
              ==================================================================== -->
-        <section class="slide" id="slide-13">
+        <section class="slide" id="slide-6">
             <div class="slide-header">
-                <span class="slide-category">Key Advantages</span>
+                <span class="slide-tag"><i class="fa-solid fa-laptop-code"></i> การสาธิตจริง (Live Demo & Conclusion)</span>
                 <div class="brand-watermark">RO<span>i</span>CORE</div>
             </div>
 
-            <div class="slide-body">
+            <div class="slide-body" style="gap: 20px;">
                 <div>
-                    <h2 class="slide-title">สรุปจุดเด่นของระบบ ROiCORE</h2>
-                    <p class="slide-subtitle">แพลตฟอร์มที่ผสานความแม่นยำทางวิศวกรรมซอฟต์แวร์ เข้ากับประสบการณ์ใช้งานที่ง่ายที่สุด</p>
+                    <h2 class="slide-title">💻 Demo ระบบจริง + สรุปผลงาน</h2>
+                    <p class="slide-subtitle">เปิดระบบทดสอบการทำงานจริงแบบเรียลไทม์ และสรุปคุณค่าที่ส่งมอบ</p>
                 </div>
 
                 <div class="grid-2">
                     <div class="card card-highlight">
-                        <div class="card-title"><i class="fa-solid fa-shield-halved" style="color:var(--accent-blue);"></i> จุดเด่นฝั่ง Back-End</div>
-                        <ul class="card-list" style="gap:10px;">
-                            <li><i class="fa-solid fa-check"></i> <strong>Pure OOP & SOLID:</strong> โค้ดมีระเบียบ แยกเลเยอร์ชัดเจน รองรับ Unit Test</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>High Performance Spatial:</strong> เชื่อมต่อ PostGIS และ Caching &lt; 30ms</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Dynamic Convex Hull:</strong> วาดอาณาเขตน้ำท่วมจากข้อมูลจริงอัตโนมัติ</li>
-                        </ul>
+                        <div class="card-title"><i class="fa-solid fa-play" style="color:var(--accent-blue);"></i> ลำดับขั้นตอนการสาธิต (Demo Steps)</div>
+                        <ol style="margin-left: 20px; display:flex; flex-direction:column; gap:10px; font-size:14px; color:var(--text-dark); line-height:1.5;">
+                            <li><strong>เปิดระบบจริง:</strong> เข้าสู่หน้าเว็บ <code>http://localhost:8000/</code></li>
+                            <li><strong>รายงานน้ำท่วมด่วน:</strong> กดปุ่มสีน้ำเงิน ➔ เลือก "รถเล็กผ่านไม่ได้" ➔ กดยืนยัน</li>
+                            <li><strong>ดูผลบน Map:</strong> ดูหมุดสีส้ม/แดง โผล่ขึ้นมาบน OpenStreetMap ทันที</li>
+                            <li><strong>ตรวจสอบแดชบอร์ด:</strong> สลับไปหน้า <code>/dashboard</code> ดูตัวเลข KPI อัปเดตสด</li>
+                        </ol>
                     </div>
 
                     <div class="card">
-                        <div class="card-title"><i class="fa-solid fa-sparkles" style="color:#0284C7;"></i> จุดเด่นฝั่ง Front-End</div>
+                        <div class="card-title"><i class="fa-solid fa-award" style="color:var(--status-success);"></i> สรุปคุณค่าของ ROiCORE</div>
                         <ul class="card-list" style="gap:10px;">
-                            <li><i class="fa-solid fa-check"></i> <strong>White Modern Aesthetic:</strong> ไร้ขอบ ไร้เงา สบายตา สัดส่วนกะทัดรัด</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Fastest 3-Tap Flow:</strong> รายงานเหตุได้ในไม่กี่วินาที เหมาะกับสถานการณ์ฉุกเฉิน</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Nationwide Coverage:</strong> ตรวจเช็คข้อมูลดาวเทียมได้ครบทั้ง 77 จังหวัด</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>สถาปัตยกรรม OOP แข็งแกร่ง:</strong> ขยายต่อยอดและดูแลง่าย</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>White Modern UI:</strong> ไร้ขอบ ไร้เงา สบายตา สัดส่วนกะทัดรัด</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>พร้อมใช้งานจริง:</strong> เชื่อมต่อ GISTDA 77 จังหวัด และใช้งานได้ทันที</li>
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            <div class="slide-footer">
-                <span>Enterprise Flood Intelligence Platform</span>
-                <span>Slide 13 / 14</span>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SLIDE 14: THANK YOU & Q&A
-             ==================================================================== -->
-        <section class="slide" id="slide-14">
-            <div class="slide-header">
-                <span class="slide-category">Conclusion</span>
-                <div class="brand-watermark">RO<span>i</span>CORE</div>
-            </div>
-
-            <div class="slide-body" style="justify-content:center; align-items:center; text-align:center; gap:20px;">
-                <div style="width:72px; height:72px; border-radius:50%; background-color:var(--accent-tint); display:flex; align-items:center; justify-content:center; color:var(--accent-blue); font-size:32px;">
-                    <i class="fa-solid fa-comments"></i>
-                </div>
-                
-                <h1 style="font-size:42px; font-weight:900; letter-spacing:-0.03em;">
-                    ขอขอบคุณสำหรับการรับฟัง
-                </h1>
-                
-                <p style="font-size:18px; color:var(--text-muted); max-width:600px; line-height:1.6;">
-                    เปิดรับข้อซักถามและข้อเสนอแนะเกี่ยวกับสถาปัตยกรรมระบบ <br>
-                    <strong>RO<span style="color:var(--accent-blue);">i</span>CORE</strong> — Flood Intelligence Platform
-                </p>
-
-                <div style="display:flex; gap:16px; margin-top:12px;">
-                    <div class="pill" style="padding:8px 16px; font-size:13px; background:var(--bg-subtle);">
-                        <i class="fa-solid fa-link" style="color:var(--accent-blue);"></i> GitHub: jirathxz/roicore
-                    </div>
-                    <div class="pill" style="padding:8px 16px; font-size:13px; background:var(--bg-subtle);">
-                        <i class="fa-solid fa-code-branch" style="color:var(--gistda-purple);"></i> Branch: main
-                    </div>
+                <!-- Speaker Cue -->
+                <div class="speaker-cue">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span>💬 พูดแค่นี้: “ต่อไปมาชมการ Demo ระบบจริงกันครับ เราจะเปิดเว็บ ส่งรายงานด่วน แล้วดูผลลัพธ์บนแผนที่ Leaflet สดๆ ทันทีครับ ขอบคุณครับ”</span>
                 </div>
             </div>
 
             <div class="slide-footer">
-                <span>ROiCORE Project Final Presentation</span>
-                <span>Slide 14 / 14</span>
+                <span>ROiCORE Final Presentation Complete</span>
+                <span>สไลด์ 06 / 06</span>
             </div>
         </section>
 
@@ -1149,7 +766,7 @@
             <i class="fa-solid fa-chevron-left"></i>
         </button>
         
-        <div class="slide-counter" id="slideCounter">01 / 14</div>
+        <div class="slide-counter" id="slideCounter">01 / 06</div>
         
         <button type="button" class="btn-ctrl" id="btnNext" title="สไลด์ถัดไป (Arrow Right / Space)">
             <i class="fa-solid fa-chevron-right"></i>
@@ -1164,7 +781,7 @@
         </button>
     </div>
 
-    <!-- Presentation Navigation Script -->
+    <!-- Script for Keyboard & Screen Navigation -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.slide');
@@ -1191,7 +808,7 @@
             btnPrev.addEventListener('click', () => updateSlide(currentSlide - 1));
             btnNext.addEventListener('click', () => updateSlide(currentSlide + 1));
 
-            // Keyboard Navigation (Left, Right, Space, F)
+            // Keyboard Shortcuts: Left / Right / Space / F
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
                     e.preventDefault();
