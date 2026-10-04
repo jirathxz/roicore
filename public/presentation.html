@@ -15,7 +15,7 @@
 
     <style>
         /* ==========================================================================
-           ROiCORE Modern Typographic Keynote System (Pure Typography, Zero Box, Zero Border)
+           ROiCORE Modern Typographic Keynote System with Font Awesome Icons
            ========================================================================== */
         :root {
             /* Brand Primary */
@@ -88,7 +88,7 @@
             height: 100%;
             background-color: var(--bg-slide);
             border-radius: var(--r-lg);
-            padding: 34px 44px 24px 44px;
+            padding: 32px 44px 22px 44px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -110,19 +110,22 @@
         .slide-header {
             position: relative;
             z-index: 2;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .main-title {
-            font-size: 33px;
+            font-size: 32px;
             font-weight: 900;
             line-height: 1.15;
             color: var(--color-indigo);
             letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .sub-title {
-            font-size: 20px;
+            font-size: 19.5px;
             font-weight: 700;
             line-height: 1.3;
             color: var(--text-subtitle);
@@ -145,7 +148,7 @@
         .grid-2x2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            row-gap: 22px;
+            row-gap: 20px;
             column-gap: 24px;
         }
 
@@ -156,10 +159,18 @@
         }
 
         .typo-title {
-            font-size: 25px;
+            font-size: 24px;
             font-weight: 900;
             line-height: 1.15;
             letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .typo-title i {
+            font-size: 20px;
+            flex-shrink: 0;
         }
 
         .typo-desc {
@@ -173,7 +184,7 @@
         .stack-list {
             display: flex;
             flex-direction: column;
-            gap: 13px;
+            gap: 12px;
         }
 
         .stack-item {
@@ -183,10 +194,18 @@
         }
 
         .stack-title {
-            font-size: 16px;
+            font-size: 15.5px;
             font-weight: 800;
             color: var(--text-heading);
             letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .stack-title i {
+            font-size: 14px;
+            flex-shrink: 0;
         }
 
         .stack-desc {
@@ -194,6 +213,7 @@
             font-weight: 500;
             color: var(--text-muted);
             line-height: 1.38;
+            padding-left: 21px;
         }
 
         /* Bottom Outline Watermark */
@@ -337,7 +357,7 @@
                 pointer-events: auto !important;
                 transform: none !important;
                 border-radius: 0 !important;
-                padding: 34px 44px 24px 44px !important;
+                padding: 32px 44px 22px 44px !important;
                 page-break-after: always !important;
                 break-after: page !important;
                 display: flex !important;
@@ -359,67 +379,83 @@
              ==================================================================== -->
         <section class="slide active" id="slide-1">
             <div class="slide-header">
-                <h1 class="main-title">สถาปัตยกรรม Clean Architecture & โดเมนโมเดล OOP</h1>
+                <h1 class="main-title"><i class="fa-solid fa-server" style="color:var(--color-indigo); font-size:26px;"></i> สถาปัตยกรรม Clean Architecture & โดเมนโมเดล OOP</h1>
                 <p class="sub-title">แยกแกนกลางทางธุรกิจ (Domain Layer) เป็นอิสระจากฐานข้อมูล</p>
             </div>
 
             <div class="slide-body">
-                <!-- Left: 2x2 Typography Grid -->
+                <!-- Left: 2x2 Typography Grid with Icons -->
                 <div class="grid-2x2">
                     <div class="typo-block">
-                        <div class="typo-title c-blue">FloodPoint</div>
+                        <div class="typo-title c-blue">
+                            <i class="fa-solid fa-cube"></i> FloodPoint
+                        </div>
                         <div class="typo-desc">
                             จุดเฝ้าระวังน้ำท่วม, พิกัด GeoLocation, ระดับน้ำ waterLevel (เมตร) และคำนวณความเสี่ยง
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-sky">FloodReport</div>
+                        <div class="typo-title c-sky">
+                            <i class="fa-solid fa-file-shield"></i> FloodReport
+                        </div>
                         <div class="typo-desc">
                             รายงานจากประชาชน, ระดับความรุนแรง, แนบภาพถ่าย, และเบอร์โทรศัพท์
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-purple">GeoLocation</div>
+                        <div class="typo-title c-purple">
+                            <i class="fa-solid fa-location-crosshairs"></i> GeoLocation
+                        </div>
                         <div class="typo-desc">
                             Encapsulate ละติจูด/ลองจิจูด พร้อม Invariant Validation ตรวจสอบพิกัดในไทย
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-rose">Domain Enums</div>
+                        <div class="typo-title c-rose">
+                            <i class="fa-solid fa-tags"></i> Domain Enums
+                        </div>
                         <div class="typo-desc">
                             RiskLevel (วิกฤต/สูง/ปานกลาง/เฝ้าระวัง), Severity (1-4), และ ReportStatus
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: 4 OOP Pillars -->
+                <!-- Right: 4 OOP Pillars with Icons -->
                 <div class="stack-list">
                     <div class="stack-item">
-                        <div class="stack-title">1. Encapsulation (การซ่อนข้อมูลภายใน)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-lock" style="color:var(--color-blue);"></i> 1. Encapsulation (การซ่อนข้อมูลภายใน)
+                        </div>
                         <div class="stack-desc">
                             GeoLocation และ FloodPoint ซ่อน properties เป็น private มี Validation ภายใน ป้องกันค่าพิกัดผิดพลาด
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">2. Inheritance (การสืบทอดคุณสมบัติ)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-diagram-project" style="color:var(--color-emerald);"></i> 2. Inheritance (การสืบทอดคุณสมบัติ)
+                        </div>
                         <div class="stack-desc">
                             FloodVictim และ Traveler สืบทอดจาก User (Abstract) เพื่อแยกสิทธิ์และฟังก์ชันการทำงาน
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">3. Polymorphism (พหุสัณฐาน)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-shuffle" style="color:var(--color-orange);"></i> 3. Polymorphism (พหุสัณฐาน)
+                        </div>
                         <div class="stack-desc">
                             IRiskStrategy กำหนด calculate() ให้ CompositeRiskStrategy สลับสูตรคำนวณตามสภาพอากาศได้อิสระ
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">4. Abstraction (การซ่อนความซับซ้อน)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-eye-slash" style="color:var(--color-purple);"></i> 4. Abstraction (การซ่อนความซับซ้อน)
+                        </div>
                         <div class="stack-desc">
                             IFloodPointRepository ซ่อนคำสั่ง SQL และ PostGIS ไว้เบื้องหลัง Domain ไม่ต้องรู้ไส้ในของฐานข้อมูล
                         </div>
@@ -441,67 +477,83 @@
              ==================================================================== -->
         <section class="slide" id="slide-2">
             <div class="slide-header">
-                <h1 class="main-title">3 Design Patterns หลักในการประมวลผลข้อมูล</h1>
+                <h1 class="main-title"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-indigo); font-size:26px;"></i> 3 Design Patterns หลักในการประมวลผลข้อมูล</h1>
                 <p class="sub-title">การประยุกต์ใช้ GoF Patterns เพื่อความยืดหยุ่น การทดสอบ และการคำนวณอัตโนมัติ</p>
             </div>
 
             <div class="slide-body">
-                <!-- Left: 2x2 Grid of Patterns -->
+                <!-- Left: 2x2 Grid of Patterns with Icons -->
                 <div class="grid-2x2">
                     <div class="typo-block">
-                        <div class="typo-title c-blue">Strategy</div>
+                        <div class="typo-title c-blue">
+                            <i class="fa-solid fa-brain"></i> Strategy
+                        </div>
                         <div class="typo-desc">
                             CompositeRiskStrategy คำนวณคะแนนความเสี่ยงแบบถ่วงน้ำหนัก (น้ำ 40% + ฝน 35% + ความหนาแน่น 25%)
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-emerald">Repository</div>
+                        <div class="typo-title c-emerald">
+                            <i class="fa-solid fa-database"></i> Repository
+                        </div>
                         <div class="typo-desc">
                             IFloodPointRepository แยก Data Access ออกจาก Domain พร้อมรองรับ PostGIS ST_DWithin
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-purple">Adapter</div>
+                        <div class="typo-title c-purple">
+                            <i class="fa-solid fa-plug"></i> Adapter
+                        </div>
                         <div class="typo-desc">
                             แปลงข้อมูลดาวเทียม 77 จว. (GISTDA) และสภาพอากาศ (OpenWeather) สู่มาตรฐานระบบ
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-orange">Memory Cache</div>
+                        <div class="typo-title c-orange">
+                            <i class="fa-solid fa-bolt"></i> Memory Cache
+                        </div>
                         <div class="typo-desc">
                             In-Memory Cache Adapter (TTL 15m) ลดภาระ External API ตอบสนองไว &lt; 30ms
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Pattern Benefits -->
+                <!-- Right: Pattern Benefits with Icons -->
                 <div class="stack-list">
                     <div class="stack-item">
-                        <div class="stack-title">1. Loose Coupling (ลดการพึ่งพากัน)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-link-slash" style="color:var(--color-blue);"></i> 1. Loose Coupling (ลดการพึ่งพากัน)
+                        </div>
                         <div class="stack-desc">
                             Domain Logic ไม่ผูกติดกับ SDK ภายนอกหรือระบบฐานข้อมูล สามารถเปลี่ยน Provider ได้ทันที
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">2. 100% Testability (ทดสอบได้สมบูรณ์)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-vial-circle-check" style="color:var(--color-emerald);"></i> 2. 100% Testability (ทดสอบได้สมบูรณ์)
+                        </div>
                         <div class="stack-desc">
                             สามารถสลับไปใช้ Mock Repository และ Mock Weather Data เพื่อรัน Automated Unit Test ได้
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">3. Dynamic Risk Scoring (ประเมินสด)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-chart-line" style="color:var(--color-orange);"></i> 3. Dynamic Risk Scoring (ประเมินสด)
+                        </div>
                         <div class="stack-desc">
                             ปรับเปลี่ยนสูตรคำนวณความเสี่ยงตามฤดูกาลหรือสภาพอากาศแบบ Run-time โดยไม่ต้องแก้โค้ด Domain
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">4. High Performance (ประสิทธิภาพสูง)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-gauge-high" style="color:var(--color-purple);"></i> 4. High Performance (ประสิทธิภาพสูง)
+                        </div>
                         <div class="stack-desc">
                             ลดเวลาค้นหาข้อมูลเชิงพื้นที่ด้วย Spatial Indexing และ In-Memory Cache ความเร็วสูง
                         </div>
@@ -523,67 +575,83 @@
              ==================================================================== -->
         <section class="slide" id="slide-3">
             <div class="slide-header">
-                <h1 class="main-title">ระบบคำนวณเชิงพื้นที่ & REST API Engine</h1>
+                <h1 class="main-title"><i class="fa-solid fa-network-wired" style="color:var(--color-indigo); font-size:26px;"></i> ระบบคำนวณเชิงพื้นที่ & REST API Engine</h1>
                 <p class="sub-title">การคำนวณอาณาเขตน้ำท่วมอัตโนมัติ (Convex Hull) และการเชื่อมต่อข้อมูลความเร็วสูง</p>
             </div>
 
             <div class="slide-body">
-                <!-- Left: 2x2 Spatial Features -->
+                <!-- Left: 2x2 Spatial Features with Icons -->
                 <div class="grid-2x2">
                     <div class="typo-block">
-                        <div class="typo-title c-orange">Clustering</div>
+                        <div class="typo-title c-orange">
+                            <i class="fa-solid fa-circle-nodes"></i> Clustering
+                        </div>
                         <div class="typo-desc">
                             รวมกลุ่มจุดรายงานที่อยู่ในรัศมี 500 ม. เกิน 2 รายการ หรือมีระดับน้ำวิกฤต
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-blue">Convex Hull</div>
+                        <div class="typo-title c-blue">
+                            <i class="fa-solid fa-draw-polygon"></i> Convex Hull
+                        </div>
                         <div class="typo-desc">
                             คำนวณจุดยอดรูปหลายเหลี่ยม ส่งออก GeoJSON Polygon ขอบเขตพื้นที่น้ำท่วม
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-purple">GISTDA 77</div>
+                        <div class="typo-title c-purple">
+                            <i class="fa-solid fa-satellite"></i> GISTDA 77
+                        </div>
                         <div class="typo-desc">
                             ประมวลผลข้อมูลภาพถ่ายดาวเทียมน้ำท่วมขังรายวัน แยกรายจังหวัดทั่วประเทศไทย
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-emerald">Fast API</div>
+                        <div class="typo-title c-emerald">
+                            <i class="fa-solid fa-bolt"></i> Fast API
+                        </div>
                         <div class="typo-desc">
                             สถาปัตยกรรมแคชข้อมูล ตอบสนองคำขอของ Front-End ได้อย่างรวดเร็วภายใน 15-30ms
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: REST API Specification -->
+                <!-- Right: REST API Specification with Icons -->
                 <div class="stack-list">
                     <div class="stack-item">
-                        <div class="stack-title">GET /api/points</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-cloud-arrow-down" style="color:var(--color-emerald);"></i> GET /api/points
+                        </div>
                         <div class="stack-desc">
                             ดึงรายการจุดเฝ้าระวังน้ำท่วม พิกัด และระดับความเสี่ยงแบบ Real-time (&lt;20ms)
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">POST /api/reports</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-paper-plane" style="color:var(--color-blue);"></i> POST /api/reports
+                        </div>
                         <div class="stack-desc">
                             รับรายงานเหตุน้ำท่วมด่วนจากประชาชน พร้อมพิกัด GPS ภาพถ่าย และเบอร์ติดต่อ (&lt;80ms)
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">GET /api/zones</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-map" style="color:var(--color-orange);"></i> GET /api/zones
+                        </div>
                         <div class="stack-desc">
                             ดึงอาณาเขต Polygon พื้นที่น้ำท่วมที่คำนวณด้วย Convex Hull ในรูปแบบ GeoJSON (&lt;35ms)
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">GET /api/gistda & /stats</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-chart-pie" style="color:var(--color-purple);"></i> GET /api/gistda & /stats
+                        </div>
                         <div class="stack-desc">
                             ดึงชั้นข้อมูลดาวเทียม 77 จังหวัด และข้อมูลสถิติสรุปภาพรวม KPI สำหรับแดชบอร์ด (&lt;30ms)
                         </div>
@@ -605,67 +673,83 @@
              ==================================================================== -->
         <section class="slide" id="slide-4">
             <div class="slide-header">
-                <h1 class="main-title c-sky">ปรัชญาการออกแบบ: White Modern UI Architecture</h1>
+                <h1 class="main-title c-sky"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-sky); font-size:26px;"></i> ปรัชญาการออกแบบ: White Modern UI Architecture</h1>
                 <p class="sub-title">ตัดสิ่งรบกวนสายตา สร้างมิติด้วยระดับชั้นของสีพื้นผิว (Surface Layering)</p>
             </div>
 
             <div class="slide-body">
-                <!-- Left: 2x2 Design Principles -->
+                <!-- Left: 2x2 Design Principles with Icons -->
                 <div class="grid-2x2">
                     <div class="typo-block">
-                        <div class="typo-title c-indigo">No Border</div>
+                        <div class="typo-title c-indigo">
+                            <i class="fa-solid fa-ban"></i> No Border
+                        </div>
                         <div class="typo-desc">
                             ห้ามมีเส้นขอบกรอบตัดสายตา ใช้ความสะอาดของพื้นที่และระยะห่างสร้างขอบเขตตามธรรมชาติ
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-blue">No Shadow</div>
+                        <div class="typo-title c-blue">
+                            <i class="fa-solid fa-sun"></i> No Shadow
+                        </div>
                         <div class="typo-desc">
                             ห้ามมีเงาดำเบลอๆ ซ้อนกัน ตัดความเทอะทะให้เบาสบายตาและคมชัดระดับ Retina Display
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-emerald">Layering</div>
+                        <div class="typo-title c-emerald">
+                            <i class="fa-solid fa-layer-group"></i> Layering
+                        </div>
                         <div class="typo-desc">
                             สร้างมิติความลึกด้วย 4 ระดับสี Slate 100 ➔ Pure White ➔ Slate 50 ➔ Slate 200
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-purple">Radius</div>
+                        <div class="typo-title c-purple">
+                            <i class="fa-solid fa-shapes"></i> Radius
+                        </div>
                         <div class="typo-desc">
                             สัดส่วนความมนสมดุล องค์ประกอบนอกมนกว่าใน (20px &gt; 14px &gt; 10px &gt; 8px)
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Communication & Design Tokens -->
+                <!-- Right: Communication & Design Tokens with Icons -->
                 <div class="stack-list">
                     <div class="stack-item">
-                        <div class="stack-title">1. Thai-First & Human Centric</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-language" style="color:var(--color-sky);"></i> 1. Thai-First & Human Centric
+                        </div>
                         <div class="stack-desc">
                             ใช้ภาษาไทยเข้าใจง่าย สุภาพ ไร้ศัพท์เทคนิคบนหน้าจอ (Controller, JSON) และไร้วงเล็บซ้ำซ้อน
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">2. High Information Density</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-table-cells" style="color:var(--color-blue);"></i> 2. High Information Density
+                        </div>
                         <div class="stack-desc">
                             จัดวางข้อมูลกระชับ อ่านง่าย มองเห็นภาพรวมของสถานการณ์ครบถ้วนในหน้าจอเดียว
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">3. Status Color Tokens</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-palette" style="color:var(--color-orange);"></i> 3. Status Color Tokens
+                        </div>
                         <div class="stack-desc">
                             แดง (วิกฤต) • ส้ม (เสี่ยงสูง) • เหลือง (ปานกลาง) • ฟ้า (เฝ้าระวัง) • เขียว (ปกติ)
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">4. Typography Hierarchy</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-font" style="color:var(--color-purple);"></i> 4. Typography Hierarchy
+                        </div>
                         <div class="stack-desc">
                             Noto Sans Thai สำหรับภาษาไทยคมชัด ผสาน Inter สำหรับตัวเลขและรหัสพิกัด
                         </div>
@@ -687,67 +771,83 @@
              ==================================================================== -->
         <section class="slide" id="slide-5">
             <div class="slide-header">
-                <h1 class="main-title c-sky">หน้าหลัก: แผนที่น้ำท่วมอัจฉริยะ (Interactive Map View)</h1>
+                <h1 class="main-title c-sky"><i class="fa-solid fa-map-location-dot" style="color:var(--color-sky); font-size:26px;"></i> หน้าหลัก: แผนที่น้ำท่วมอัจฉริยะ (Interactive Map View)</h1>
                 <p class="sub-title">แสดงผลเต็มหน้าจอ (100vw, 100vh) ด้วย Leaflet.js ผสานข้อมูลดาวเทียมและพิกัดผู้ใช้</p>
             </div>
 
             <div class="slide-body">
-                <!-- Left: 2x2 Map Capabilities -->
+                <!-- Left: 2x2 Map Capabilities with Icons -->
                 <div class="grid-2x2">
                     <div class="typo-block">
-                        <div class="typo-title c-blue">OpenStreetMap</div>
+                        <div class="typo-title c-blue">
+                            <i class="fa-solid fa-map"></i> OpenStreetMap
+                        </div>
                         <div class="typo-desc">
                             เรนเดอร์แผนที่เวกเตอร์เต็มจอ 100vw, 100vh ซูมและแพนลื่นไหล 60 FPS ด้วย Leaflet 1.9.4
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-rose">Risk Markers</div>
+                        <div class="typo-title c-rose">
+                            <i class="fa-solid fa-location-dot"></i> Risk Markers
+                        </div>
                         <div class="typo-desc">
                             หมุดแยก 4 สีตามระดับความเสี่ยง พร้อม Interactive Popup แสดงระดับน้ำและรูปถ่ายจริง
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-purple">GISTDA Layer</div>
+                        <div class="typo-title c-purple">
+                            <i class="fa-solid fa-satellite-dish"></i> GISTDA Layer
+                        </div>
                         <div class="typo-desc">
                             สวิตช์เปิด-ปิดเลเยอร์ภาพถ่ายดาวเทียมน้ำท่วม 77 จังหวัดรายวันจาก GISTDA
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-orange">Polygon Zones</div>
+                        <div class="typo-title c-orange">
+                            <i class="fa-solid fa-vector-square"></i> Polygon Zones
+                        </div>
                         <div class="typo-desc">
                             แสดงอาณาเขตพื้นที่วิกฤตด้วยแรเงาสีแดงโปร่งแสงตามขอบเขต Convex Hull
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Map Interaction & UX Flow -->
+                <!-- Right: Map Interaction & UX Flow with Icons -->
                 <div class="stack-list">
                     <div class="stack-item">
-                        <div class="stack-title">1. Floating Top Navbar (แถบนำทางลอยตัว)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-compass" style="color:var(--color-sky);"></i> 1. Floating Top Navbar (แถบนำทางลอยตัว)
+                        </div>
                         <div class="stack-desc">
                             โปร่งแสงลอยตัวด้านบน สลับหน้า Map / Dashboard / API ได้อย่างรวดเร็ว
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">2. Auto-Geolocation (ตรวจจับพิกัดอัตโนมัติ)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-crosshairs" style="color:var(--color-blue);"></i> 2. Auto-Geolocation (ตรวจจับพิกัดอัตโนมัติ)
+                        </div>
                         <div class="stack-desc">
                             ดึงตำแหน่ง GPS ของอุปกรณ์ทันทีเพื่อโฟกัสจุดเสี่ยงและรายงานที่ใกล้ตัวที่สุด
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">3. Incident Photo Viewer (ดูรูปสถานที่จริง)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-image" style="color:var(--color-rose);"></i> 3. Incident Photo Viewer (ดูรูปสถานที่จริง)
+                        </div>
                         <div class="stack-desc">
                             คลิกที่หมุดเพื่อดูระดับความสูงน้ำ (เมตร) เวลาที่รายงาน และภาพถ่ายสถานที่จริง
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">4. Floating Report Button (ปุ่มแจ้งเหตุด่วน)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-circle-plus" style="color:var(--color-purple);"></i> 4. Floating Report Button (ปุ่มแจ้งเหตุด่วน)
+                        </div>
                         <div class="stack-desc">
                             ปุ่มสีน้ำเงินมุมขวาล่างเด่นชัด เข้าถึงฟอร์มรายงานเหตุฉุกเฉินได้ในคลิกเดียว
                         </div>
@@ -769,67 +869,83 @@
              ==================================================================== -->
         <section class="slide" id="slide-6">
             <div class="slide-header">
-                <h1 class="main-title c-sky">ระบบรายงานด่วน ≤ 3 Taps & แดชบอร์ดวิเคราะห์ผล</h1>
+                <h1 class="main-title c-sky"><i class="fa-solid fa-gauge-high" style="color:var(--color-sky); font-size:26px;"></i> ระบบรายงานด่วน ≤ 3 Taps & แดชบอร์ดวิเคราะห์ผล</h1>
                 <p class="sub-title">ประสบการณ์ผู้ใช้ที่เร็วที่สุดสำหรับเหตุฉุกเฉิน พร้อมศูนย์กลางตรวจสอบข้อมูล 77 จังหวัด</p>
             </div>
 
             <div class="slide-body">
-                <!-- Left: 2x2 Quick Report Flow -->
+                <!-- Left: 2x2 Quick Report Flow with Icons -->
                 <div class="grid-2x2">
                     <div class="typo-block">
-                        <div class="typo-title c-blue">1. เลือกระดับน้ำ</div>
+                        <div class="typo-title c-blue">
+                            <i class="fa-solid fa-water"></i> 1. เลือกระดับน้ำ
+                        </div>
                         <div class="typo-desc">
                             4 ปุ่มกด Grid: เล็กน้อย / ปานกลาง / รถเล็กผ่านไม่ได้ / วิกฤตท่วมมิดคัน
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-sky">2. เบอร์ & ภาพถ่าย</div>
+                        <div class="typo-title c-sky">
+                            <i class="fa-solid fa-camera"></i> 2. เบอร์ & ภาพถ่าย
+                        </div>
                         <div class="typo-desc">
                             จดจำเบอร์โทรศัพท์ลง LocalStorage อัตโนมัติ ไม่ต้องกรอกซ้ำ พร้อมแนบรูป
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-emerald">3. ยืนยันส่งข้อมูล</div>
+                        <div class="typo-title c-emerald">
+                            <i class="fa-solid fa-check-circle"></i> 3. ยืนยันส่งข้อมูล
+                        </div>
                         <div class="typo-desc">
                             ดึงพิกัด GPS อัตโนมัติ หมุดและขอบเขตแสดงบนแผนที่สดทันที (One-Click Submit)
                         </div>
                     </div>
 
                     <div class="typo-block">
-                        <div class="typo-title c-purple">Real-Time Sync</div>
+                        <div class="typo-title c-purple">
+                            <i class="fa-solid fa-arrows-rotate"></i> Real-Time Sync
+                        </div>
                         <div class="typo-desc">
                             อัปเดตสถิติและกระจายข้อมูลสู่ Dashboard ศูนย์บัญชาการทันที
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Dashboard & Readiness -->
+                <!-- Right: Dashboard & Readiness with Icons -->
                 <div class="stack-list">
                     <div class="stack-item">
-                        <div class="stack-title">1. 4 Summary KPI Metrics (สรุปภาพรวมสำคัญ)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-chart-column" style="color:var(--color-blue);"></i> 1. 4 Summary KPI Metrics (สรุปภาพรวมสำคัญ)
+                        </div>
                         <div class="stack-desc">
                             จำนวนจังหวัดประสบภัย • จุดวิกฤตรวม • จำนวนรายงานวันนี้ • ดัชนีปริมาณฝนสะสม
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">2. 77-Province Filter & Search (ค้นหารายจังหวัด)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-filter" style="color:var(--color-sky);"></i> 2. 77-Province Filter & Search (ค้นหารายจังหวัด)
+                        </div>
                         <div class="stack-desc">
                             ดรอปดาวน์ค้นหาและกรองสถานการณ์รายจังหวัดทั่วไทยได้อย่างสะดวกรวดเร็ว
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">3. Live Incident Table & Drawer (ตารางเหตุการณ์)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-table-list" style="color:var(--color-orange);"></i> 3. Live Incident Table & Drawer (ตารางเหตุการณ์)
+                        </div>
                         <div class="stack-desc">
                             ตารางแจกแจงพิกัด เวลา สถานะ พร้อมคลิกเปิด Drawer ดูรายละเอียดและภาพถ่ายเต็มตา
                         </div>
                     </div>
 
                     <div class="stack-item">
-                        <div class="stack-title">4. Production Ready (ระบบสมบูรณ์พร้อมใช้)</div>
+                        <div class="stack-title">
+                            <i class="fa-solid fa-shield-halved" style="color:var(--color-emerald);"></i> 4. Production Ready (ระบบสมบูรณ์พร้อมใช้)
+                        </div>
                         <div class="stack-desc">
                             สถาปัตยกรรม OOP แข็งแกร่ง โค้ดมีระเบียบ ดีไซน์ White Modern UI สะอาดตา
                         </div>
