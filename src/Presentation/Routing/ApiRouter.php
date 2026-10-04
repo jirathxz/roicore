@@ -17,7 +17,8 @@ final class ApiRouter
         private readonly ReportController $reportController,
         private readonly FloodPointController $floodPointController,
         private readonly WeatherController $weatherController,
-        private readonly GistdaController $gistdaController
+        private readonly GistdaController $gistdaController,
+        private readonly ?\RoiCore\Presentation\Controllers\SystemController $systemController = null
     ) {
     }
 
@@ -27,6 +28,13 @@ final class ApiRouter
         $method = $request->method;
 
         // Routing table
+        if ($path === '/api/status' || $path === 'api/status') {
+            if ($this->systemController !== null) {
+                return $this->systemController->status($request);
+            }
+            return Response::json(['status' => 'ok']);
+        }
+
         if ($path === '/api/reports' || $path === 'api/reports') {
             if ($method === 'GET') {
                 return $this->reportController->index($request);

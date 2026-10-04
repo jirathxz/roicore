@@ -80,9 +80,10 @@ final class AppContainer
         $floodPointController = new FloodPointController($checkFloodPointsUseCase, $this->floodPointRepository);
         $weatherController = new WeatherController($getWeatherUseCase, $this->weatherService);
         $gistdaController = new GistdaController($this->gistdaService);
+        $systemController = new \RoiCore\Presentation\Controllers\SystemController($this->floodPointRepository, $this->reportRepository);
 
         // 5. Router
-        $this->apiRouter = new ApiRouter($reportController, $floodPointController, $weatherController, $gistdaController);
+        $this->apiRouter = new ApiRouter($reportController, $floodPointController, $weatherController, $gistdaController, $systemController);
     }
 
     public static function getInstance(): self
