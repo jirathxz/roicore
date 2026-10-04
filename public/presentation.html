@@ -15,7 +15,7 @@
 
     <style>
         /* ==========================================================================
-           ROiCORE Keynote System (Cohesive Proximity, Web UI Previews, Zero Border)
+           ROiCORE Keynote System (Real Screenshots & Service Logos, Zero Border)
            ========================================================================== */
         :root {
             /* Brand Primary */
@@ -43,7 +43,7 @@
 
             /* Radius */
             --r-sm: 6px;
-            --r-md: 10px;
+            --r-md: 12px;
             --r-lg: 18px;
             --r-full: 9999px;
         }
@@ -92,7 +92,7 @@
             height: 100%;
             background-color: var(--bg-slide);
             border-radius: var(--r-lg);
-            padding: 34px 48px 24px 48px;
+            padding: 32px 48px 22px 48px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -116,12 +116,18 @@
             position: relative;
             z-index: 2;
             display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-text-group {
+            display: flex;
             flex-direction: column;
             gap: 4px;
         }
 
         .main-title {
-            font-size: 32px;
+            font-size: 31px;
             font-weight: 900;
             line-height: 1.15;
             color: var(--color-indigo);
@@ -132,11 +138,37 @@
         }
 
         .sub-title {
-            font-size: 19px;
+            font-size: 18.5px;
             font-weight: 700;
             line-height: 1.3;
             color: var(--text-subtitle);
             letter-spacing: -0.01em;
+        }
+
+        /* Service Logos Badge Group in Header */
+        .service-badges {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-pill);
+            padding: 4px 10px;
+            border-radius: var(--r-full);
+        }
+
+        .service-badge-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: var(--text-heading);
+        }
+
+        .service-logo-img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            display: inline-block;
         }
 
         /* Slide Body Layout */
@@ -144,7 +176,7 @@
             position: relative;
             z-index: 2;
             display: grid;
-            grid-template-columns: 1.15fr 1fr;
+            grid-template-columns: 1.18fr 1fr;
             column-gap: 36px;
             align-items: start;
         }
@@ -238,7 +270,7 @@
         }
 
         /* ==========================================================================
-           Web UI Preview Mockup Card Component
+           Web UI Preview Mockup (Real Screenshot Container)
            ========================================================================== */
         .browser-mockup {
             background-color: var(--bg-preview);
@@ -249,10 +281,11 @@
             width: 100%;
             height: 380px;
             position: relative;
+            background: #0F172A;
         }
 
         .browser-topbar {
-            background-color: #E2E8F0;
+            background-color: #1E293B;
             padding: 7px 12px;
             display: flex;
             align-items: center;
@@ -273,15 +306,15 @@
         }
 
         .browser-url {
-            background: #FFFFFF;
+            background: #334155;
             padding: 2px 12px;
             border-radius: var(--r-full);
             font-family: 'Fira Code', monospace;
             font-size: 11px;
             font-weight: 700;
-            color: var(--text-muted);
+            color: #CBD5E1;
             flex: 1;
-            max-width: 260px;
+            max-width: 280px;
             text-align: center;
         }
 
@@ -289,158 +322,18 @@
             flex: 1;
             position: relative;
             overflow: hidden;
-            background-color: #F1F5F9;
+            background-color: #090D16;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Map UI Preview Specifics */
-        .mock-map-canvas {
+        .preview-real-img {
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, #E2E8F0 10%, #CBD5E1 90%);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mock-navbar {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.95);
-            padding: 5px 14px;
-            border-radius: var(--r-full);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 11.5px;
-            font-weight: 800;
-            z-index: 10;
-        }
-
-        .mock-pin {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .mock-pin-icon {
-            font-size: 22px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
-
-        .mock-polygon-zone {
-            position: absolute;
-            width: 160px;
-            height: 110px;
-            background: rgba(220, 38, 38, 0.18);
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            pointer-events: none;
-        }
-
-        .mock-popup {
-            background: #FFFFFF;
-            padding: 8px 12px;
-            border-radius: var(--r-sm);
-            font-size: 11px;
-            color: var(--text-dark);
-            font-weight: 700;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            position: absolute;
-            top: 85px;
-            left: 60px;
-            z-index: 15;
-            white-space: nowrap;
-        }
-
-        .mock-fab-btn {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            background-color: var(--color-blue);
-            color: #FFFFFF;
-            padding: 6px 14px;
-            border-radius: var(--r-full);
-            font-size: 11px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            z-index: 10;
-        }
-
-        /* Dashboard UI Preview Specifics */
-        .mock-dash-content {
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            height: 100%;
-        }
-
-        .mock-kpi-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-        }
-
-        .mock-kpi-chip {
-            background: #FFFFFF;
-            padding: 6px 8px;
-            border-radius: var(--r-sm);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .mock-kpi-val {
-            font-size: 15px;
-            font-weight: 900;
-            color: var(--color-blue);
-        }
-
-        .mock-kpi-lbl {
-            font-size: 9.5px;
-            font-weight: 700;
-            color: var(--text-muted);
-        }
-
-        .mock-modal-card {
-            background: #FFFFFF;
-            border-radius: var(--r-md);
-            padding: 10px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-            flex: 1;
-        }
-
-        .mock-grid-btn {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-
-        .mock-sub-btn {
-            background: var(--bg-pill);
-            padding: 6px 4px;
-            border-radius: var(--r-sm);
-            font-size: 10.5px;
-            font-weight: 700;
-            color: var(--text-dark);
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
         }
 
         /* Bottom Outline Watermark */
@@ -585,7 +478,7 @@
                 pointer-events: auto !important;
                 transform: none !important;
                 border-radius: 0 !important;
-                padding: 34px 48px 24px 48px !important;
+                padding: 32px 48px 22px 48px !important;
                 page-break-after: always !important;
                 break-after: page !important;
                 display: flex !important;
@@ -607,8 +500,20 @@
              ==================================================================== -->
         <section class="slide active" id="slide-1">
             <div class="slide-header">
-                <h1 class="main-title"><i class="fa-solid fa-server" style="color:var(--color-indigo); font-size:26px;"></i> สถาปัตยกรรม Clean Architecture & โดเมนโมเดล OOP</h1>
-                <p class="sub-title">แยกแกนกลางทางธุรกิจ (Domain Layer) เป็นอิสระจากฐานข้อมูลและเฟรมเวิร์กภายนอก</p>
+                <div class="header-text-group">
+                    <h1 class="main-title"><i class="fa-solid fa-server" style="color:var(--color-indigo); font-size:26px;"></i> สถาปัตยกรรม Clean Architecture & โดเมนโมเดล OOP</h1>
+                    <p class="sub-title">แยกแกนกลางทางธุรกิจ (Domain Layer) เป็นอิสระจากฐานข้อมูลและเฟรมเวิร์กภายนอก</p>
+                </div>
+                <div class="service-badges">
+                    <div class="service-badge-item">
+                        <img class="service-logo-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+                        <span>PHP 8.2+</span>
+                    </div>
+                    <div class="service-badge-item">
+                        <i class="fa-solid fa-layer-group" style="color:var(--color-indigo);"></i>
+                        <span>Clean Arch</span>
+                    </div>
+                </div>
             </div>
 
             <div class="slide-body">
@@ -709,8 +614,20 @@
              ==================================================================== -->
         <section class="slide" id="slide-2">
             <div class="slide-header">
-                <h1 class="main-title"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-indigo); font-size:26px;"></i> 3 Design Patterns หลักในการประมวลผลข้อมูล</h1>
-                <p class="sub-title">การประยุกต์ใช้ GoF Patterns เพื่อความยืดหยุ่น การทดสอบ และการประเมินความเสี่ยงอัตโนมัติ</p>
+                <div class="header-text-group">
+                    <h1 class="main-title"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-indigo); font-size:26px;"></i> 3 Design Patterns หลักในการประมวลผลข้อมูล</h1>
+                    <p class="sub-title">การประยุกต์ใช้ GoF Patterns เพื่อความยืดหยุ่น การทดสอบ และการประเมินความเสี่ยงอัตโนมัติ</p>
+                </div>
+                <div class="service-badges">
+                    <div class="service-badge-item">
+                        <img class="service-logo-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase">
+                        <span>Supabase</span>
+                    </div>
+                    <div class="service-badge-item">
+                        <img class="service-logo-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                        <span>PostGIS</span>
+                    </div>
+                </div>
             </div>
 
             <div class="slide-body">
@@ -811,8 +728,20 @@
              ==================================================================== -->
         <section class="slide" id="slide-3">
             <div class="slide-header">
-                <h1 class="main-title"><i class="fa-solid fa-network-wired" style="color:var(--color-indigo); font-size:26px;"></i> ระบบคำนวณเชิงพื้นที่ & REST API Engine</h1>
-                <p class="sub-title">การคำนวณอาณาเขตน้ำท่วมอัตโนมัติ (Convex Hull) และการเชื่อมต่อข้อมูลความเร็วสูง</p>
+                <div class="header-text-group">
+                    <h1 class="main-title"><i class="fa-solid fa-network-wired" style="color:var(--color-indigo); font-size:26px;"></i> ระบบคำนวณเชิงพื้นที่ & REST API Engine</h1>
+                    <p class="sub-title">การคำนวณอาณาเขตน้ำท่วมอัตโนมัติ (Convex Hull) และการเชื่อมต่อข้อมูลความเร็วสูง</p>
+                </div>
+                <div class="service-badges">
+                    <div class="service-badge-item">
+                        <i class="fa-solid fa-satellite" style="color:var(--color-purple);"></i>
+                        <span>GISTDA</span>
+                    </div>
+                    <div class="service-badge-item">
+                        <i class="fa-solid fa-cloud-sun-rain" style="color:var(--color-blue);"></i>
+                        <span>OpenWeather</span>
+                    </div>
+                </div>
             </div>
 
             <div class="slide-body">
@@ -867,10 +796,10 @@
                             <span class="browser-dot" style="background:#F59E0B;"></span>
                             <span class="browser-dot" style="background:#10B981;"></span>
                         </div>
-                        <div class="browser-url">roicore.app/api/docs</div>
+                        <div class="browser-url">roicore.app/api/console</div>
                     </div>
-                    <div class="browser-content" style="background:#0F172A; padding:12px; font-family:'Fira Code', monospace; color:#E2E8F0; justify-content:space-between;">
-                        <div style="font-size:11.5px; color:#38BDF8; font-weight:700;">
+                    <div class="browser-content" style="background:#0F172A; padding:14px; font-family:'Fira Code', monospace; color:#E2E8F0; justify-content:space-between;">
+                        <div style="font-size:12px; color:#38BDF8; font-weight:700;">
                             // REST API Endpoints Specification
                         </div>
                         <div style="background:#1E293B; padding:8px 10px; border-radius:6px; font-size:11px;">
@@ -882,7 +811,7 @@
                         <div style="background:#1E293B; padding:8px 10px; border-radius:6px; font-size:11px;">
                             <span style="color:#4ADE80; font-weight:700;">GET</span> <span style="color:#FFF;">/api/zones</span> <span style="color:#94A3B8;">➔ 200 GeoJSON (31ms)</span>
                         </div>
-                        <div style="font-size:10.5px; color:#94A3B8;">
+                        <div style="font-size:11px; color:#94A3B8;">
                             Payload: <span style="color:#FBCFE8;">{ "success": true, "data": [...], "count": 42 }</span>
                         </div>
                     </div>
@@ -903,8 +832,21 @@
              ==================================================================== -->
         <section class="slide" id="slide-4">
             <div class="slide-header">
-                <h1 class="main-title c-sky"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-sky); font-size:26px;"></i> ปรัชญาการออกแบบ: White Modern UI Architecture</h1>
-                <p class="sub-title">ตัดสิ่งรบกวนสายตา สร้างมิติด้วยระดับชั้นของสีพื้นผิว (Surface Layering)</p>
+                <div class="header-text-group">
+                    <h1 class="main-title c-sky"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-sky); font-size:26px;"></i> ปรัชญาการออกแบบ: White Modern UI Architecture</h1>
+                    <p class="sub-title">ตัดสิ่งรบกวนสายตา สร้างมิติด้วยระดับชั้นของสีพื้นผิว (Surface Layering)</p>
+                </div>
+                <div class="service-badges">
+                    <div class="service-badge-item">
+                        <img class="service-logo-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                        <img class="service-logo-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                        <span>Modern Web</span>
+                    </div>
+                    <div class="service-badge-item">
+                        <i class="fa-brands fa-font-awesome" style="color:var(--color-blue);"></i>
+                        <span>FA 6</span>
+                    </div>
+                </div>
             </div>
 
             <div class="slide-body">
@@ -1001,12 +943,24 @@
         </section>
 
         <!-- ====================================================================
-             SLIDE 5: [FRONT-END 2/3] Interactive Map View with Live Preview
+             SLIDE 5: [FRONT-END 2/3] Interactive Map View with Real Screenshot
              ==================================================================== -->
         <section class="slide" id="slide-5">
             <div class="slide-header">
-                <h1 class="main-title c-sky"><i class="fa-solid fa-map-location-dot" style="color:var(--color-sky); font-size:26px;"></i> หน้าหลัก: แผนที่น้ำท่วมอัจฉริยะ (Interactive Map View)</h1>
-                <p class="sub-title">แสดงผลเต็มหน้าจอ (100vw, 100vh) ด้วย Leaflet.js ผสานข้อมูลดาวเทียมและพิกัดผู้ใช้</p>
+                <div class="header-text-group">
+                    <h1 class="main-title c-sky"><i class="fa-solid fa-map-location-dot" style="color:var(--color-sky); font-size:26px;"></i> หน้าหลัก: แผนที่น้ำท่วมอัจฉริยะ (Interactive Map View)</h1>
+                    <p class="sub-title">แสดงผลเต็มหน้าจอ (100vw, 100vh) ด้วย Leaflet.js ผสานข้อมูลดาวเทียมและพิกัดผู้ใช้</p>
+                </div>
+                <div class="service-badges">
+                    <div class="service-badge-item">
+                        <img class="service-logo-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/leaflet/leaflet-original.svg" alt="Leaflet">
+                        <span>Leaflet.js</span>
+                    </div>
+                    <div class="service-badge-item">
+                        <img class="service-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Openstreetmap_logo.svg" alt="OSM">
+                        <span>OpenStreetMap</span>
+                    </div>
+                </div>
             </div>
 
             <div class="slide-body">
@@ -1014,7 +968,7 @@
                 <div class="grid-2x2">
                     <div class="typo-block">
                         <div class="typo-title c-blue">
-                            <i class="fa-solid fa-map"></i> OpenStreetMap Canvas
+                            <i class="fa-solid fa-map"></i> OpenStreetMap
                         </div>
                         <div class="typo-desc">
                             เรนเดอร์แผนที่เวกเตอร์เต็มหน้าจอ 100vw x 100vh แพนและซูมลื่นไหล 60 FPS ด้วย Leaflet 1.9.4
@@ -1053,7 +1007,7 @@
                     </div>
                 </div>
 
-                <!-- Right: Live Interactive Map Web Preview Mockup -->
+                <!-- Right: REAL SCREENSHOT OF MAP VIEW -->
                 <div class="browser-mockup">
                     <div class="browser-topbar">
                         <div class="browser-dots">
@@ -1061,46 +1015,10 @@
                             <span class="browser-dot" style="background:#F59E0B;"></span>
                             <span class="browser-dot" style="background:#10B981;"></span>
                         </div>
-                        <div class="browser-url">roicore.app/map</div>
+                        <div class="browser-url">http://localhost/roicore/public/map_view.php</div>
                     </div>
                     <div class="browser-content">
-                        <div class="mock-map-canvas">
-                            <!-- Floating Nav -->
-                            <div class="mock-navbar">
-                                <span style="color:var(--color-blue); font-weight:900;">ROiCORE</span>
-                                <span style="color:var(--color-blue);">● แผนที่</span>
-                                <span style="color:var(--text-muted);">แดชบอร์ด</span>
-                                <span style="color:var(--text-muted);">API</span>
-                            </div>
-
-                            <!-- Translucent Hazard Polygon -->
-                            <div class="mock-polygon-zone" style="top:75px; left:45px;"></div>
-
-                            <!-- Pins -->
-                            <div class="mock-pin" style="top:120px; left:110px;">
-                                <i class="fa-solid fa-location-dot mock-pin-icon" style="color:#DC2626;"></i>
-                            </div>
-
-                            <div class="mock-pin" style="top:180px; left:230px;">
-                                <i class="fa-solid fa-location-dot mock-pin-icon" style="color:#EA580C;"></i>
-                            </div>
-
-                            <div class="mock-pin" style="top:220px; left:90px;">
-                                <i class="fa-solid fa-location-dot mock-pin-icon" style="color:#2563EB;"></i>
-                            </div>
-
-                            <!-- Interactive Popup Card -->
-                            <div class="mock-popup">
-                                <div style="color:var(--color-indigo); font-weight:800;"><i class="fa-solid fa-location-dot" style="color:#DC2626;"></i> ถ.แจ้งสนิท (อ.เมือง จ.ร้อยเอ็ด)</div>
-                                <div style="color:#DC2626; font-size:10px;"><i class="fa-solid fa-water"></i> ระดับน้ำ: 1.80 เมตร (วิกฤต)</div>
-                                <div style="color:var(--text-muted); font-size:9.5px;">อัปเดตเมื่อ: 5 นาทีที่แล้ว</div>
-                            </div>
-
-                            <!-- Floating Action Report Button -->
-                            <div class="mock-fab-btn">
-                                <i class="fa-solid fa-plus"></i> แจ้งเหตุด่วน
-                            </div>
-                        </div>
+                        <img class="preview-real-img" src="preview_map.png" alt="ROiCORE Interactive Map View Real Screenshot">
                     </div>
                 </div>
             </div>
@@ -1115,12 +1033,24 @@
         </section>
 
         <!-- ====================================================================
-             SLIDE 6: [FRONT-END 3/3] Fast Incident Report & Dashboard Preview
+             SLIDE 6: [FRONT-END 3/3] Fast Incident Report & Dashboard with Real Screenshot
              ==================================================================== -->
         <section class="slide" id="slide-6">
             <div class="slide-header">
-                <h1 class="main-title c-sky"><i class="fa-solid fa-gauge-high" style="color:var(--color-sky); font-size:26px;"></i> ระบบรายงานด่วน ≤ 3 Taps & แดชบอร์ดวิเคราะห์ผล</h1>
-                <p class="sub-title">ประสบการณ์ผู้ใช้ที่เร็วที่สุดสำหรับเหตุฉุกเฉิน พร้อมศูนย์กลางตรวจสอบข้อมูล 77 จังหวัด</p>
+                <div class="header-text-group">
+                    <h1 class="main-title c-sky"><i class="fa-solid fa-gauge-high" style="color:var(--color-sky); font-size:26px;"></i> ระบบรายงานด่วน ≤ 3 Taps & แดชบอร์ดวิเคราะห์ผล</h1>
+                    <p class="sub-title">ประสบการณ์ผู้ใช้ที่เร็วที่สุดสำหรับเหตุฉุกเฉิน พร้อมศูนย์กลางตรวจสอบข้อมูล 77 จังหวัด</p>
+                </div>
+                <div class="service-badges">
+                    <div class="service-badge-item">
+                        <i class="fa-solid fa-chart-pie" style="color:var(--color-blue);"></i>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="service-badge-item">
+                        <i class="fa-solid fa-bolt" style="color:var(--color-emerald);"></i>
+                        <span>≤ 3 Taps</span>
+                    </div>
+                </div>
             </div>
 
             <div class="slide-body">
@@ -1167,7 +1097,7 @@
                     </div>
                 </div>
 
-                <!-- Right: Live Quick Report Modal & Dashboard Preview Mockup -->
+                <!-- Right: REAL SCREENSHOT OF DASHBOARD VIEW -->
                 <div class="browser-mockup">
                     <div class="browser-topbar">
                         <div class="browser-dots">
@@ -1175,51 +1105,10 @@
                             <span class="browser-dot" style="background:#F59E0B;"></span>
                             <span class="browser-dot" style="background:#10B981;"></span>
                         </div>
-                        <div class="browser-url">roicore.app/dashboard</div>
+                        <div class="browser-url">http://localhost/roicore/public/dashboard_view.php</div>
                     </div>
                     <div class="browser-content">
-                        <div class="mock-dash-content">
-                            <!-- KPI Chips Row -->
-                            <div class="mock-kpi-row">
-                                <div class="mock-kpi-chip">
-                                    <span class="mock-kpi-val" style="color:var(--color-blue);">77</span>
-                                    <span class="mock-kpi-lbl">จังหวัดเฝ้าระวัง</span>
-                                </div>
-                                <div class="mock-kpi-chip">
-                                    <span class="mock-kpi-val" style="color:#DC2626;">12</span>
-                                    <span class="mock-kpi-lbl">จุดวิกฤตรวม</span>
-                                </div>
-                                <div class="mock-kpi-chip">
-                                    <span class="mock-kpi-val" style="color:var(--color-emerald);">142</span>
-                                    <span class="mock-kpi-lbl">รายงานวันนี้</span>
-                                </div>
-                            </div>
-
-                            <!-- Fast Report Modal Mockup -->
-                            <div class="mock-modal-card">
-                                <div style="display:flex; justify-content:space-between; align-items:center;">
-                                    <strong style="font-size:12px; color:var(--text-dark);"><i class="fa-solid fa-bullhorn" style="color:var(--color-blue);"></i> รายงานเหตุน้ำท่วมด่วน (≤ 3 Taps)</strong>
-                                    <span style="font-size:9.5px; color:var(--color-emerald); font-weight:800;">GPS OK <i class="fa-solid fa-circle-check"></i></span>
-                                </div>
-                                <div class="mock-grid-btn">
-                                    <div class="mock-sub-btn"><i class="fa-solid fa-shoe-prints" style="color:var(--color-blue);"></i> เล็กน้อย</div>
-                                    <div class="mock-sub-btn"><i class="fa-solid fa-car-side" style="color:#D97706;"></i> ปานกลาง</div>
-                                    <div class="mock-sub-btn"><i class="fa-solid fa-triangle-exclamation" style="color:#EA580C;"></i> รถเล็กห้ามผ่าน</div>
-                                    <div class="mock-sub-btn" style="background:#FEE2E2; color:#DC2626; font-weight:900;"><i class="fa-solid fa-triangle-exclamation"></i> วิกฤต</div>
-                                </div>
-                                <div style="display:flex; gap:6px;">
-                                    <div style="background:var(--bg-pill); padding:4px 8px; border-radius:4px; font-size:10px; color:var(--text-muted); flex:1;">
-                                        <i class="fa-solid fa-phone"></i> 081-xxx-xxxx (จำค่าแล้ว)
-                                    </div>
-                                    <div style="background:var(--bg-pill); padding:4px 8px; border-radius:4px; font-size:10px; color:var(--color-blue); font-weight:700;">
-                                        <i class="fa-solid fa-camera"></i> แนบรูป
-                                    </div>
-                                </div>
-                                <div style="background:var(--color-blue); color:#FFF; padding:6px; border-radius:6px; font-size:11px; font-weight:800; text-align:center;">
-                                    ยืนยันส่งรายงานทันที
-                                </div>
-                            </div>
-                        </div>
+                        <img class="preview-real-img" src="preview_dashboard.png" alt="ROiCORE Intelligence Dashboard Real Screenshot">
                     </div>
                 </div>
             </div>
