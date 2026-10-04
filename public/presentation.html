@@ -340,6 +340,62 @@
             display: block;
         }
 
+        /* ==========================================================================
+           Architecture & Flow Diagram Box (16:9 Widescreen SVG Component)
+           ========================================================================== */
+        .diagram-box {
+            background-color: var(--bg-preview);
+            border-radius: var(--r-md);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            background: #FFFFFF;
+        }
+
+        .diagram-topbar {
+            background-color: #F1F5F9;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-shrink: 0;
+            height: 28px;
+            box-sizing: border-box;
+        }
+
+        .diagram-tag {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .diagram-body {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: calc(100% - 28px);
+            background-color: #F8FAFC;
+            padding: 4px;
+            box-sizing: border-box;
+        }
+
+        .diagram-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
         /* Bottom Outline Watermark */
         .bottom-watermark {
             position: absolute;
@@ -564,42 +620,70 @@
                     </div>
                 </div>
 
-                <!-- Right: 4 OOP Pillars Tight Proximity -->
-                <div class="stack-list">
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-lock" style="color:var(--color-blue);"></i> 1. Encapsulation (การซ่อนข้อมูลภายใน)
+                <!-- Right: Clean Architecture & OOP Domain Diagram -->
+                <div class="diagram-box">
+                    <div class="diagram-topbar">
+                        <div class="diagram-tag">
+                            <i class="fa-solid fa-layer-group" style="color:var(--color-indigo);"></i>
+                            <span>Clean Architecture & Domain Model Flow</span>
                         </div>
-                        <div class="stack-desc">
-                            <code>GeoLocation</code> และ <code>FloodPoint</code> ซ่อน properties เป็น <code>private</code> ทั้งหมด Enforce Invariant Validation ผ่าน Constructor ป้องกันค่าพิกัดผิดพลาด
-                        </div>
+                        <div style="font-size:10px; font-weight:700; color:var(--text-muted);">Decoupled Architecture</div>
                     </div>
+                    <div class="diagram-body">
+                        <svg viewBox="0 0 540 280" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Layer 1: UI / Presentation -->
+                            <rect x="15" y="10" width="510" height="42" rx="8" fill="#F1F5F9" />
+                            <text x="30" y="36" font-size="11.5" font-weight="900" fill="#475569">1. PRESENTATION (UI)</text>
+                            <rect x="185" y="18" width="95" height="26" rx="5" fill="#FFFFFF" />
+                            <text x="232" y="35" font-size="10.5" font-weight="800" fill="#2563EB" text-anchor="middle">Map View</text>
+                            <rect x="290" y="18" width="105" height="26" rx="5" fill="#FFFFFF" />
+                            <text x="342" y="35" font-size="10.5" font-weight="800" fill="#0284C7" text-anchor="middle">Dashboard 77</text>
+                            <rect x="405" y="18" width="105" height="26" rx="5" fill="#FFFFFF" />
+                            <text x="457" y="35" font-size="10.5" font-weight="800" fill="#7C3AED" text-anchor="middle">API Console</text>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-diagram-project" style="color:var(--color-emerald);"></i> 2. Inheritance (การสืบทอดคุณสมบัติ)
-                        </div>
-                        <div class="stack-desc">
-                            <code>FloodVictim</code> (แจ้งเหตุฉุกเฉิน) และ <code>Traveler</code> (ตรวจสอบเส้นทาง) สืบทอดคุณสมบัติร่วมจาก <code>User (Abstract Base)</code> เพื่อแยกสิทธิ์และฟังก์ชันการทำงาน
-                        </div>
-                    </div>
+                            <!-- Flow Arrow -->
+                            <path d="M 270 52 L 270 70" stroke="#CBD5E1" stroke-width="2" />
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-shuffle" style="color:var(--color-orange);"></i> 3. Polymorphism (พหุสัณฐาน)
-                        </div>
-                        <div class="stack-desc">
-                            <code>IRiskStrategy</code> กำหนดสัญญา <code>calculate()</code> ให้ <code>CompositeRiskStrategy</code> สลับสูตรคำนวณตามสภาพอากาศและฝนตกได้แบบ Run-time
-                        </div>
-                    </div>
+                            <!-- Layer 2: Application Use Cases -->
+                            <rect x="15" y="72" width="510" height="42" rx="8" fill="#EFF6FF" />
+                            <text x="30" y="98" font-size="11.5" font-weight="900" fill="#1E40AF">2. APPLICATION (Use Cases)</text>
+                            <rect x="230" y="80" width="135" height="26" rx="5" fill="#FFFFFF" />
+                            <text x="297" y="97" font-size="10" font-weight="800" fill="#1E3A8A" text-anchor="middle">SubmitReportUseCase</text>
+                            <rect x="375" y="80" width="135" height="26" rx="5" fill="#FFFFFF" />
+                            <text x="442" y="97" font-size="10" font-weight="800" fill="#1E3A8A" text-anchor="middle">QueryPointsUseCase</text>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-eye-slash" style="color:var(--color-purple);"></i> 4. Abstraction (การซ่อนความซับซ้อน)
-                        </div>
-                        <div class="stack-desc">
-                            <code>IFloodPointRepository</code> ซ่อนคำสั่ง SQL, PostGIS Spatial Query และ Supabase API ไว้เบื้องหลัง Domain สั่งบันทึกได้โดยไม่ต้องรู้เทคโนโลยีจัดเก็บ
-                        </div>
+                            <!-- Flow Arrow -->
+                            <path d="M 270 114 L 270 132" stroke="#CBD5E1" stroke-width="2" />
+
+                            <!-- Layer 3: Domain Core -->
+                            <rect x="15" y="134" width="510" height="74" rx="8" fill="#EEF2FF" />
+                            <text x="30" y="155" font-size="11.5" font-weight="900" fill="#4338CA">3. DOMAIN CORE (Pure Business Entities & OOP)</text>
+                            
+                            <rect x="25" y="165" width="112" height="33" rx="6" fill="#FFFFFF" />
+                            <text x="81" y="185" font-size="11" font-weight="900" fill="#2563EB" text-anchor="middle">FloodPoint</text>
+
+                            <rect x="147" y="165" width="115" height="33" rx="6" fill="#FFFFFF" />
+                            <text x="204" y="185" font-size="11" font-weight="900" fill="#0284C7" text-anchor="middle">FloodReport</text>
+
+                            <rect x="272" y="165" width="115" height="33" rx="6" fill="#FFFFFF" />
+                            <text x="329" y="185" font-size="11" font-weight="900" fill="#7C3AED" text-anchor="middle">GeoLocation</text>
+
+                            <rect x="397" y="165" width="118" height="33" rx="6" fill="#FFFFFF" />
+                            <text x="456" y="185" font-size="11" font-weight="900" fill="#E11D48" text-anchor="middle">IRiskStrategy</text>
+
+                            <!-- Flow Arrow -->
+                            <path d="M 270 208 L 270 224" stroke="#CBD5E1" stroke-width="2" />
+
+                            <!-- Layer 4: Infrastructure -->
+                            <rect x="15" y="226" width="510" height="44" rx="8" fill="#F8FAFC" />
+                            <text x="30" y="253" font-size="11.5" font-weight="900" fill="#334155">4. INFRASTRUCTURE</text>
+                            <rect x="175" y="234" width="105" height="28" rx="5" fill="#FFFFFF" />
+                            <text x="227" y="252" font-size="10.5" font-weight="800" fill="#059669" text-anchor="middle">Supabase PostGIS</text>
+                            <rect x="290" y="234" width="105" height="28" rx="5" fill="#FFFFFF" />
+                            <text x="342" y="252" font-size="10.5" font-weight="800" fill="#7C3AED" text-anchor="middle">GISTDA Service</text>
+                            <rect x="405" y="234" width="110" height="28" rx="5" fill="#FFFFFF" />
+                            <text x="460" y="252" font-size="10.5" font-weight="800" fill="#EA580C" text-anchor="middle">OpenWeather API</text>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -678,42 +762,72 @@
                     </div>
                 </div>
 
-                <!-- Right: Pattern Benefits -->
-                <div class="stack-list">
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-link-slash" style="color:var(--color-blue);"></i> 1. Loose Coupling (ลดการพึ่งพา)
+                <!-- Right: Strategy Pattern Risk Engine Flow Diagram -->
+                <div class="diagram-box">
+                    <div class="diagram-topbar">
+                        <div class="diagram-tag">
+                            <i class="fa-solid fa-brain" style="color:var(--color-blue);"></i>
+                            <span>Strategy Pattern: Dynamic Risk Engine Flow</span>
                         </div>
-                        <div class="stack-desc">
-                            Domain Logic ไม่ผูกติดกับ SDK ภายนอกหรือฐานข้อมูล สามารถเปลี่ยน Database หรือ API Provider ได้ทันทีโดยไม่กระทบ Business Core
-                        </div>
+                        <div style="font-size:10px; font-weight:700; color:var(--text-muted);">Runtime Injection</div>
                     </div>
+                    <div class="diagram-body">
+                        <svg viewBox="0 0 540 280" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 3 Input Cards on Left -->
+                            <!-- Input 1 -->
+                            <rect x="15" y="18" width="145" height="66" rx="8" fill="#EFF6FF" />
+                            <text x="25" y="40" font-size="11" font-weight="900" fill="#1E40AF">🌊 ระดับน้ำ (Water Level)</text>
+                            <text x="25" y="58" font-size="10" font-weight="600" fill="#3B82F6">หน่วยวัด: เมตร</text>
+                            <rect x="95" y="52" width="58" height="20" rx="4" fill="#2563EB" />
+                            <text x="124" y="66" font-size="9.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">น้ำหนัก 40%</text>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-vial-circle-check" style="color:var(--color-emerald);"></i> 2. 100% Testability (ทดสอบได้สมบูรณ์)
-                        </div>
-                        <div class="stack-desc">
-                            สามารถสลับไปใช้ Mock Repository และ Mock Weather Data เพื่อรัน Automated Unit Test ได้อย่างรวดเร็วและแม่นยำ
-                        </div>
-                    </div>
+                            <!-- Input 2 -->
+                            <rect x="15" y="104" width="145" height="66" rx="8" fill="#F0FDF4" />
+                            <text x="25" y="126" font-size="11" font-weight="900" fill="#166534">🌧️ พยากรณ์ฝน 3 ชม.</text>
+                            <text x="25" y="144" font-size="10" font-weight="600" fill="#16A34A">หน่วย: มม./ชม.</text>
+                            <rect x="95" y="138" width="58" height="20" rx="4" fill="#059669" />
+                            <text x="124" y="152" font-size="9.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">น้ำหนัก 35%</text>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-chart-line" style="color:var(--color-orange);"></i> 3. Dynamic Risk Scoring (ประเมินสด)
-                        </div>
-                        <div class="stack-desc">
-                            ปรับเปลี่ยนสูตรคำนวณความเสี่ยงตามฤดูกาลหรือสภาพอากาศแบบ Run-time ผ่าน Dependency Injection โดยไม่ต้องแก้โค้ด Domain
-                        </div>
-                    </div>
+                            <!-- Input 3 -->
+                            <rect x="15" y="190" width="145" height="66" rx="8" fill="#FAF5FF" />
+                            <text x="25" y="212" font-size="11" font-weight="900" fill="#581C87">📢 รายงานเหตุประชาชน</text>
+                            <text x="25" y="230" font-size="10" font-weight="600" fill="#9333EA">รัศมี: 500 เมตร</text>
+                            <rect x="95" y="224" width="58" height="20" rx="4" fill="#7C3AED" />
+                            <text x="124" y="238" font-size="9.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">น้ำหนัก 25%</text>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-gauge-high" style="color:var(--color-purple);"></i> 4. High Performance (ประสิทธิภาพสูง)
-                        </div>
-                        <div class="stack-desc">
-                            ลดเวลาค้นหาข้อมูลเชิงพื้นที่ด้วย Spatial Indexing และ In-Memory Cache ตอบสนองคำขอจำนวนมากได้อย่างเสถียร
-                        </div>
+                            <!-- Connecting Flow Paths -->
+                            <path d="M 160 51 L 205 115" stroke="#CBD5E1" stroke-width="2" />
+                            <path d="M 160 137 L 205 137" stroke="#CBD5E1" stroke-width="2" />
+                            <path d="M 160 223 L 205 158" stroke="#CBD5E1" stroke-width="2" />
+
+                            <!-- Center Strategy Engine -->
+                            <rect x="205" y="78" width="170" height="118" rx="10" fill="#1E293B" />
+                            <text x="290" y="106" font-size="11.5" font-weight="900" fill="#38BDF8" text-anchor="middle">CompositeRiskStrategy</text>
+                            <text x="290" y="126" font-size="10" font-weight="600" fill="#94A3B8" text-anchor="middle">คำนวณคะแนนรวมแบบถ่วงน้ำหนัก</text>
+                            <rect x="215" y="140" width="150" height="34" rx="6" fill="#334155" />
+                            <text x="290" y="157" font-size="9" font-weight="800" fill="#FDE047" text-anchor="middle">Score = (W*0.4)+(R*0.35)</text>
+                            <text x="290" y="168" font-size="9" font-weight="800" fill="#FDE047" text-anchor="middle">+ (D*0.25)</text>
+
+                            <!-- Output Arrow -->
+                            <path d="M 375 137 L 398 137" stroke="#CBD5E1" stroke-width="2" />
+
+                            <!-- 4 Outputs on Right -->
+                            <rect x="400" y="18" width="125" height="54" rx="6" fill="#FEE2E2" />
+                            <text x="462" y="39" font-size="10.5" font-weight="900" fill="#991B1B" text-anchor="middle">🔴 CRITICAL</text>
+                            <text x="462" y="55" font-size="9.5" font-weight="800" fill="#DC2626" text-anchor="middle">คะแนน ≥ 80</text>
+
+                            <rect x="400" y="80" width="125" height="54" rx="6" fill="#FFEDD5" />
+                            <text x="462" y="101" font-size="10.5" font-weight="900" fill="#9A3412" text-anchor="middle">🟠 HIGH</text>
+                            <text x="462" y="117" font-size="9.5" font-weight="800" fill="#EA580C" text-anchor="middle">คะแนน 60 - 79</text>
+
+                            <rect x="400" y="142" width="125" height="54" rx="6" fill="#FEF9C3" />
+                            <text x="462" y="163" font-size="10.5" font-weight="900" fill="#854D0E" text-anchor="middle">🟡 MEDIUM</text>
+                            <text x="462" y="179" font-size="9.5" font-weight="800" fill="#CA8A04" text-anchor="middle">คะแนน 40 - 59</text>
+
+                            <rect x="400" y="204" width="125" height="54" rx="6" fill="#E0F2FE" />
+                            <text x="462" y="225" font-size="10.5" font-weight="900" fill="#075985" text-anchor="middle">🔵 LOW</text>
+                            <text x="462" y="241" font-size="9.5" font-weight="800" fill="#0284C7" text-anchor="middle">คะแนน &lt; 40</text>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -883,42 +997,51 @@
                     </div>
                 </div>
 
-                <!-- Right: Communication & Design Tokens -->
-                <div class="stack-list">
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-language" style="color:var(--color-sky);"></i> 1. Thai-First & Human Centric
+                <!-- Right: White Modern UI Surface Layering & Design Tokens Diagram -->
+                <div class="diagram-box">
+                    <div class="diagram-topbar">
+                        <div class="diagram-tag">
+                            <i class="fa-solid fa-palette" style="color:var(--color-sky);"></i>
+                            <span>Surface Layering & Radius Hierarchy System</span>
                         </div>
-                        <div class="stack-desc">
-                            ใช้ภาษาไทยเข้าใจง่าย สุภาพ ปราศจากศัพท์เทคนิคที่ไม่จำเป็นบนหน้าจอ (เช่น Controller, JSON) และไร้วงเล็บภาษาอังกฤษซ้ำซ้อน
-                        </div>
+                        <div style="font-size:10px; font-weight:700; color:var(--text-muted);">Zero Border / Zero Shadow</div>
                     </div>
+                    <div class="diagram-body">
+                        <svg viewBox="0 0 540 280" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Outer Level 1: Canvas Background -->
+                            <rect x="15" y="10" width="510" height="260" rx="18" fill="#F1F5F9" />
+                            <text x="35" y="32" font-size="11.5" font-weight="900" fill="#475569">Level 1: Canvas Background (#090D16 / #F1F5F9) • Radius 18px</text>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-table-cells" style="color:var(--color-blue);"></i> 2. High Information Density
-                        </div>
-                        <div class="stack-desc">
-                            จัดวางข้อมูลกระชับ อ่านง่าย มองเห็นภาพรวมของสถานการณ์ทั้งหมดได้อย่างครบถ้วนในหน้าจอเดียวโดยไม่ต้องเลื่อนหา
-                        </div>
-                    </div>
+                            <!-- Level 2: Slide Container / Page Card -->
+                            <rect x="30" y="44" width="480" height="212" rx="14" fill="#FFFFFF" />
+                            <text x="48" y="68" font-size="11" font-weight="900" fill="#1E293B">Level 2: Main Slide & Container Card (#FFFFFF) • Radius 14px • Zero Border</text>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-palette" style="color:var(--color-orange);"></i> 3. Semantic Status Color Tokens
-                        </div>
-                        <div class="stack-desc">
-                            ระบบสีสื่อความหมายชัดเจน: แดง (วิกฤต) • ส้ม (เสี่ยงสูง) • เหลือง (ปานกลาง) • ฟ้า (เฝ้าระวัง) • เขียว (สถานะปกติ)
-                        </div>
-                    </div>
+                            <!-- Level 3: Component Surface & Mockup Frame -->
+                            <rect x="45" y="80" width="450" height="162" rx="10" fill="#F8FAFC" />
+                            <text x="62" y="104" font-size="10.5" font-weight="800" fill="#334155">Level 3: Component Surface (#F8FAFC) • Radius 10px • Zero Shadow</text>
 
-                    <div class="stack-item">
-                        <div class="stack-title">
-                            <i class="fa-solid fa-font" style="color:var(--color-purple);"></i> 4. Typography Hierarchy
-                        </div>
-                        <div class="stack-desc">
-                            Noto Sans Thai สำหรับภาษาไทยที่คมชัดอ่านง่าย ผสาน Inter สำหรับตัวเลข พิกัด และรหัสทางเทคนิค
-                        </div>
+                            <!-- 3 Token Pills inside Level 3 -->
+                            <rect x="60" y="118" width="125" height="110" rx="8" fill="#EFF6FF" />
+                            <text x="72" y="142" font-size="11" font-weight="900" fill="#1E40AF">🔵 Primary Tint</text>
+                            <text x="72" y="162" font-size="9.5" font-weight="700" fill="#2563EB">Surface: #EFF6FF</text>
+                            <text x="72" y="180" font-size="9" font-weight="600" fill="#475569">สถานะ: Interactive</text>
+                            <rect x="72" y="194" width="70" height="20" rx="4" fill="#2563EB" />
+                            <text x="107" y="208" font-size="8.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">Radius 8px</text>
+
+                            <rect x="202" y="118" width="125" height="110" rx="8" fill="#F0FDF4" />
+                            <text x="214" y="142" font-size="11" font-weight="900" fill="#166534">🟢 Success Tint</text>
+                            <text x="214" y="162" font-size="9.5" font-weight="700" fill="#16A34A">Surface: #F0FDF4</text>
+                            <text x="214" y="180" font-size="9" font-weight="600" fill="#475569">สถานะ: เฝ้าระวังปกติ</text>
+                            <rect x="214" y="194" width="70" height="20" rx="4" fill="#16A34A" />
+                            <text x="249" y="208" font-size="8.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">Radius 8px</text>
+
+                            <rect x="345" y="118" width="135" height="110" rx="8" fill="#FEF2F2" />
+                            <text x="357" y="142" font-size="11" font-weight="900" fill="#991B1B">🔴 Alert Tint</text>
+                            <text x="357" y="162" font-size="9.5" font-weight="700" fill="#DC2626">Surface: #FEF2F2</text>
+                            <text x="357" y="180" font-size="9" font-weight="600" fill="#475569">สถานะ: วิกฤตน้ำท่วม</text>
+                            <rect x="357" y="194" width="70" height="20" rx="4" fill="#DC2626" />
+                            <text x="392" y="208" font-size="8.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">Radius 8px</text>
+                        </svg>
                     </div>
                 </div>
             </div>
