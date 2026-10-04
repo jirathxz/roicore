@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROiCORE — 6-Slide Executive Presentation (Tight, Rich & High-Density)</title>
+    <title>ROiCORE — 6-Slide Executive Presentation (Tight, Rich & Zero Border)</title>
     
     <!-- Google Fonts: Inter & Noto Sans Thai -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
 
     <style>
         /* ==========================================================================
-           ROiCORE High-Density & Tight Presentation System (White Modern UI)
+           ROiCORE High-Density Presentation System (Strict Zero Border & Surface Layering)
            ========================================================================== */
         :root {
             /* Brand Identity */
@@ -23,7 +23,7 @@
             --accent-blue-hover: #1D4ED8;
             --accent-tint: #EFF6FF;
 
-            /* Surfaces (Surface Layering) */
+            /* Surfaces (Surface Layering - 100% Zero Border) */
             --bg-canvas: #090D16;
             --bg-slide: #FFFFFF;
             --bg-subtle: #F8FAFC;
@@ -35,7 +35,7 @@
             --text-muted: #334155;
             --text-light: #64748B;
 
-            /* Semantic Status */
+            /* Semantic Status Tints */
             --risk-critical: #DC2626;
             --risk-critical-bg: #FEF2F2;
             --risk-high: #EA580C;
@@ -59,8 +59,9 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            border: none;
-            outline: none;
+            border: 0 !important;
+            outline: none !important;
+            box-shadow: none !important;
         }
 
         body {
@@ -191,11 +192,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 4px;
+            padding-top: 6px;
             font-size: 11.5px;
             color: var(--text-light);
             font-weight: 600;
-            border-top: 1px solid var(--bg-active);
         }
 
         /* Grids with Tight Gaps */
@@ -344,9 +344,8 @@
         .badge-orange { background: #FFEDD5; color: #9A3412; }
         .badge-red { background: #FEE2E2; color: #991B1B; }
 
-        /* Tight Pillar Box */
+        /* Tight Pillar Box (Pure Surface Tint - Zero Border) */
         .pillar-box {
-            background-color: var(--bg-subtle);
             border-radius: var(--r-md);
             padding: 8px 12px;
             display: flex;
@@ -355,6 +354,11 @@
             flex: 1;
             justify-content: center;
         }
+
+        .pillar-blue { background-color: #EFF6FF; }
+        .pillar-green { background-color: #F0FDF4; }
+        .pillar-orange { background-color: #FFF7ED; }
+        .pillar-purple { background-color: #EDE9FE; }
 
         .pillar-box strong {
             font-size: 13.5px;
@@ -476,7 +480,7 @@
         }
 
         /* ==========================================================================
-           PRINT STYLES (PDF Output: Exact 6 Clean Tight Pages)
+           PRINT STYLES (PDF Output: Exact 6 Clean Tight Pages - Zero Border)
            ========================================================================== */
         @media print {
             @page {
@@ -597,21 +601,21 @@
                         </div>
                     </div>
 
-                    <!-- Right: 4 OOP Pillars in System (Tight & Rich Cards) -->
+                    <!-- Right: 4 OOP Pillars in System (Tight & Rich Cards - Zero Border) -->
                     <div style="display:flex; flex-direction:column; gap:6px; flex:1;">
-                        <div class="pillar-box" style="border-left: 3px solid var(--accent-blue);">
+                        <div class="pillar-box pillar-blue">
                             <strong><i class="fa-solid fa-lock" style="color:var(--accent-blue);"></i> 1. Encapsulation (การซ่อนข้อมูลภายใน)</strong>
                             <span><code>GeoLocation</code> และ <code>FloodPoint</code> ซ่อน properties เป็น <code>private</code> มี Validation ภายใน ป้องกันค่าพิกัดผิดพลาด</span>
                         </div>
-                        <div class="pillar-box" style="border-left: 3px solid var(--status-success);">
+                        <div class="pillar-box pillar-green">
                             <strong><i class="fa-solid fa-diagram-project" style="color:var(--status-success);"></i> 2. Inheritance (การสืบทอดคุณสมบัติ)</strong>
                             <span><code>FloodVictim</code> (แจ้งเหตุด่วน) และ <code>Traveler</code> (เช็คเส้นทาง) สืบทอดจาก <code>User</code> (Abstract) เพื่อแยกสิทธิ์การทำงาน</span>
                         </div>
-                        <div class="pillar-box" style="border-left: 3px solid var(--risk-high);">
+                        <div class="pillar-box pillar-orange">
                             <strong><i class="fa-solid fa-shuffle" style="color:var(--risk-high);"></i> 3. Polymorphism (พหุสัณฐาน)</strong>
                             <span><code>IRiskStrategy</code> กำหนดเมธอด <code>calculate()</code> โดย <code>CompositeRiskStrategy</code> สลับสูตรคำนวณตามสภาพอากาศได้อิสระ</span>
                         </div>
-                        <div class="pillar-box" style="border-left: 3px solid var(--gistda-purple);">
+                        <div class="pillar-box pillar-purple">
                             <strong><i class="fa-solid fa-eye-slash" style="color:var(--gistda-purple);"></i> 4. Abstraction (การซ่อนความซับซ้อน)</strong>
                             <span><code>IFloodPointRepository</code> ซ่อนคำสั่ง SQL และ PostGIS ไว้เบื้องหลัง Domain สั่งบันทึกได้โดยไม่ต้องรู้ไส้ในของฐานข้อมูล</span>
                         </div>
@@ -811,29 +815,29 @@
                 </div>
 
                 <div class="grid-4" style="flex:1;">
-                    <div class="card" style="border-top: 3px solid var(--text-light); padding:10px 12px;">
+                    <div class="card" style="background-color:#F1F5F9; padding:10px 12px;">
                         <strong style="font-size:13.5px; color:var(--text-dark); display:flex; align-items:center; gap:5px;">
                             <i class="fa-solid fa-ban" style="color:var(--text-light);"></i> 1. No Border
                         </strong>
                         <p class="card-text" style="font-size:11.5px; margin-top:2px;">ห้ามมีเส้นขอบกรอบตัดสายตา ใช้ความสะอาดของพื้นที่สร้างมิติ</p>
                     </div>
 
-                    <div class="card" style="border-top: 3px solid var(--accent-blue); padding:10px 12px;">
-                        <strong style="font-size:13.5px; color:var(--text-dark); display:flex; align-items:center; gap:5px;">
+                    <div class="card" style="background-color:#EFF6FF; padding:10px 12px;">
+                        <strong style="font-size:13.5px; color:var(--accent-blue); display:flex; align-items:center; gap:5px;">
                             <i class="fa-solid fa-sun" style="color:var(--accent-blue);"></i> 2. No Shadow
                         </strong>
                         <p class="card-text" style="font-size:11.5px; margin-top:2px;">ห้ามมีเงาดำเบลอๆ ซ้อนกัน ตัดความเทอะทะให้เบาสบายตา</p>
                     </div>
 
-                    <div class="card" style="border-top: 3px solid var(--status-success); padding:10px 12px;">
-                        <strong style="font-size:13.5px; color:var(--text-dark); display:flex; align-items:center; gap:5px;">
+                    <div class="card" style="background-color:#F0FDF4; padding:10px 12px;">
+                        <strong style="font-size:13.5px; color:var(--status-success); display:flex; align-items:center; gap:5px;">
                             <i class="fa-solid fa-layer-group" style="color:var(--status-success);"></i> 3. Surface Layering
                         </strong>
                         <p class="card-text" style="font-size:11.5px; margin-top:2px;">Slate 100 ➔ Pure White ➔ Slate 50 ➔ Slate 200</p>
                     </div>
 
-                    <div class="card" style="border-top: 3px solid var(--gistda-purple); padding:10px 12px;">
-                        <strong style="font-size:13.5px; color:var(--text-dark); display:flex; align-items:center; gap:5px;">
+                    <div class="card" style="background-color:#EDE9FE; padding:10px 12px;">
+                        <strong style="font-size:13.5px; color:var(--gistda-purple); display:flex; align-items:center; gap:5px;">
                             <i class="fa-solid fa-shapes" style="color:var(--gistda-purple);"></i> 4. Radius Scale
                         </strong>
                         <p class="card-text" style="font-size:11.5px; margin-top:2px;">องค์ประกอบนอกมนกว่าใน (20px &gt; 14px &gt; 10px &gt; 8px)</p>
