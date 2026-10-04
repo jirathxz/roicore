@@ -15,7 +15,7 @@
 
     <style>
         /* ==========================================================================
-           ROiCORE Modern Typographic Keynote System (Full-Page, Rich & High-Density)
+           ROiCORE Keynote System (Cohesive Proximity, Natural Tight Gaps)
            ========================================================================== */
         :root {
             /* Brand Primary */
@@ -82,17 +82,18 @@
             padding: 10px;
         }
 
-        /* Slide Component (Full Screen Height Distribution) */
+        /* Slide Component (Natural Flow - No Gaping Holes) */
         .slide {
             position: absolute;
             width: 100%;
             height: 100%;
             background-color: var(--bg-slide);
             border-radius: var(--r-lg);
-            padding: 38px 52px 28px 52px;
+            padding: 34px 48px 24px 48px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 18px;
             opacity: 0;
             pointer-events: none;
             transform: scale(0.98);
@@ -111,11 +112,13 @@
         .slide-header {
             position: relative;
             z-index: 2;
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .main-title {
-            font-size: 34px;
+            font-size: 32px;
             font-weight: 900;
             line-height: 1.15;
             color: var(--color-indigo);
@@ -126,44 +129,40 @@
         }
 
         .sub-title {
-            font-size: 20px;
+            font-size: 19.5px;
             font-weight: 700;
             line-height: 1.3;
             color: var(--text-subtitle);
-            margin-top: 5px;
             letter-spacing: -0.01em;
         }
 
-        /* Slide Body Layout (Full Height Grid) */
+        /* Slide Body Layout (Tight, Natural Alignment) */
         .slide-body {
             position: relative;
             z-index: 2;
-            flex: 1;
             display: grid;
-            grid-template-columns: 1.28fr 1fr;
+            grid-template-columns: 1.25fr 1fr;
             column-gap: 40px;
-            align-items: stretch;
-            margin-bottom: 12px;
+            align-items: start;
         }
 
-        /* Left Side: 2x2 Full Typographic Grid */
+        /* Left Side: 2x2 Tight Typographic Grid */
         .grid-2x2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            row-gap: 24px;
-            column-gap: 28px;
-            align-content: space-between;
+            row-gap: 20px;
+            column-gap: 26px;
+            align-content: start;
         }
 
         .typo-block {
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            justify-content: flex-start;
+            gap: 4px;
         }
 
         .typo-title {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 900;
             line-height: 1.15;
             letter-spacing: -0.02em;
@@ -173,48 +172,47 @@
         }
 
         .typo-title i {
-            font-size: 22px;
+            font-size: 20px;
             flex-shrink: 0;
         }
 
         .typo-desc {
-            font-size: 15px;
+            font-size: 14.5px;
             font-weight: 500;
             color: var(--text-body);
-            line-height: 1.48;
+            line-height: 1.45;
         }
 
         .pill-tag {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--text-muted);
             background: var(--bg-pill);
-            padding: 2px 8px;
+            padding: 2px 7px;
             border-radius: var(--r-full);
-            margin-top: 4px;
+            margin-top: 3px;
             align-self: flex-start;
         }
 
-        /* Right Side: Stacked Vertical Rows (Evenly Spaced Top to Bottom) */
+        /* Right Side: Stacked Vertical Rows (Tight Proximity) */
         .stack-list {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            gap: 16px;
+            gap: 13px;
+            justify-content: flex-start;
         }
 
         .stack-item {
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 2px;
         }
 
         .stack-title {
-            font-size: 17.5px;
+            font-size: 16px;
             font-weight: 800;
             color: var(--text-heading);
             letter-spacing: -0.01em;
@@ -224,16 +222,16 @@
         }
 
         .stack-title i {
-            font-size: 15px;
+            font-size: 14px;
             flex-shrink: 0;
         }
 
         .stack-desc {
-            font-size: 14.2px;
+            font-size: 13.8px;
             font-weight: 500;
             color: var(--text-muted);
-            line-height: 1.45;
-            padding-left: 23px;
+            line-height: 1.4;
+            padding-left: 22px;
         }
 
         /* Bottom Outline Watermark */
@@ -241,11 +239,11 @@
             position: absolute;
             bottom: -22px;
             left: 28px;
-            font-size: 88px;
+            font-size: 84px;
             font-weight: 900;
             font-family: 'Noto Sans Thai', 'Inter', sans-serif;
             color: transparent;
-            -webkit-text-stroke: 1.5px rgba(203, 213, 225, 0.45);
+            -webkit-text-stroke: 1.5px rgba(203, 213, 225, 0.42);
             pointer-events: none;
             z-index: 0;
             line-height: 1;
@@ -254,17 +252,18 @@
             user-select: none;
         }
 
-        /* Slide Footer */
+        /* Slide Footer (Pinned to bottom via margin-top: auto) */
         .slide-footer {
             position: relative;
             z-index: 2;
+            margin-top: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--text-light);
-            padding-top: 10px;
+            padding-top: 12px;
         }
 
         /* Brand Colors */
@@ -377,7 +376,7 @@
                 pointer-events: auto !important;
                 transform: none !important;
                 border-radius: 0 !important;
-                padding: 38px 52px 28px 52px !important;
+                padding: 34px 48px 24px 48px !important;
                 page-break-after: always !important;
                 break-after: page !important;
                 display: flex !important;
@@ -399,12 +398,12 @@
              ==================================================================== -->
         <section class="slide active" id="slide-1">
             <div class="slide-header">
-                <h1 class="main-title"><i class="fa-solid fa-server" style="color:var(--color-indigo); font-size:28px;"></i> สถาปัตยกรรม Clean Architecture & โดเมนโมเดล OOP</h1>
+                <h1 class="main-title"><i class="fa-solid fa-server" style="color:var(--color-indigo); font-size:26px;"></i> สถาปัตยกรรม Clean Architecture & โดเมนโมเดล OOP</h1>
                 <p class="sub-title">แยกแกนกลางทางธุรกิจ (Domain Layer) เป็นอิสระจากฐานข้อมูลและเฟรมเวิร์กภายนอก</p>
             </div>
 
             <div class="slide-body">
-                <!-- Left: 2x2 Typography Grid with Full Details -->
+                <!-- Left: 2x2 Typography Grid with Tight Natural Gaps -->
                 <div class="grid-2x2">
                     <div class="typo-block">
                         <div class="typo-title c-blue">
@@ -447,7 +446,7 @@
                     </div>
                 </div>
 
-                <!-- Right: 4 OOP Pillars Full Height -->
+                <!-- Right: 4 OOP Pillars Tight Proximity -->
                 <div class="stack-list">
                     <div class="stack-item">
                         <div class="stack-title">
@@ -501,7 +500,7 @@
              ==================================================================== -->
         <section class="slide" id="slide-2">
             <div class="slide-header">
-                <h1 class="main-title"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-indigo); font-size:28px;"></i> 3 Design Patterns หลักในการประมวลผลข้อมูล</h1>
+                <h1 class="main-title"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-indigo); font-size:26px;"></i> 3 Design Patterns หลักในการประมวลผลข้อมูล</h1>
                 <p class="sub-title">การประยุกต์ใช้ GoF Patterns เพื่อความยืดหยุ่น การทดสอบ และการประเมินความเสี่ยงอัตโนมัติ</p>
             </div>
 
@@ -603,7 +602,7 @@
              ==================================================================== -->
         <section class="slide" id="slide-3">
             <div class="slide-header">
-                <h1 class="main-title"><i class="fa-solid fa-network-wired" style="color:var(--color-indigo); font-size:28px;"></i> ระบบคำนวณเชิงพื้นที่ & REST API Engine</h1>
+                <h1 class="main-title"><i class="fa-solid fa-network-wired" style="color:var(--color-indigo); font-size:26px;"></i> ระบบคำนวณเชิงพื้นที่ & REST API Engine</h1>
                 <p class="sub-title">การคำนวณอาณาเขตน้ำท่วมอัตโนมัติ (Convex Hull) และการเชื่อมต่อข้อมูลความเร็วสูง</p>
             </div>
 
@@ -705,7 +704,7 @@
              ==================================================================== -->
         <section class="slide" id="slide-4">
             <div class="slide-header">
-                <h1 class="main-title c-sky"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-sky); font-size:28px;"></i> ปรัชญาการออกแบบ: White Modern UI Architecture</h1>
+                <h1 class="main-title c-sky"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-sky); font-size:26px;"></i> ปรัชญาการออกแบบ: White Modern UI Architecture</h1>
                 <p class="sub-title">ตัดสิ่งรบกวนสายตา สร้างมิติด้วยระดับชั้นของสีพื้นผิว (Surface Layering)</p>
             </div>
 
@@ -807,7 +806,7 @@
              ==================================================================== -->
         <section class="slide" id="slide-5">
             <div class="slide-header">
-                <h1 class="main-title c-sky"><i class="fa-solid fa-map-location-dot" style="color:var(--color-sky); font-size:28px;"></i> หน้าหลัก: แผนที่น้ำท่วมอัจฉริยะ (Interactive Map View)</h1>
+                <h1 class="main-title c-sky"><i class="fa-solid fa-map-location-dot" style="color:var(--color-sky); font-size:26px;"></i> หน้าหลัก: แผนที่น้ำท่วมอัจฉริยะ (Interactive Map View)</h1>
                 <p class="sub-title">แสดงผลเต็มหน้าจอ (100vw, 100vh) ด้วย Leaflet.js ผสานข้อมูลดาวเทียมและพิกัดผู้ใช้</p>
             </div>
 
@@ -816,7 +815,7 @@
                 <div class="grid-2x2">
                     <div class="typo-block">
                         <div class="typo-title c-blue">
-                            <i class="fa-solid fa-map"></i> OpenStreetMap Canvas
+                            <i class="fa-solid fa-map"></i> OpenStreetMap
                         </div>
                         <div class="typo-desc">
                             เรนเดอร์แผนที่เวกเตอร์เต็มหน้าจอ 100vw x 100vh รองรับการแพน ซูม และหมุนได้อย่างลื่นไหล 60 FPS ด้วย Leaflet 1.9.4
@@ -909,7 +908,7 @@
              ==================================================================== -->
         <section class="slide" id="slide-6">
             <div class="slide-header">
-                <h1 class="main-title c-sky"><i class="fa-solid fa-gauge-high" style="color:var(--color-sky); font-size:28px;"></i> ระบบรายงานด่วน ≤ 3 Taps & แดชบอร์ดวิเคราะห์ผล</h1>
+                <h1 class="main-title c-sky"><i class="fa-solid fa-gauge-high" style="color:var(--color-sky); font-size:26px;"></i> ระบบรายงานด่วน ≤ 3 Taps & แดชบอร์ดวิเคราะห์ผล</h1>
                 <p class="sub-title">ประสบการณ์ผู้ใช้ที่เร็วที่สุดสำหรับเหตุฉุกเฉิน พร้อมศูนย์กลางตรวจสอบข้อมูล 77 จังหวัด</p>
             </div>
 
