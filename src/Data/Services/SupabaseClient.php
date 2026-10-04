@@ -20,8 +20,8 @@ final class SupabaseClient
         ?string $apiKey = null,
         ?ClientInterface $httpClient = null
     ) {
-        $this->baseUrl = rtrim($baseUrl ?? ($_ENV['SUPABASE_URL'] ?? 'http://127.0.0.1:54321'), '/');
-        $this->apiKey = $apiKey ?? ($_ENV['SUPABASE_ANON_KEY'] ?? '');
+        $this->baseUrl = rtrim($baseUrl ?? ($_ENV['SUPABASE_URL'] ?? (getenv('SUPABASE_URL') ?: 'http://127.0.0.1:54321')), '/');
+        $this->apiKey = $apiKey ?? ($_ENV['SUPABASE_ANON_KEY'] ?? (getenv('SUPABASE_ANON_KEY') ?: ''));
 
         $this->httpClient = $httpClient ?? new Client([
             'timeout' => 5.0,
