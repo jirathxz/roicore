@@ -45,13 +45,13 @@ final class SystemController
         }
 
         try {
-            $pointsCount = count($this->floodPointRepository->findAll());
+            $pointsCount = count($this->floodPointRepository->listAll());
         } catch (Throwable $e) {
             $pointsCount = 0;
         }
 
         try {
-            $reportsCount = count($this->reportRepository->findAll());
+            $reportsCount = count($this->reportRepository->listAll());
         } catch (Throwable $e) {
             $reportsCount = 0;
         }
