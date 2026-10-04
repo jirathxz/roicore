@@ -396,36 +396,69 @@
             display: block;
         }
 
-        /* Bottom Outline Watermark */
-        .bottom-watermark {
-            position: absolute;
-            bottom: -22px;
-            left: 28px;
-            font-size: 84px;
-            font-weight: 900;
-            font-family: 'Noto Sans Thai', 'Inter', sans-serif;
-            color: transparent;
-            -webkit-text-stroke: 1.5px rgba(203, 213, 225, 0.42);
-            pointer-events: none;
-            z-index: 0;
-            line-height: 1;
-            letter-spacing: -0.03em;
+        /* ==========================================================================
+           Slide Bottom Notes Bar (Technical Details & Engineering Specifications)
+           ========================================================================== */
+        .slide-bottom-notes {
+            position: relative;
+            z-index: 2;
+            background-color: var(--bg-pill);
+            border-radius: var(--r-sm);
+            padding: 7px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .notes-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--color-indigo);
+            background: #FFFFFF;
+            padding: 3px 8px;
+            border-radius: var(--r-full);
             white-space: nowrap;
-            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .notes-text {
+            font-size: 11.5px;
+            font-weight: 500;
+            color: var(--text-body);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .notes-text strong {
+            color: var(--text-heading);
+            font-weight: 700;
+        }
+
+        .notes-text code {
+            font-family: 'Fira Code', monospace;
+            font-size: 10.5px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1px 4px;
+            border-radius: 4px;
+            color: var(--color-indigo);
+            font-weight: 700;
         }
 
         /* Slide Footer */
         .slide-footer {
             position: relative;
             z-index: 2;
-            margin-top: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 600;
             color: var(--text-light);
-            padding-top: 10px;
+            padding-top: 4px;
         }
 
         /* Brand Colors */
@@ -594,7 +627,7 @@
                             <i class="fa-solid fa-file-shield"></i> FloodReport
                         </div>
                         <div class="typo-desc">
-                            รายงานเหตุน้ำท่วมด่วนจากประชาชน บันทึกระดับความรุนแรง <code>Severity (1-4)</code>, แนบภาพถ่ายสถานที่จริง, เบอร์โทร และบันทึกสถานะ <code>PENDING ➔ VERIFIED</code>
+                            รายงานเหตุน้ำท่วมด่วนจากประชาชน บันทึกระดับความรุนแรง <code>Severity (1-4)</code>, แนบภาพถ่ายสถานที่จริง, เบอร์โทร และบันทึกสถานะ <code>PENDING &rarr; VERIFIED</code>
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-bullhorn"></i> Citizen Incident Report</div>
                     </div>
@@ -688,8 +721,11 @@
                 </div>
             </div>
 
-            <!-- Bottom Outline Watermark -->
-            <div class="bottom-watermark">Architecture & โดเมนโมเดล</div>
+            <!-- Bottom Technical Notes -->
+            <div class="slide-bottom-notes">
+                <span class="notes-badge"><i class="fa-solid fa-circle-info"></i> ข้อกำหนดทางสถาปัตยกรรม (Domain Isolation & Invariants):</span>
+                <span class="notes-text">แกนกลาง <strong>Domain Model</strong> ถูกออกแบบด้วย Pure PHP 8.2+ ปราศจากการพึ่งพา External Database Driver หรือ Framework ใดๆ &bull; <code>GeoLocation</code> ทำการตรวจสอบ Invariant พิกัดประเทศไทย (ละติจูด 5.61&deg; - 20.46&deg;, ลองจิจูด 97.34&deg; - 105.63&deg;) &bull; เอนทิตี <code>FloodPoint</code> ซ่อนสถานะภายในและประเมินผลผ่าน <code>IRiskStrategy</code> ตามหลัก Inversion of Control (IoC)</span>
+            </div>
 
             <div class="slide-footer">
                 <span>Part 1: Back-End Architecture & Domain Model</span>
@@ -776,21 +812,21 @@
                             <!-- 3 Input Cards on Left -->
                             <!-- Input 1 -->
                             <rect x="15" y="18" width="145" height="66" rx="8" fill="#EFF6FF" />
-                            <text x="25" y="40" font-size="11" font-weight="900" fill="#1E40AF">🌊 ระดับน้ำ (Water Level)</text>
+                            <text x="25" y="40" font-size="11" font-weight="900" fill="#1E40AF">ระดับน้ำ (Water Level)</text>
                             <text x="25" y="58" font-size="10" font-weight="600" fill="#3B82F6">หน่วยวัด: เมตร</text>
                             <rect x="95" y="52" width="58" height="20" rx="4" fill="#2563EB" />
                             <text x="124" y="66" font-size="9.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">น้ำหนัก 40%</text>
 
                             <!-- Input 2 -->
                             <rect x="15" y="104" width="145" height="66" rx="8" fill="#F0FDF4" />
-                            <text x="25" y="126" font-size="11" font-weight="900" fill="#166534">🌧️ พยากรณ์ฝน 3 ชม.</text>
+                            <text x="25" y="126" font-size="11" font-weight="900" fill="#166534">พยากรณ์ฝน 3 ชม. (Rain)</text>
                             <text x="25" y="144" font-size="10" font-weight="600" fill="#16A34A">หน่วย: มม./ชม.</text>
                             <rect x="95" y="138" width="58" height="20" rx="4" fill="#059669" />
                             <text x="124" y="152" font-size="9.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">น้ำหนัก 35%</text>
 
                             <!-- Input 3 -->
                             <rect x="15" y="190" width="145" height="66" rx="8" fill="#FAF5FF" />
-                            <text x="25" y="212" font-size="11" font-weight="900" fill="#581C87">📢 รายงานเหตุประชาชน</text>
+                            <text x="25" y="212" font-size="11" font-weight="900" fill="#581C87">รายงานเหตุ (Reports)</text>
                             <text x="25" y="230" font-size="10" font-weight="600" fill="#9333EA">รัศมี: 500 เมตร</text>
                             <rect x="95" y="224" width="58" height="20" rx="4" fill="#7C3AED" />
                             <text x="124" y="238" font-size="9.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">น้ำหนัก 25%</text>
@@ -813,27 +849,30 @@
 
                             <!-- 4 Outputs on Right -->
                             <rect x="400" y="18" width="125" height="54" rx="6" fill="#FEE2E2" />
-                            <text x="462" y="39" font-size="10.5" font-weight="900" fill="#991B1B" text-anchor="middle">🔴 CRITICAL</text>
+                            <text x="462" y="39" font-size="10.5" font-weight="900" fill="#991B1B" text-anchor="middle">CRITICAL (วิกฤต)</text>
                             <text x="462" y="55" font-size="9.5" font-weight="800" fill="#DC2626" text-anchor="middle">คะแนน ≥ 80</text>
 
                             <rect x="400" y="80" width="125" height="54" rx="6" fill="#FFEDD5" />
-                            <text x="462" y="101" font-size="10.5" font-weight="900" fill="#9A3412" text-anchor="middle">🟠 HIGH</text>
+                            <text x="462" y="101" font-size="10.5" font-weight="900" fill="#9A3412" text-anchor="middle">HIGH (เสี่ยงสูง)</text>
                             <text x="462" y="117" font-size="9.5" font-weight="800" fill="#EA580C" text-anchor="middle">คะแนน 60 - 79</text>
 
                             <rect x="400" y="142" width="125" height="54" rx="6" fill="#FEF9C3" />
-                            <text x="462" y="163" font-size="10.5" font-weight="900" fill="#854D0E" text-anchor="middle">🟡 MEDIUM</text>
+                            <text x="462" y="163" font-size="10.5" font-weight="900" fill="#854D0E" text-anchor="middle">MEDIUM (ปานกลาง)</text>
                             <text x="462" y="179" font-size="9.5" font-weight="800" fill="#CA8A04" text-anchor="middle">คะแนน 40 - 59</text>
 
                             <rect x="400" y="204" width="125" height="54" rx="6" fill="#E0F2FE" />
-                            <text x="462" y="225" font-size="10.5" font-weight="900" fill="#075985" text-anchor="middle">🔵 LOW</text>
+                            <text x="462" y="225" font-size="10.5" font-weight="900" fill="#075985" text-anchor="middle">LOW (เฝ้าระวัง)</text>
                             <text x="462" y="241" font-size="9.5" font-weight="800" fill="#0284C7" text-anchor="middle">คะแนน &lt; 40</text>
                         </svg>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Outline Watermark -->
-            <div class="bottom-watermark">Enterprise Design Patterns</div>
+            <!-- Bottom Technical Notes -->
+            <div class="slide-bottom-notes">
+                <span class="notes-badge"><i class="fa-solid fa-calculator"></i> สมการการประเมินความเสี่ยง (Weighted Scoring Formulation):</span>
+                <span class="notes-text">สูตรคำนวณคะแนนความเสี่ยงสด: <code>Score = (WaterLevel * 0.40) + (Rainfall * 0.35) + (ReportDensity * 0.25)</code> พร้อมระบบ Run-time Strategy Injection &bull; แยก Data Access ผ่าน <code>IFloodPointRepository</code> เพื่อรองรับ Spatial Indexing และ In-Memory Cache (TTL 15 นาที) ตอบสนองภายใน &lt; 30ms</span>
+            </div>
 
             <div class="slide-footer">
                 <span>Part 1: Back-End Enterprise Design Patterns</span>
@@ -922,8 +961,11 @@
                 </div>
             </div>
 
-            <!-- Bottom Outline Watermark -->
-            <div class="bottom-watermark">Spatial Engine & REST API</div>
+            <!-- Bottom Technical Notes -->
+            <div class="slide-bottom-notes">
+                <span class="notes-badge"><i class="fa-solid fa-draw-polygon"></i> กลไกการคำนวณเชิงพื้นที่ (Spatial Algorithm & API Specs):</span>
+                <span class="notes-text">อัลกอริทึม <strong>Graham Scan Convex Hull</strong> ทำการคำนวณจุดยอดรูปหลายเหลี่ยมรอบกลุ่มจุดน้ำท่วม (Time Complexity: <code>O(n log n)</code>) ส่งออกเป็น <strong>RFC 7946 GeoJSON Polygon</strong> ขอบเขตเตือนภัย &bull; ไปป์ไลน์ดึงและแปลงข้อมูลภาพถ่ายดาวเทียม Sentinel-1 SAR จาก GISTDA ครอบคลุม 77 จังหวัดรายวัน</span>
+            </div>
 
             <div class="slide-footer">
                 <span>Part 1: Back-End Spatial & High-Performance API</span>
@@ -981,7 +1023,7 @@
                             <i class="fa-solid fa-layer-group"></i> Surface Layering
                         </div>
                         <div class="typo-desc">
-                            สร้างมิติความลึกด้วยระดับชั้นสีพื้นผิว 4 ระดับ: Canvas (<code>#FFFFFF</code>) ➔ Subtle (<code>#F8FAFC</code>) ➔ Active (<code>#F1F5F9</code>) ➔ Tint (<code>#EFF6FF</code>)
+                            สร้างมิติความลึกด้วยระดับชั้นสีพื้นผิว 4 ระดับ: Canvas (<code>#FFFFFF</code>) &rarr; Subtle (<code>#F8FAFC</code>) &rarr; Active (<code>#F1F5F9</code>) &rarr; Tint (<code>#EFF6FF</code>)
                         </div>
                         <div class="pill-tag"><i class="fa-solid fa-cubes-stacked"></i> 4 Surface Levels</div>
                     </div>
@@ -1022,21 +1064,21 @@
 
                             <!-- 3 Token Pills inside Level 3 -->
                             <rect x="60" y="118" width="125" height="110" rx="8" fill="#EFF6FF" />
-                            <text x="72" y="142" font-size="11" font-weight="900" fill="#1E40AF">🔵 Primary Tint</text>
+                            <text x="72" y="142" font-size="11" font-weight="900" fill="#1E40AF">Primary Tint</text>
                             <text x="72" y="162" font-size="9.5" font-weight="700" fill="#2563EB">Surface: #EFF6FF</text>
                             <text x="72" y="180" font-size="9" font-weight="600" fill="#475569">สถานะ: Interactive</text>
                             <rect x="72" y="194" width="70" height="20" rx="4" fill="#2563EB" />
                             <text x="107" y="208" font-size="8.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">Radius 8px</text>
 
                             <rect x="202" y="118" width="125" height="110" rx="8" fill="#F0FDF4" />
-                            <text x="214" y="142" font-size="11" font-weight="900" fill="#166534">🟢 Success Tint</text>
+                            <text x="214" y="142" font-size="11" font-weight="900" fill="#166534">Success Tint</text>
                             <text x="214" y="162" font-size="9.5" font-weight="700" fill="#16A34A">Surface: #F0FDF4</text>
                             <text x="214" y="180" font-size="9" font-weight="600" fill="#475569">สถานะ: เฝ้าระวังปกติ</text>
                             <rect x="214" y="194" width="70" height="20" rx="4" fill="#16A34A" />
                             <text x="249" y="208" font-size="8.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">Radius 8px</text>
 
                             <rect x="345" y="118" width="135" height="110" rx="8" fill="#FEF2F2" />
-                            <text x="357" y="142" font-size="11" font-weight="900" fill="#991B1B">🔴 Alert Tint</text>
+                            <text x="357" y="142" font-size="11" font-weight="900" fill="#991B1B">Alert Tint</text>
                             <text x="357" y="162" font-size="9.5" font-weight="700" fill="#DC2626">Surface: #FEF2F2</text>
                             <text x="357" y="180" font-size="9" font-weight="600" fill="#475569">สถานะ: วิกฤตน้ำท่วม</text>
                             <rect x="357" y="194" width="70" height="20" rx="4" fill="#DC2626" />
@@ -1046,8 +1088,11 @@
                 </div>
             </div>
 
-            <!-- Bottom Outline Watermark -->
-            <div class="bottom-watermark">White Modern UI Design</div>
+            <!-- Bottom Technical Notes -->
+            <div class="slide-bottom-notes">
+                <span class="notes-badge"><i class="fa-solid fa-palette"></i> ข้อกำหนดการออกแบบ (Design System Standards):</span>
+                <span class="notes-text">ปฏิบัติตามมาตรฐาน <strong>Zero Border</strong> และ <strong>Zero Shadow</strong> อย่างเคร่งครัด สร้างมิติความลึกด้วย <strong>Surface Layering 4 ระดับ</strong> &bull; ทุกองค์ประกอบใช้สัดส่วนความมน (Radius Scale) สัมพันธ์กับขนาดคอนเทนเนอร์ &bull; ผ่านการทดสอบค่าคอนทราสต์ของสีตามมาตรฐาน <strong>WCAG 2.1 AAA</strong> และรองรับการแสดงผลคมชัดระดับ Retina Display</span>
+            </div>
 
             <div class="slide-footer">
                 <span>Part 2: Front-End Design System & Tokens</span>
@@ -1136,8 +1181,11 @@
                 </div>
             </div>
 
-            <!-- Bottom Outline Watermark -->
-            <div class="bottom-watermark">Interactive Spatial Map</div>
+            <!-- Bottom Technical Notes -->
+            <div class="slide-bottom-notes">
+                <span class="notes-badge"><i class="fa-solid fa-map-location-dot"></i> สถาปัตยกรรมแผนที่ (Interactive Map Engine Specs):</span>
+                <span class="notes-text">แผนที่เวกเตอร์เต็มหน้าจอ 100vw &times; 100vh ขับเคลื่อนด้วย Leaflet 1.9.4 &bull; ระบบหมุดสถานการณ์น้ำท่วมแยกสี 4 ระดับ รองรับการแสดงผลพร้อมกัน &gt; 1,000 จุดด้วย Canvas Marker Mode &bull; เลเยอร์ภาพถ่ายดาวเทียมน้ำท่วมขัง 77 จังหวัดผสานเข้ากับขอบเขตพื้นที่เสี่ยง GeoJSON Polygon แบบเรียลไทม์</span>
+            </div>
 
             <div class="slide-footer">
                 <span>Part 2: Front-End Spatial Map Engine</span>
@@ -1226,8 +1274,11 @@
                 </div>
             </div>
 
-            <!-- Bottom Outline Watermark -->
-            <div class="bottom-watermark">Quick Report & Dashboard</div>
+            <!-- Bottom Technical Notes -->
+            <div class="slide-bottom-notes">
+                <span class="notes-badge"><i class="fa-solid fa-bolt"></i> ประสบการณ์ผู้ใช้และการซิงค์ข้อมูล (Emergency UX & Sync):</span>
+                <span class="notes-text">กระบวนการรายงานเหตุการณ์ด่วนออกแบบตามหลักสรีรศาสตร์แบบ <strong>&le; 3 Taps</strong> สำหรับสถานการณ์ฉุกเฉิน &bull; จดจำข้อมูลติดต่อใน LocalStorage เพื่อลดภาระการกรอกข้อมูล &bull; ดึงพิกัด Geolocation อัตโนมัติและส่งข้อมูลแบบ Asynchronous พร้อมกระจายข้อมูลเข้าสู่แดชบอร์ดศูนย์บัญชาการ 77 จังหวัดทันที</span>
+            </div>
 
             <div class="slide-footer">
                 <span>Part 2: Front-End UI, Dashboard & System Readiness</span>
