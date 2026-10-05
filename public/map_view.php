@@ -1084,19 +1084,31 @@ declare(strict_types=1);
             color: var(--text-main);
         }
 
+        /* Leaflet DivIcon wrapper for Draggable Pick Pin (อยู่เหนือทุกเลเยอร์) */
+        .pick-pin-leaflet-div-icon {
+            z-index: 10000 !important;
+            pointer-events: auto !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
         /* Interactive Draggable & Droppable Pick Marker */
         .interactive-pick-pin {
             display: flex;
             flex-direction: column;
             align-items: center;
-            cursor: grab;
+            cursor: grab !important;
             user-select: none;
+            -webkit-user-select: none;
+            touch-action: none; /* ป้องกัน browser gestures ขัดขวางการลากหมุด */
             position: relative;
+            pointer-events: auto !important;
         }
 
         .interactive-pick-pin:active,
-        .interactive-pick-pin.is-dragging {
-            cursor: grabbing;
+        .interactive-pick-pin.is-dragging,
+        .interactive-pick-pin.is-dragging-active {
+            cursor: grabbing !important;
         }
 
         .pick-pin-zone-badge {
@@ -1111,7 +1123,7 @@ declare(strict_types=1);
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            pointer-events: none;
+            pointer-events: none !important; /* ป้ายไม่รับ event เพื่อไม่ให้ขวางการจับลากหมุด */
             transition: background-color 0.15s ease;
         }
 
@@ -1130,7 +1142,7 @@ declare(strict_types=1);
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            pointer-events: none;
+            pointer-events: none !important; /* Tooltip ไม่ขัดขวางการคลิกหรือลาก */
             transition: all 0.15s ease;
         }
 
@@ -1146,25 +1158,36 @@ declare(strict_types=1);
 
         .pick-pin-icon-wrap {
             position: relative;
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: auto !important;
+            cursor: grab !important;
         }
 
         .pick-pin-icon {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: var(--r-full);
             background-color: var(--accent-blue);
             color: #FFFFFF;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            z-index: 2;
+            font-size: 22px;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+            z-index: 10;
+            pointer-events: auto !important;
+            cursor: grab !important;
+        }
+
+        .interactive-pick-pin:active .pick-pin-icon,
+        .interactive-pick-pin.is-dragging .pick-pin-icon,
+        .interactive-pick-pin.is-dragging-active .pick-pin-icon {
+            cursor: grabbing !important;
+            transform: scale(1.15);
         }
 
         .pick-pin-icon.out-range {
@@ -1173,12 +1196,13 @@ declare(strict_types=1);
 
         .pick-pin-pulse {
             position: absolute;
-            inset: -5px;
+            inset: -6px;
             border-radius: var(--r-full);
             background-color: var(--accent-blue);
             opacity: 0.35;
             animation: radarPulse 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
             z-index: 1;
+            pointer-events: none !important;
         }
 
         .pick-pin-icon.out-range + .pick-pin-pulse {
@@ -1505,6 +1529,20 @@ declare(strict_types=1);
                 attributionControl: true
             }).setView([16.0538, 103.6520], 12);
 
+            // สร้าง Custom Panes เพื่อควบคุม Z-Index ลำดับชั้นความสูงของการแสดงผลอย่างสมบูรณ์แบบ
+            // เพื่อให้หมุดที่ปัก/ลาก (pickPinPane) อยู่เหนือ Area น้ำท่วมและเลเยอร์อื่นๆ ทั้งหมด 100%
+            map.createPane('gistdaPane');
+            map.getPane('gistdaPane').style.zIndex = '410';
+
+            map.createPane('floodPolygonsPane');
+            map.getPane('floodPolygonsPane').style.zIndex = '420';
+
+            map.createPane('radiusZonesPane');
+            map.getPane('radiusZonesPane').style.zIndex = '430';
+
+            map.createPane('pickPinPane');
+            map.getPane('pickPinPane').style.zIndex = '950';
+
             // เพิ่ม Tile Layer OpenStreetMap ไร้เส้นขอบ
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -1558,6 +1596,7 @@ declare(strict_types=1);
                     map.removeLayer(userRadius1kmCircle);
                 }
                 userRadius1kmCircle = L.circle([centerLat, centerLng], {
+                    pane: 'radiusZonesPane',
                     radius: 5000,
                     stroke: false,
                     fillColor: '#2563EB',
@@ -1596,6 +1635,7 @@ declare(strict_types=1);
                     });
                 } else {
                     pinned1kmZoneCircle = L.circle([centerLat, centerLng], {
+                        pane: 'radiusZonesPane',
                         radius: 5000,
                         stroke: true,
                         color: strokeColor,
@@ -1653,9 +1693,9 @@ declare(strict_types=1);
 
                 return L.divIcon({
                     html: html,
-                    className: '',
-                    iconSize: [200, 100],
-                    iconAnchor: [100, 88]
+                    className: 'pick-pin-leaflet-div-icon',
+                    iconSize: [200, 110],
+                    iconAnchor: [100, 96]
                 });
             }
 
@@ -1710,13 +1750,21 @@ declare(strict_types=1);
                 // ตีกรอบรัศมี 5 กิโลเมตรรอบหมุดที่ปัก
                 drawPinned1kmZone(selectedReportLat, selectedReportLng, false);
 
-                // สร้างหรือย้ายหมุดปัก (เปิด draggable: true และ autoPan: true)
+                // สร้างหรือย้ายหมุดปัก (เปิด draggable: true, autoPan: true และผูกกับ pickPinPane อยู่เหนือทุก Area)
                 if (!pickPinMarker) {
                     pickPinMarker = L.marker([selectedReportLat, selectedReportLng], {
+                        pane: 'pickPinPane',
                         draggable: true,
                         autoPan: true,
-                        zIndexOffset: 2500
+                        autoPanPadding: [50, 50],
+                        zIndexOffset: 10000
                     }).addTo(map);
+
+                    pickPinMarker.on('dragstart', () => {
+                        if (pickPinMarker._icon) {
+                            pickPinMarker._icon.classList.add('is-dragging-active');
+                        }
+                    });
 
                     pickPinMarker.on('drag', (e) => {
                         const pos = e.target.getLatLng();
@@ -1724,6 +1772,9 @@ declare(strict_types=1);
                     });
 
                     pickPinMarker.on('dragend', (e) => {
+                        if (pickPinMarker._icon) {
+                            pickPinMarker._icon.classList.remove('is-dragging-active');
+                        }
                         const pos = e.target.getLatLng();
                         updatePickPinPosition(pos.lat, pos.lng, false);
                     });
@@ -1993,6 +2044,7 @@ declare(strict_types=1);
                         }
 
                         const polygon = L.polygon(polygonCoords, {
+                            pane: 'floodPolygonsPane',
                             stroke: false,
                             weight: 0,
                             fillColor: zoneColor,
@@ -2027,6 +2079,15 @@ declare(strict_types=1);
                         `;
 
                         polygon.bindPopup(popupHtml, { closeButton: false });
+
+                        // เมื่ออยู่ในโหมดปักหมุด การแตะบน Polygon จะส่งต่อตำแหน่งปักหมุดทันที
+                        polygon.on('click', (e) => {
+                            if (isPickingLocation) {
+                                L.DomEvent.stopPropagation(e);
+                                updatePickPinPosition(e.latlng.lat, e.latlng.lng, false);
+                            }
+                        });
+
                         dynamicPolygonsLayer.addLayer(polygon);
                     }
                 });
@@ -2054,6 +2115,15 @@ declare(strict_types=1);
                     marker.bindPopup(createPopupCardHtml(point), {
                         closeButton: false,
                         offset: [0, -12]
+                    });
+
+                    // เมื่ออยู่ในโหมดปักหมุด การคลิกหมุดเดิมจะปรับตำแหน่งหมุดปักใหม่ได้ลื่นไหล
+                    marker.on('click', (e) => {
+                        if (isPickingLocation) {
+                            L.DomEvent.stopPropagation(e);
+                            marker.closePopup();
+                            updatePickPinPosition(e.latlng.lat, e.latlng.lng, false);
+                        }
                     });
 
                     floodMarkersLayer.addLayer(marker);
@@ -2200,6 +2270,7 @@ declare(strict_types=1);
                 polygons.forEach(item => {
                     if (Array.isArray(item.coordinates) && item.coordinates.length > 2) {
                         const poly = L.polygon(item.coordinates, {
+                            pane: 'gistdaPane',
                             stroke: false,
                             weight: 0,
                             fillColor: '#7C3AED',
@@ -2237,6 +2308,15 @@ declare(strict_types=1);
                         `;
 
                         poly.bindPopup(popupContent, { closeButton: false });
+
+                        // เมื่ออยู่ในโหมดปักหมุด การแตะบน Polygon ดาวเทียมจะส่งต่อตำแหน่งปักหมุดทันที
+                        poly.on('click', (e) => {
+                            if (isPickingLocation) {
+                                L.DomEvent.stopPropagation(e);
+                                updatePickPinPosition(e.latlng.lat, e.latlng.lng, false);
+                            }
+                        });
+
                         gistdaLayerGroup.addLayer(poly);
                     }
                 });
@@ -2301,10 +2381,9 @@ declare(strict_types=1);
                             radius: 9,
                             stroke: false,
                             fillColor: '#2563EB',
-                            fillOpacity: 1
+                            fillOpacity: 1,
+                            interactive: false
                         }).addTo(map);
-
-                        userGpsMarker.bindPopup('<div style="padding:10px; font-weight:700; font-size:13px; text-align:center;">ตำแหน่งปัจจุบันของคุณ</div>', { closeButton: false }).openPopup();
 
                         if (is1kmRadiusVisible) {
                             draw1kmRadiusCircle(userCurrentLat, userCurrentLng);
