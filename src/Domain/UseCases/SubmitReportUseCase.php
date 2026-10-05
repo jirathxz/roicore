@@ -50,6 +50,24 @@ final class SubmitReportUseCase
 
             $photos = (array) ($input['photos'] ?? []);
 
+            // ตรวจสอบระยะห่างจากตำแหน่งผู้ใช้ (เช่น ในรัศมี 1 กิโลเมตร หรือ 1,000 เมตร)
+            if (isset($input['user_latitude'], $input['user_longitude']) && $input['user_latitude'] !== null && $input['user_longitude'] !== null) {
+                $userLat = (float) $input['user_latitude'];
+                $userLng = (float) $input['user_longitude'];
+                if ($userLat !== 0.0 || $userLng !== 0.0) {
+                    $userGeo = new GeoPoint($userLat, $userLng);
+                    $distanceMeters = $userGeo->distanceTo($geo);
+                    $maxDist = isset($input['max_distance_meters']) ? (float) $input['max_distance_meters'] : null;
+                    if ($maxDist !== null && $maxDist > 0 && $distanceMeters > $maxDist) {
+                        return Result::fail(sprintf(
+                            'จุดที่ปักหมุดอยู่นอกรัศมีที่กำหนด (ระยะห่าง %.0f เมตร เกินกว่า %.0f เมตร)',
+                            $distanceMeters,
+                            $maxDist
+                        ));
+                    }
+                }
+            }
+
             $id = 'rep_' . bin2hex(random_bytes(6));
 
             $report = new FloodReport(

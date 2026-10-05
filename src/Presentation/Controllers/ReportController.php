@@ -63,9 +63,16 @@ final class ReportController
             };
         }
 
+        $userLat = $request->get('user_latitude');
+        $userLng = $request->get('user_longitude');
+        $maxDist = $request->get('max_distance_meters');
+
         $input = [
             'latitude' => $lat,
             'longitude' => $lng,
+            'user_latitude' => $userLat !== null ? (float)$userLat : null,
+            'user_longitude' => $userLng !== null ? (float)$userLng : null,
+            'max_distance_meters' => $maxDist !== null ? (float)$maxDist : null,
             'severity' => $severityVal,
             'description' => $description,
             'phone' => $request->get('phone'),

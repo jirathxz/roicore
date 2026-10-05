@@ -966,6 +966,238 @@ declare(strict_types=1);
             font-size: 13px;
         }
 
+        /* ==========================================================================
+           1 km Radius Pin Mode Banner & Interactive Marker (White Modern Rules)
+           ========================================================================== */
+        .pin-mode-banner {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            width: calc(100% - 32px);
+            max-width: 580px;
+            background-color: var(--surface);
+            border-radius: var(--r-xl);
+            padding: 14px 18px;
+            z-index: 2500;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pin-mode-banner.active {
+            display: flex;
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .pin-mode-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .pin-mode-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pin-mode-badge {
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: var(--r-full);
+            background-color: var(--accent-tint);
+            color: var(--accent-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .pin-mode-badge.out-range {
+            background-color: var(--risk-high-bg);
+            color: var(--risk-high);
+        }
+
+        .pin-mode-body {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .pin-mode-info {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .pin-mode-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-confirm-pin {
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 8px 14px;
+            border-radius: var(--r-md);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.15s ease;
+        }
+
+        .btn-confirm-pin:hover {
+            background-color: var(--accent-blue-hover);
+        }
+
+        .btn-cancel-pin {
+            background-color: var(--surface-subtle);
+            color: var(--text-muted);
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: var(--r-md);
+            cursor: pointer;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .btn-cancel-pin:hover {
+            background-color: var(--surface-active);
+            color: var(--text-main);
+        }
+
+        /* Interactive Draggable & Droppable Pick Marker */
+        .interactive-pick-pin {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: grab;
+            user-select: none;
+            position: relative;
+        }
+
+        .interactive-pick-pin:active,
+        .interactive-pick-pin.is-dragging {
+            cursor: grabbing;
+        }
+
+        .pick-pin-zone-badge {
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #FFFFFF;
+            background-color: var(--accent-blue);
+            padding: 3px 9px;
+            border-radius: var(--r-full);
+            white-space: nowrap;
+            margin-bottom: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            pointer-events: none;
+            transition: background-color 0.15s ease;
+        }
+
+        .pick-pin-zone-badge.out-range {
+            background-color: var(--risk-high);
+        }
+
+        .pick-pin-tooltip {
+            background-color: var(--surface);
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: var(--r-full);
+            white-space: nowrap;
+            margin-bottom: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            pointer-events: none;
+            transition: all 0.15s ease;
+        }
+
+        .pick-pin-tooltip.in-range {
+            color: var(--accent-blue);
+            background-color: var(--accent-tint);
+        }
+
+        .pick-pin-tooltip.out-range {
+            color: var(--risk-high);
+            background-color: var(--risk-high-bg);
+        }
+
+        .pick-pin-icon-wrap {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pick-pin-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--r-full);
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            z-index: 2;
+        }
+
+        .pick-pin-icon.out-range {
+            background-color: var(--risk-high);
+        }
+
+        .pick-pin-pulse {
+            position: absolute;
+            inset: -5px;
+            border-radius: var(--r-full);
+            background-color: var(--accent-blue);
+            opacity: 0.35;
+            animation: radarPulse 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+            z-index: 1;
+        }
+
+        .pick-pin-icon.out-range + .pick-pin-pulse {
+            background-color: var(--risk-high);
+        }
+
+        .btn-locate.radius-active {
+            background-color: var(--accent-tint);
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .location-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
         /* Responsive Tweaks */
         @media (max-width: 640px) {
             .top-navbar {
@@ -1000,14 +1232,46 @@ declare(strict_types=1);
             .gistda-text-group .gistda-subtext {
                 display: none;
             }
+
+            .pin-mode-banner {
+                top: 10px;
+                width: calc(100% - 20px);
+                padding: 12px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="app-layout">
+        <!-- Floating Banner for 5km Pin Picking Mode -->
+        <div class="pin-mode-banner" id="pinPickerBanner">
+            <div class="pin-mode-header">
+                <div class="pin-mode-title">
+                    <i class="fa-solid fa-location-crosshairs" style="color:var(--accent-blue);"></i>
+                    <span>โหมดปักหมุด & ตีกรอบรัศมี 5 กิโลเมตร</span>
+                </div>
+                <span class="pin-mode-badge" id="pinRangeBadge">
+                    <i class="fa-solid fa-circle-check"></i> ในรัศมี 5 กม.
+                </span>
+            </div>
+            <div class="pin-mode-body">
+                <div class="pin-mode-info" id="pinModeInfoText">
+                    แตะบนแผนที่เพื่อ Drop หมุด หรือลากหมุดไปยังตำแหน่งที่ต้องการ พร้อมตีกรอบรัศมี 5 กิโลเมตร (78.54 ตร.กม.)
+                </div>
+                <div class="pin-mode-actions">
+                    <button type="button" class="btn-cancel-pin" id="btnCancelPinPick">
+                        <i class="fa-solid fa-xmark"></i> ยกเลิก
+                    </button>
+                    <button type="button" class="btn-confirm-pin" id="btnConfirmPinPick">
+                        <i class="fa-solid fa-check"></i> ยืนยันตำแหน่งนี้
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Top Floating Navigation & GISTDA Switch -->
-        <header class="top-navbar">
+        <header class="top-navbar" id="topNavbar">
             <div class="nav-group-left">
                 <!-- Brand Identity Wordmark -->
                 <div class="nav-card">
@@ -1081,10 +1345,20 @@ declare(strict_types=1);
                 </div>
             </div>
 
-            <!-- Locate GPS Button -->
-            <button type="button" class="btn-locate" id="btnLocateUser">
-                <i class="fa-solid fa-crosshairs" style="color:var(--accent-blue);"></i> ตำแหน่งปัจจุบันของฉัน
-            </button>
+            <div class="location-actions-row">
+                <!-- Locate GPS Button -->
+                <button type="button" class="btn-locate" id="btnLocateUser">
+                    <i class="fa-solid fa-crosshairs" style="color:var(--accent-blue);"></i> ตำแหน่งปัจจุบันของฉัน
+                </button>
+                <!-- Quick Drop & Drag Pin with 5km Zone Button -->
+                <button type="button" class="btn-locate" id="btnQuickDropPin" title="ปักหมุดหรือลากหมุดเพื่อตีกรอบพื้นที่ 5 กิโลเมตร">
+                    <i class="fa-solid fa-location-dot" style="color:var(--accent-blue);"></i> ปักหมุดตีกรอบ 5 กม.
+                </button>
+                <!-- 5km Radius Toggle Button -->
+                <button type="button" class="btn-locate" id="btnToggle1kmRadius" title="แสดงขอบเขตรัศมี 5 กิโลเมตรรอบตำแหน่งของคุณ">
+                    <i class="fa-solid fa-bullseye" style="color:var(--accent-blue);"></i> รัศมี 5 กม. รอบตัวฉัน
+                </button>
+            </div>
         </div>
 
         <!-- Floating Action Button for Quick Flood Report (Bottom-Right) -->
@@ -1176,13 +1450,13 @@ declare(strict_types=1);
                 </div>
             </div>
 
-            <!-- ดึงพิกัด Geolocation อัตโนมัติทันทีที่เปิดฟอร์ม พร้อมปุ่มปักหมุดบนแผนที่ -->
+            <!-- ดึงพิกัด Geolocation อัตโนมัติทันทีที่เปิดฟอร์ม พร้อมปุ่มปักหมุดบนแผนที่ในรัศมี 5 กม. -->
             <div class="location-status-bar">
                 <div class="location-status-text" id="reportLocationStatus">
                     <i class="fa-solid fa-spinner fa-spin" style="color:var(--accent-blue);"></i> กำลังตรวจหาพิกัดปัจจุบันอัตโนมัติ...
                 </div>
                 <button type="button" class="btn-change-pin" id="btnPickLocationOnMap">
-                    <i class="fa-solid fa-map-pin"></i> ปักหมุดบนแผนที่
+                    <i class="fa-solid fa-location-dot"></i> ลาก/ปักหมุดตีกรอบ 5 กม.
                 </button>
             </div>
 
@@ -1245,13 +1519,284 @@ declare(strict_types=1);
             const dynamicPolygonsLayer = L.layerGroup().addTo(map);
             const gistdaLayerGroup = L.layerGroup().addTo(map);
 
-            // แคชข้อมูลในหน่วยความจำ
+            // แคชข้อมูลและตัวแปรสถานะพิกัด / รัศมี 5 กิโลเมตร
             let allFloodPoints = [];
             let currentFilter = 'all';
+            let userCurrentLat = 16.0538;
+            let userCurrentLng = 103.6520;
             let selectedReportLat = 16.0538;
             let selectedReportLng = 103.6520;
             let selectedSeverity = 3;
             let isPickingLocation = false;
+            let pinPickingOrigin = 'modal';
+            let is1kmRadiusVisible = false;
+            let userRadius1kmCircle = null;
+            let pinned1kmZoneCircle = null;
+            let userGpsMarker = null;
+            let pickPinMarker = null;
+
+            // =====================================================================
+            // ฟังก์ชันคำนวณระยะห่างทางภูมิศาสตร์ (Haversine Formula) เป็นหน่วยเมตร
+            // =====================================================================
+            function calculateDistanceMeters(lat1, lon1, lat2, lon2) {
+                const R = 6371000; // รัศมีโลกเฉลี่ยในหน่วยเมตร
+                const dLat = (lat2 - lat1) * Math.PI / 180;
+                const dLon = (lon2 - lon1) * Math.PI / 180;
+                const a = 
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                return R * c;
+            }
+
+            // =====================================================================
+            // ฟังก์ชันจัดการวงรัศมี 5 กิโลเมตรรอบผู้ใช้ และตีกรอบ 5 กิโลเมตรรอบหมุดที่ปัก
+            // =====================================================================
+            function draw1kmRadiusCircle(centerLat, centerLng, fitView = false) {
+                if (userRadius1kmCircle) {
+                    map.removeLayer(userRadius1kmCircle);
+                }
+                userRadius1kmCircle = L.circle([centerLat, centerLng], {
+                    radius: 5000,
+                    stroke: false,
+                    fillColor: '#2563EB',
+                    fillOpacity: 0.12,
+                    interactive: false
+                }).addTo(map);
+
+                if (fitView) {
+                    map.fitBounds(userRadius1kmCircle.getBounds(), { padding: [50, 50], maxZoom: 14 });
+                }
+            }
+
+            function remove1kmRadiusCircle() {
+                if (userRadius1kmCircle) {
+                    map.removeLayer(userRadius1kmCircle);
+                    userRadius1kmCircle = null;
+                }
+            }
+
+            function drawPinned1kmZone(centerLat, centerLng, fitView = false) {
+                let strokeColor = '#2563EB';
+                let fillColor = '#2563EB';
+                if (selectedSeverity === 3) {
+                    strokeColor = '#DC2626';
+                    fillColor = '#DC2626';
+                } else if (selectedSeverity === 2) {
+                    strokeColor = '#D97706';
+                    fillColor = '#D97706';
+                }
+
+                if (pinned1kmZoneCircle) {
+                    pinned1kmZoneCircle.setLatLng([centerLat, centerLng]);
+                    pinned1kmZoneCircle.setStyle({
+                        color: strokeColor,
+                        fillColor: fillColor
+                    });
+                } else {
+                    pinned1kmZoneCircle = L.circle([centerLat, centerLng], {
+                        radius: 5000,
+                        stroke: true,
+                        color: strokeColor,
+                        weight: 2,
+                        dashArray: '6, 8',
+                        fillColor: fillColor,
+                        fillOpacity: 0.16,
+                        interactive: false
+                    }).addTo(map);
+                }
+
+                if (fitView && pinned1kmZoneCircle) {
+                    map.fitBounds(pinned1kmZoneCircle.getBounds(), { padding: [60, 60], maxZoom: 14 });
+                }
+            }
+
+            function removePinned1kmZone() {
+                if (pinned1kmZoneCircle) {
+                    map.removeLayer(pinned1kmZoneCircle);
+                    pinned1kmZoneCircle = null;
+                }
+            }
+
+            // =====================================================================
+            // ฟังก์ชันสร้าง Custom Marker สำหรับโหมดปักหมุด/ลากหมุดพร้อมตีกรอบ 5 กม.
+            // =====================================================================
+            function createPickPinIcon(distanceMeters, isDragging = false) {
+                const isWithin = distanceMeters <= 5000;
+                const distFormatted = distanceMeters < 1000 
+                    ? `${Math.round(distanceMeters)} ม.` 
+                    : `${(distanceMeters / 1000).toFixed(2)} กม.`;
+                const distText = isWithin 
+                    ? `${distFormatted} (ในรัศมี 5 กม.)` 
+                    : `${(distanceMeters / 1000).toFixed(2)} กม. (เกิน 5 กม.)`;
+                const rangeClass = isWithin ? 'in-range' : 'out-range';
+                const iconClass = isWithin ? 'fa-solid fa-location-dot' : 'fa-solid fa-triangle-exclamation';
+
+                const html = `
+                    <div class="interactive-pick-pin ${isDragging ? 'is-dragging' : ''}">
+                        <div class="pick-pin-zone-badge ${rangeClass}">
+                            <i class="fa-solid fa-bullseye"></i> ตีกรอบ 5 กม. (78.54 ตร.กม.)
+                        </div>
+                        <div class="pick-pin-tooltip ${rangeClass}">
+                            <i class="${isWithin ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-exclamation'}"></i>
+                            <span>${distText}</span>
+                        </div>
+                        <div class="pick-pin-icon-wrap">
+                            <div class="pick-pin-icon ${rangeClass}">
+                                <i class="${iconClass}"></i>
+                            </div>
+                            <div class="pick-pin-pulse"></div>
+                        </div>
+                    </div>
+                `;
+
+                return L.divIcon({
+                    html: html,
+                    className: '',
+                    iconSize: [200, 100],
+                    iconAnchor: [100, 88]
+                });
+            }
+
+            function updatePickPinPosition(lat, lng, isDragging = false) {
+                selectedReportLat = lat;
+                selectedReportLng = lng;
+                const dist = calculateDistanceMeters(userCurrentLat, userCurrentLng, lat, lng);
+                const isWithin = dist <= 5000;
+
+                // อัปเดตวงตีกรอบ 5 กิโลเมตรรอบหมุดที่ปักทันทีตามการลาก/drop
+                drawPinned1kmZone(lat, lng, false);
+
+                if (pickPinMarker) {
+                    pickPinMarker.setLatLng([lat, lng]);
+                    pickPinMarker.setIcon(createPickPinIcon(dist, isDragging));
+                }
+
+                const badge = document.getElementById('pinRangeBadge');
+                const info = document.getElementById('pinModeInfoText');
+
+                if (badge && info) {
+                    const distFormatted = dist < 1000 
+                        ? `${Math.round(dist)} เมตร` 
+                        : `${(dist / 1000).toFixed(2)} กม.`;
+
+                    if (isWithin) {
+                        badge.className = 'pin-mode-badge';
+                        badge.innerHTML = '<i class="fa-solid fa-circle-check"></i> ในรัศมี 5 กม.';
+                        info.innerHTML = `พิกัดที่ปัก: <strong>${lat.toFixed(4)}, ${lng.toFixed(4)}</strong> · ตีกรอบรัศมี 5 กม. (78.54 ตร.กม.) · ห่างจากคุณ: <strong>${distFormatted}</strong>`;
+                    } else {
+                        badge.className = 'pin-mode-badge out-range';
+                        badge.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> เกินรัศมี 5 กม.';
+                        info.innerHTML = `จุดที่เลือกห่างจากคุณ <strong>${(dist / 1000).toFixed(2)} กม.</strong> แนะนำให้ลากหรือแตะวางหมุดภายในรัศมี 5 กิโลเมตร`;
+                    }
+                }
+            }
+
+            // =====================================================================
+            // ฟังก์ชันเริ่มและสิ้นสุดโหมดปักหมุด/ลากหมุดและตีกรอบ 5 กิโลเมตร
+            // =====================================================================
+            function startPinPickingMode(origin = 'modal') {
+                isPickingLocation = true;
+                pinPickingOrigin = origin;
+                reportModal.style.display = 'none';
+
+                const banner = document.getElementById('pinPickerBanner');
+                banner.classList.add('active');
+
+                // วาดวงรัศมี 5 กิโลเมตรรอบตำแหน่งผู้ใช้
+                draw1kmRadiusCircle(userCurrentLat, userCurrentLng, false);
+
+                // ตีกรอบรัศมี 5 กิโลเมตรรอบหมุดที่ปัก
+                drawPinned1kmZone(selectedReportLat, selectedReportLng, false);
+
+                // สร้างหรือย้ายหมุดปัก (เปิด draggable: true และ autoPan: true)
+                if (!pickPinMarker) {
+                    pickPinMarker = L.marker([selectedReportLat, selectedReportLng], {
+                        draggable: true,
+                        autoPan: true,
+                        zIndexOffset: 2500
+                    }).addTo(map);
+
+                    pickPinMarker.on('drag', (e) => {
+                        const pos = e.target.getLatLng();
+                        updatePickPinPosition(pos.lat, pos.lng, true);
+                    });
+
+                    pickPinMarker.on('dragend', (e) => {
+                        const pos = e.target.getLatLng();
+                        updatePickPinPosition(pos.lat, pos.lng, false);
+                    });
+                } else {
+                    pickPinMarker.addTo(map);
+                    pickPinMarker.setLatLng([selectedReportLat, selectedReportLng]);
+                }
+
+                updatePickPinPosition(selectedReportLat, selectedReportLng, false);
+
+                if (pinned1kmZoneCircle) {
+                    map.fitBounds(pinned1kmZoneCircle.getBounds(), { padding: [60, 60], maxZoom: 14 });
+                }
+
+                showToast('แตะบนแผนที่เพื่อ Drop หมุด หรือลากหมุดเพื่อปรับตำแหน่งพร้อมตีกรอบ 5 กม.');
+            }
+
+            function finishPinPickingMode(confirmed) {
+                isPickingLocation = false;
+                const banner = document.getElementById('pinPickerBanner');
+                banner.classList.remove('active');
+
+                if (pickPinMarker) {
+                    map.removeLayer(pickPinMarker);
+                    pickPinMarker = null;
+                }
+
+                if (!is1kmRadiusVisible) {
+                    remove1kmRadiusCircle();
+                }
+
+                if (confirmed) {
+                    const dist = calculateDistanceMeters(userCurrentLat, userCurrentLng, selectedReportLat, selectedReportLng);
+                    const isWithin = dist <= 5000;
+                    const distFormatted = dist < 1000 
+                        ? `${Math.round(dist)} ม.` 
+                        : `${(dist / 1000).toFixed(2)} กม.`;
+
+                    if (isWithin) {
+                        reportLocationStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--status-success);"></i> พิกัดที่ปัก: ${selectedReportLat.toFixed(4)}, ${selectedReportLng.toFixed(4)} (ห่าง ${distFormatted} · ตีกรอบ 5 กม. เรียบร้อย)`;
+                        showToast('ยืนยันตำแหน่งและตีกรอบรัศมี 5 กิโลเมตรเรียบร้อยแล้ว');
+                    } else {
+                        reportLocationStatus.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:var(--risk-high);"></i> พิกัดที่ปัก: ${selectedReportLat.toFixed(4)}, ${selectedReportLng.toFixed(4)} (ห่าง ${(dist/1000).toFixed(2)} กม.)`;
+                        showToast(`จุดที่เลือกอยู่นอกรัศมี 5 กม. (ห่าง ${(dist/1000).toFixed(2)} กม.)`);
+                    }
+                    reportModal.style.display = 'flex';
+                } else {
+                    if (pinPickingOrigin === 'modal') {
+                        reportModal.style.display = 'flex';
+                    } else {
+                        removePinned1kmZone();
+                    }
+                }
+            }
+
+            // จัดการปุ่มในแถบ Banner โหมดปักหมุด
+            const btnConfirmPin = document.getElementById('btnConfirmPinPick');
+            const btnCancelPin = document.getElementById('btnCancelPinPick');
+
+            btnConfirmPin.addEventListener('click', () => {
+                finishPinPickingMode(true);
+            });
+
+            btnCancelPin.addEventListener('click', () => {
+                finishPinPickingMode(false);
+            });
+
+            // คลิกบนแผนที่ในโหมดปักหมุด: Drop หมุดและตีกรอบ 5 กม. ทันที
+            map.on('click', (e) => {
+                if (isPickingLocation) {
+                    updatePickPinPosition(e.latlng.lat, e.latlng.lng, false);
+                }
+            });
 
             // =====================================================================
             // ฟังก์ชันสร้าง Custom Marker ตามระดับความเสี่ยง (แดง/ส้ม/เหลือง/น้ำเงิน)
@@ -1323,11 +1868,32 @@ declare(strict_types=1);
                     ? new Date(point.updated_at).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }) + ' น.'
                     : 'ล่าสุดวันนี้';
 
+                const distToUser = calculateDistanceMeters(
+                    userCurrentLat,
+                    userCurrentLng,
+                    point.location.latitude,
+                    point.location.longitude
+                );
+
+                const distFormatted = distToUser < 1000 
+                    ? `${Math.round(distToUser)} ม.` 
+                    : `${(distToUser / 1000).toFixed(1)} กม.`;
+
+                const distanceBadge = distToUser <= 5000
+                    ? `<span style="font-size:11px; font-weight:700; color:var(--accent-blue); background:var(--accent-tint); padding:2px 8px; border-radius:var(--r-full); display:inline-flex; align-items:center; gap:4px;"><i class="fa-solid fa-bullseye"></i> ห่างคุณ ${distFormatted} (ในรัศมี 5 กม.)</span>`
+                    : `<span style="font-size:11px; color:var(--text-muted); display:inline-flex; align-items:center; gap:4px;"><i class="fa-solid fa-location-arrow"></i> ห่างคุณ ${(distToUser / 1000).toFixed(1)} กม.</span>`;
+
+                const safeTitle = (point.title || 'จุดเฝ้าระวัง').replace(/'/g, "\\'");
+
                 return `
                     <div class="map-popup-card">
                         <div class="popup-header">
                             <div class="popup-title">${point.title || 'จุดเฝ้าระวังน้ำท่วม'}</div>
                             <span class="popup-badge ${badgeClass}">${riskLabel}</span>
+                        </div>
+
+                        <div style="margin-top:-4px; margin-bottom:2px;">
+                            ${distanceBadge}
                         </div>
 
                         <div class="popup-inner-box">
@@ -1351,9 +1917,14 @@ declare(strict_types=1);
                             </div>
                         </div>
 
-                        <a href="javascript:void(0);" class="popup-btn-action" onclick="window.zoomToPoint(${point.location.latitude}, ${point.location.longitude})">
-                            <i class="fa-solid fa-magnifying-glass-location"></i> ซูมดูพื้นที่นี้
-                        </a>
+                        <div style="display:flex; gap:6px; margin-top:4px;">
+                            <a href="javascript:void(0);" class="popup-btn-action" style="flex:1;" onclick="window.zoomToPoint(${point.location.latitude}, ${point.location.longitude})">
+                                <i class="fa-solid fa-magnifying-glass-location"></i> ซูมดู
+                            </a>
+                            <a href="javascript:void(0);" class="popup-btn-action" style="flex:1.2; background-color:var(--accent-tint); color:var(--accent-blue);" onclick="window.togglePoint1kmZone(${point.location.latitude}, ${point.location.longitude}, '${safeTitle}')">
+                                <i class="fa-solid fa-bullseye"></i> ตีกรอบ 5 กม.
+                            </a>
+                        </div>
                     </div>
                 `;
             }
@@ -1361,6 +1932,12 @@ declare(strict_types=1);
             // ฟังก์ชันซูมไปยังจุดที่เลือก
             window.zoomToPoint = (lat, lng) => {
                 map.flyTo([lat, lng], 15, { duration: 1.2 });
+            };
+
+            // ฟังก์ชันตีกรอบ 5 กิโลเมตรรอบจุดตรวจวัด
+            window.togglePoint1kmZone = (lat, lng, title) => {
+                drawPinned1kmZone(lat, lng, true);
+                showToast(`ตีกรอบพื้นที่เฝ้าระวัง 5 กิโลเมตรรอบ ${title} เรียบร้อยแล้ว`);
             };
 
             // =====================================================================
@@ -1391,7 +1968,6 @@ declare(strict_types=1);
                     const isRepeated = (point.report_count || 1) >= 3;
                     const hasPresetPolygon = Array.isArray(point.polygon_coordinates) && point.polygon_coordinates.length > 2;
 
-                    // เงื่อนไข: วาดอาณาเขตอัตโนมัติเมื่อพบจุดท่วมวิกฤต หรือ รายงานซ้ำซ้อน หรือมีพิกัด Polygon จากระบบ
                     if (isCritical || isRepeated || hasPresetPolygon) {
                         let polygonCoords = point.polygon_coordinates;
 
@@ -1416,7 +1992,6 @@ declare(strict_types=1);
                             zoneDesc = 'อาณาเขตเฝ้าระวังน้ำท่วมปานกลาง';
                         }
 
-                        // วาดรูปหลายเหลี่ยมโปร่งแสง ไร้เส้นขอบ (weight: 0, stroke: false) ตาม design.md 3.3
                         const polygon = L.polygon(polygonCoords, {
                             stroke: false,
                             weight: 0,
@@ -1498,7 +2073,6 @@ declare(strict_types=1);
                 try {
                     let response = await fetch(getApiUrl('api/points'));
                     if (!response.ok) {
-                        // Fallback ไปใช้ query param ?api=points
                         response = await fetch(getApiUrl('?api=points'));
                     }
                     const json = await response.json();
@@ -1508,7 +2082,6 @@ declare(strict_types=1);
                     }
                 } catch (err) {
                     console.warn('ดึงข้อมูลจุดน้ำท่วมจากเซิร์ฟเวอร์ขัดข้อง กำลังโหลดชุดข้อมูลท้องถิ่น:', err);
-                    // Fallback ข้อมูลเริ่มต้นถ้าออฟไลน์
                     allFloodPoints = [
                         {
                             id: 'point_01',
@@ -1588,26 +2161,21 @@ declare(strict_types=1);
             const gistdaSwitch = document.getElementById('gistdaSwitch');
             const gistdaStatusText = document.getElementById('gistdaStatusText');
 
-            // ชุดข้อมูลดาวเทียมระดับประเทศ Fallback อ้างอิง 77 จังหวัด
             const fallbackGistdaPolygons = [
-                // ภาคเหนือ
                 { name: 'น้ำท่วมลุ่มน้ำปิง เชียงใหม่ (ฝาง-แม่อาย)', province: 'เชียงใหม่', area_sqkm: 38.4, area_rai: 24000, coordinates: [[20.0600, 99.8700], [20.1100, 99.9200], [20.0800, 99.9800], [20.0100, 99.9600], [19.9700, 99.9000], [20.0000, 99.8500]] },
                 { name: 'น้ำท่วมลุ่มน้ำกก เชียงราย - แม่จัน', province: 'เชียงราย', area_sqkm: 42.5, area_rai: 26562, coordinates: [[19.9800, 99.8200], [20.0300, 99.8900], [20.0000, 99.9500], [19.9400, 99.9200], [19.9200, 99.8600], [19.9500, 99.8100]] },
                 { name: 'น้ำท่วมรอบกว๊านพะเยา - ดอกคำใต้', province: 'พะเยา', area_sqkm: 25.0, area_rai: 15625, coordinates: [[19.1300, 99.8800], [19.1700, 99.9400], [19.1400, 99.9900], [19.0900, 99.9700], [19.0700, 99.9100], [19.1000, 99.8600]] },
                 { name: 'น้ำท่วมลุ่มน้ำน่าน - เมืองน่าน', province: 'น่าน', area_sqkm: 31.2, area_rai: 19500, coordinates: [[18.8000, 100.7600], [18.8500, 100.8100], [18.8200, 100.8700], [18.7700, 100.8500], [18.7500, 100.7900], [18.7700, 100.7500]] },
                 { name: 'น้ำท่วมลุ่มน้ำวัง ลำปาง', province: 'ลำปาง', area_sqkm: 18.6, area_rai: 11625, coordinates: [[18.3050, 99.4800], [18.3400, 99.5300], [18.3100, 99.5800], [18.2700, 99.5650], [18.2500, 99.5100], [18.2800, 99.4700]] },
-                // ภาคอีสาน
                 { name: 'น้ำท่วมลุ่มน้ำชี ร้อยเอ็ด (ธวัชบุรี-เสลภูมิ)', province: 'ร้อยเอ็ด', area_sqkm: 19.97, area_rai: 12480, coordinates: [[16.0350, 103.7300], [16.0680, 103.7750], [16.0520, 103.8200], [16.0150, 103.8450], [15.9900, 103.7900], [16.0100, 103.7400]] },
                 { name: 'น้ำท่วมลุ่มน้ำสงคราม อุดรธานี - หนองหาน', province: 'อุดรธานี', area_sqkm: 55.6, area_rai: 34750, coordinates: [[17.3200, 102.9800], [17.3800, 103.0400], [17.3500, 103.1000], [17.2900, 103.0800], [17.2600, 103.0200], [17.2900, 102.9600]] },
                 { name: 'น้ำท่วมหนองหาร สกลนคร', province: 'สกลนคร', area_sqkm: 68.0, area_rai: 42500, coordinates: [[17.1800, 103.9000], [17.2400, 103.9700], [17.2000, 104.0300], [17.1300, 104.0100], [17.1000, 103.9400], [17.1300, 103.8900]] },
                 { name: 'น้ำท่วมริมโขง นครพนม (เมือง-ท่าอุเทน)', province: 'นครพนม', area_sqkm: 48.2, area_rai: 30125, coordinates: [[17.3800, 104.7400], [17.4300, 104.7900], [17.4000, 104.8400], [17.3400, 104.8200], [17.3100, 104.7600], [17.3400, 104.7200]] },
                 { name: 'น้ำท่วมลุ่มน้ำมูล-ชี อุบลราชธานี (วารินชำราบ)', province: 'อุบลราชธานี', area_sqkm: 85.4, area_rai: 53375, coordinates: [[15.2300, 104.8000], [15.2900, 104.8700], [15.2600, 104.9300], [15.2000, 104.9000], [15.1700, 104.8400], [15.2000, 104.7900]] },
                 { name: 'น้ำท่วมลุ่มน้ำชี ขอนแก่น (ชุมแพ-น้ำพอง)', province: 'ขอนแก่น', area_sqkm: 44.8, area_rai: 28000, coordinates: [[16.4300, 102.7800], [16.4900, 102.8500], [16.4500, 102.9100], [16.3800, 102.8800], [16.3600, 102.8100], [16.3900, 102.7600]] },
-                // ภาคกลาง
                 { name: 'น้ำท่วมลุ่มน้ำเจ้าพระยา นครสวรรค์ (ชุมแสง)', province: 'นครสวรรค์', area_sqkm: 75.3, area_rai: 47062, coordinates: [[15.7100, 100.0900], [15.7700, 100.1600], [15.7300, 100.2200], [15.6700, 100.1900], [15.6400, 100.1300], [15.6800, 100.0700]] },
                 { name: 'น้ำท่วมพื้นที่เกษตร พระนครศรีอยุธยา (บางไทร)', province: 'พระนครศรีอยุธยา', area_sqkm: 62.8, area_rai: 39250, coordinates: [[14.3600, 100.5000], [14.4100, 100.5600], [14.3800, 100.6200], [14.3200, 100.5900], [14.3000, 100.5300], [14.3300, 100.4800]] },
                 { name: 'น้ำท่วมลุ่มน้ำท่าจีน สุพรรณบุรี', province: 'สุพรรณบุรี', area_sqkm: 58.9, area_rai: 36812, coordinates: [[14.5600, 99.9400], [14.6100, 100.0100], [14.5800, 100.0700], [14.5200, 100.0400], [14.5000, 99.9700], [14.5300, 99.9200]] },
-                // ภาคใต้
                 { name: 'น้ำท่วมพื้นที่ลุ่มต่ำ นครศรีธรรมราช (เชียรใหญ่)', province: 'นครศรีธรรมราช', area_sqkm: 92.1, area_rai: 57562, coordinates: [[8.3100, 100.0300], [8.3700, 100.1000], [8.3400, 100.1600], [8.2800, 100.1300], [8.2500, 100.0700], [8.2800, 100.0100]] },
                 { name: 'น้ำท่วมลุ่มน้ำทะเลสาบสงขลา (หาดใหญ่)', province: 'สงขลา', area_sqkm: 65.8, area_rai: 41125, coordinates: [[7.0700, 100.4200], [7.1200, 100.4900], [7.0900, 100.5500], [7.0300, 100.5200], [7.0100, 100.4600], [7.0400, 100.4000]] }
             ];
@@ -1631,7 +2199,6 @@ declare(strict_types=1);
 
                 polygons.forEach(item => {
                     if (Array.isArray(item.coordinates) && item.coordinates.length > 2) {
-                        // ปฏิบัติตาม design.md: สีม่วงโปร่งแสง var(--gistda-purple) ไร้เส้นขอบ (weight: 0)
                         const poly = L.polygon(item.coordinates, {
                             stroke: false,
                             weight: 0,
@@ -1677,7 +2244,6 @@ declare(strict_types=1);
                 gistdaStatusText.textContent = `เปิดใช้งาน ${polygons.length} โซน`;
             }
 
-            // จัดการ Switch เปิด-ปิด เลเยอร์ดาวเทียม GISTDA
             gistdaSwitch.addEventListener('change', (e) => {
                 if (e.target.checked) {
                     if (!map.hasLayer(gistdaLayerGroup)) {
@@ -1720,20 +2286,29 @@ declare(strict_types=1);
                     (position) => {
                         const lat = position.coords.latitude;
                         const lng = position.coords.longitude;
+                        userCurrentLat = lat;
+                        userCurrentLng = lng;
                         selectedReportLat = lat;
                         selectedReportLng = lng;
 
                         map.flyTo([lat, lng], 14, { duration: 1.5 });
 
-                        // ปักหมุดชั่วคราวแสดงตำแหน่งผู้ใช้
-                        const userMarker = L.circleMarker([lat, lng], {
+                        if (userGpsMarker) {
+                            map.removeLayer(userGpsMarker);
+                        }
+
+                        userGpsMarker = L.circleMarker([lat, lng], {
                             radius: 9,
                             stroke: false,
                             fillColor: '#2563EB',
                             fillOpacity: 1
                         }).addTo(map);
 
-                        userMarker.bindPopup('<div style="padding:10px; font-weight:700; font-size:13px; text-align:center;">ตำแหน่งปัจจุบันของคุณ</div>', { closeButton: false }).openPopup();
+                        userGpsMarker.bindPopup('<div style="padding:10px; font-weight:700; font-size:13px; text-align:center;">ตำแหน่งปัจจุบันของคุณ</div>', { closeButton: false }).openPopup();
+
+                        if (is1kmRadiusVisible) {
+                            draw1kmRadiusCircle(userCurrentLat, userCurrentLng);
+                        }
 
                         btnLocate.innerHTML = '<i class="fa-solid fa-crosshairs" style="color:var(--accent-blue);"></i> ตำแหน่งปัจจุบันของฉัน';
                         showToast('ระบุตำแหน่งของคุณเรียบร้อยแล้ว');
@@ -1747,6 +2322,28 @@ declare(strict_types=1);
             });
 
             // =====================================================================
+            // จัดการปุ่มเปิด-ปิดแสดงรัศมี 5 กิโลเมตรรอบตัวฉัน
+            // =====================================================================
+            const btnToggleRadius = document.getElementById('btnToggle1kmRadius');
+            btnToggleRadius.addEventListener('click', () => {
+                is1kmRadiusVisible = !is1kmRadiusVisible;
+                if (is1kmRadiusVisible) {
+                    btnToggleRadius.classList.add('radius-active');
+                    draw1kmRadiusCircle(userCurrentLat, userCurrentLng, true);
+
+                    const nearbyCount = allFloodPoints.filter(p => 
+                        calculateDistanceMeters(userCurrentLat, userCurrentLng, p.location.latitude, p.location.longitude) <= 5000
+                    ).length;
+
+                    showToast(`เปิดวงรัศมี 5 กม. รอบตัวคุณ (พบ ${nearbyCount} จุดเสี่ยงในพื้นที่)`);
+                } else {
+                    btnToggleRadius.classList.remove('radius-active');
+                    remove1kmRadiusCircle();
+                    showToast('ปิดการแสดงวงรัศมี 5 กิโลเมตร');
+                }
+            });
+
+            // =====================================================================
             // ฟอร์มรายงานเหตุน้ำท่วมด่วน (Quick Report Modal ≤ 3 Taps Flow)
             // =====================================================================
             const reportModal = document.getElementById('reportModal');
@@ -1757,7 +2354,6 @@ declare(strict_types=1);
             const btnPickMap = document.getElementById('btnPickLocationOnMap');
             const btnSubmit = document.getElementById('btnSubmitReport');
 
-            // รูปถ่ายสถานที่จริง (Optional)
             const photoInput = document.getElementById('reportPhotoInput');
             const photoLabel = document.getElementById('btnSelectPhotoLabel');
             const photoPreviewWrap = document.getElementById('photoPreviewContainer');
@@ -1766,7 +2362,6 @@ declare(strict_types=1);
             const btnRemovePhoto = document.getElementById('btnRemovePhoto');
             let selectedPhotoBase64 = null;
 
-            // จดจำเบอร์โทรศัพท์ลง LocalStorage อัตโนมัติ
             const savedPhone = localStorage.getItem('roicore_reporter_phone');
             if (savedPhone) {
                 phoneInput.value = savedPhone;
@@ -1776,10 +2371,11 @@ declare(strict_types=1);
                 localStorage.setItem('roicore_reporter_phone', e.target.value.trim());
             });
 
-            // ฟังก์ชันดึงพิกัด Geolocation GPS อัตโนมัติทันทีที่เปิดฟอร์ม
             function autoDetectLocationImmediate() {
                 if (!navigator.geolocation) {
-                    reportLocationStatus.innerHTML = `<i class="fa-solid fa-location-dot" style="color:var(--accent-blue);"></i> พิกัด: ${selectedReportLat.toFixed(4)}, ${selectedReportLng.toFixed(4)}`;
+                    const dist = calculateDistanceMeters(userCurrentLat, userCurrentLng, selectedReportLat, selectedReportLng);
+                    const distFormatted = dist < 1000 ? `${Math.round(dist)} ม.` : `${(dist/1000).toFixed(2)} กม.`;
+                    reportLocationStatus.innerHTML = `<i class="fa-solid fa-location-dot" style="color:var(--accent-blue);"></i> พิกัด: ${selectedReportLat.toFixed(4)}, ${selectedReportLng.toFixed(4)} (ห่าง ${distFormatted} · ภายใน 5 กม.)`;
                     return;
                 }
 
@@ -1787,19 +2383,23 @@ declare(strict_types=1);
 
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
-                        selectedReportLat = position.coords.latitude;
-                        selectedReportLng = position.coords.longitude;
-                        reportLocationStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--status-success);"></i> ตรวจพบพิกัดของคุณ: ${selectedReportLat.toFixed(4)}, ${selectedReportLng.toFixed(4)}`;
+                        userCurrentLat = position.coords.latitude;
+                        userCurrentLng = position.coords.longitude;
+                        selectedReportLat = userCurrentLat;
+                        selectedReportLng = userCurrentLng;
+
+                        reportLocationStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--status-success);"></i> พิกัดปัจจุบันของคุณ: ${selectedReportLat.toFixed(4)}, ${selectedReportLng.toFixed(4)} (อยู่ในรัศมี 5 กม.)`;
                         map.setView([selectedReportLat, selectedReportLng], 14);
                     },
                     (err) => {
-                        reportLocationStatus.innerHTML = `<i class="fa-solid fa-location-dot" style="color:var(--accent-blue);"></i> พิกัด: ${selectedReportLat.toFixed(4)}, ${selectedReportLng.toFixed(4)}`;
+                        const dist = calculateDistanceMeters(userCurrentLat, userCurrentLng, selectedReportLat, selectedReportLng);
+                        const distFormatted = dist < 1000 ? `${Math.round(dist)} ม.` : `${(dist/1000).toFixed(2)} กม.`;
+                        reportLocationStatus.innerHTML = `<i class="fa-solid fa-location-dot" style="color:var(--accent-blue);"></i> พิกัด: ${selectedReportLat.toFixed(4)}, ${selectedReportLng.toFixed(4)} (ห่าง ${distFormatted} · ภายใน 5 กม.)`;
                     },
                     { enableHighAccuracy: true, timeout: 5000 }
                 );
             }
 
-            // จัดการเลือกรูปถ่ายสถานที่จริง
             photoInput.addEventListener('change', (e) => {
                 const file = e.target.files && e.target.files[0];
                 if (!file) return;
@@ -1828,7 +2428,6 @@ declare(strict_types=1);
                 photoLabel.style.display = 'inline-flex';
             }
 
-            // เปิด/ปิด Modal (ดึง Geolocation GPS อัตโนมัติทันทีที่เปิดฟอร์ม)
             btnOpenModal.addEventListener('click', () => {
                 reportModal.style.display = 'flex';
                 if (localStorage.getItem('roicore_reporter_phone')) {
@@ -1856,26 +2455,27 @@ declare(strict_types=1);
                 });
             });
 
-            // ปักหมุดบนแผนที่ด้วยตนเอง
+            // ปักหมุดบนแผนที่ในรัศมี 5 กม. จากในฟอร์ม
             btnPickMap.addEventListener('click', () => {
-                reportModal.style.display = 'none';
-                isPickingLocation = true;
-                showToast('แตะเลือกจุดบนแผนที่เพื่อระบุตำแหน่งน้ำท่วม');
+                startPinPickingMode('modal');
             });
 
-            map.on('click', (e) => {
-                if (isPickingLocation) {
-                    selectedReportLat = e.latlng.lat;
-                    selectedReportLng = e.latlng.lng;
-                    isPickingLocation = false;
-                    reportModal.style.display = 'flex';
-                    reportLocationStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--status-success);"></i> เลือกพิกัดแล้ว: ${selectedReportLat.toFixed(4)}, ${selectedReportLng.toFixed(4)}`;
-                    showToast('เลือกพิกัดบนแผนที่เรียบร้อย');
-                }
-            });
+            // ปักหมุดตีกรอบ 5 กม. จากปุ่มลัดบนแผนที่
+            const btnQuickDrop = document.getElementById('btnQuickDropPin');
+            if (btnQuickDrop) {
+                btnQuickDrop.addEventListener('click', () => {
+                    startPinPickingMode('map');
+                });
+            }
 
             // แตะเลือก 3: ส่งรายงานเหตุการณ์ไปยังเซิร์ฟเวอร์
             btnSubmit.addEventListener('click', async () => {
+                // ตรวจสอบระยะห่างก่อนส่งข้อมูล
+                const distanceMeters = calculateDistanceMeters(userCurrentLat, userCurrentLng, selectedReportLat, selectedReportLng);
+                if (distanceMeters > 5000) {
+                    showToast(`จุดแจ้งเหตุอยู่นอกรัศมี 5 กม. (ห่าง ${(distanceMeters/1000).toFixed(1)} กม.)`);
+                }
+
                 btnSubmit.disabled = true;
                 btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังบันทึกข้อมูล...';
 
@@ -1886,6 +2486,9 @@ declare(strict_types=1);
                 const payload = {
                     latitude: selectedReportLat,
                     longitude: selectedReportLng,
+                    user_latitude: userCurrentLat,
+                    user_longitude: userCurrentLng,
+                    max_distance_meters: 5000,
                     severity: selectedSeverity,
                     description: descText,
                     phone: phone || null,
@@ -1907,42 +2510,47 @@ declare(strict_types=1);
                         });
                     }
 
-                    // เพิ่มหมุดใหม่ลงบนแผนที่ทันที
+                    // เพิ่มหมุดใหม่ลงบนแผนที่ทันทีพร้อมตีกรอบ 5 กม.
                     const newPoint = {
                         id: 'report_' + Date.now(),
                         title: 'จุดรายงานใหม่โดยประชาชน',
                         location: { latitude: selectedReportLat, longitude: selectedReportLng },
-                        water_level_meters: selectedSeverity === 3 ? 1.6 : 0.4,
-                        risk_level: selectedSeverity === 3 ? 'CRITICAL' : 'MEDIUM',
-                        risk_level_label: selectedSeverity === 3 ? 'ความเสี่ยงวิกฤต' : 'ความเสี่ยงปานกลาง',
+                        water_level_meters: selectedSeverity === 3 ? 1.6 : (selectedSeverity === 2 ? 0.8 : 0.2),
+                        risk_level: selectedSeverity === 3 ? 'CRITICAL' : (selectedSeverity === 2 ? 'MEDIUM' : 'LOW'),
+                        risk_level_label: selectedSeverity === 3 ? 'ความเสี่ยงวิกฤต' : (selectedSeverity === 2 ? 'ความเสี่ยงปานกลาง' : 'เฝ้าระวัง'),
+                        radius_meters: 5000,
+                        zone_name: 'เขตเฝ้าระวังน้ำท่วม 5 กิโลเมตร (รายงานโดยประชาชน)',
                         report_count: 1,
                         updated_at: new Date().toISOString()
                     };
 
                     allFloodPoints.unshift(newPoint);
                     renderMarkers();
-                    map.flyTo([selectedReportLat, selectedReportLng], 14, { duration: 1.2 });
+                    drawPinned1kmZone(selectedReportLat, selectedReportLng, true);
 
                     resetPhotoField();
                     reportModal.style.display = 'none';
-                    showToast('ขอบคุณสำหรับการแจ้งเหตุ ข้อมูลเข้าสู่ระบบแล้ว');
+                    showToast('ขอบคุณสำหรับการแจ้งเหตุ ข้อมูลและตีกรอบ 5 กม. เข้าสู่ระบบเรียบร้อยแล้ว');
                 } catch (err) {
-                    // หากระบบออฟไลน์ บันทึกจุดในเครื่อง
                     const offlinePoint = {
                         id: 'offline_' + Date.now(),
                         title: 'จุดรายงานใหม่ (โหมดออฟไลน์)',
                         location: { latitude: selectedReportLat, longitude: selectedReportLng },
-                        water_level_meters: selectedSeverity === 3 ? 1.6 : 0.4,
-                        risk_level: selectedSeverity === 3 ? 'CRITICAL' : 'MEDIUM',
-                        risk_level_label: selectedSeverity === 3 ? 'ความเสี่ยงวิกฤต' : 'ความเสี่ยงปานกลาง',
+                        water_level_meters: selectedSeverity === 3 ? 1.6 : (selectedSeverity === 2 ? 0.8 : 0.2),
+                        risk_level: selectedSeverity === 3 ? 'CRITICAL' : (selectedSeverity === 2 ? 'MEDIUM' : 'LOW'),
+                        risk_level_label: selectedSeverity === 3 ? 'ความเสี่ยงวิกฤต' : (selectedSeverity === 2 ? 'ความเสี่ยงปานกลาง' : 'เฝ้าระวัง'),
+                        radius_meters: 5000,
+                        zone_name: 'เขตเฝ้าระวังน้ำท่วม 5 กิโลเมตร (โหมดออฟไลน์)',
                         report_count: 1,
                         updated_at: new Date().toISOString()
                     };
                     allFloodPoints.unshift(offlinePoint);
                     renderMarkers();
+                    drawPinned1kmZone(selectedReportLat, selectedReportLng, true);
+
                     resetPhotoField();
                     reportModal.style.display = 'none';
-                    showToast('บันทึกรายงานเหตุการณ์ในอุปกรณ์เรียบร้อยแล้ว');
+                    showToast('บันทึกรายงานเหตุการณ์และตีกรอบ 5 กม. ในอุปกรณ์เรียบร้อยแล้ว');
                 } finally {
                     btnSubmit.disabled = false;
                     btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i> ส่งรายงานสถานการณ์ด่วน';
@@ -1962,7 +2570,7 @@ declare(strict_types=1);
                 toast.classList.add('show');
                 toastTimer = setTimeout(() => {
                     toast.classList.remove('show');
-                }, 3000);
+                }, 3500);
             }
 
             // เริ่มต้นโหลดข้อมูล
